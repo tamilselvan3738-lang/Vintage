@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Vinyl Oasis | Turntable & Vinyl Studio</title>
+  <meta name="description" content="Vinyl Oasis navigation interface showcasing custom premium analog sound design, high-end turntables, and exclusive vinyl record sanctuary features.">
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f6fc;
+      background-image: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 40%), 
+                        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+      color: #1b1624;
+      transition: background 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+    }
+
+    /* ----- DARK MODE (Immersive Deep Studio aesthetic) ----- */
+    body.dark {
+      background-color: #0b0714;
+      background-image: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 45%), 
+                        radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 45%);
+      color: #e4dee8;
+    }
+    body.dark .login-btn {
+      color: #0b0714 !important;
+    }
+
+    /* ----- RTL (right-to-left) support ----- */
+    body.rtl {
+      direction: rtl;
+    }
+    body.rtl .navbar .logo {
+      margin-left: 0;
+      margin-right: -4px;
+    }
+    body.rtl .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(16px) scale(0.95); text-align: right; }
+    body.rtl .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0) scale(1); }
+
+    /* ========== NAVBAR (Premium Ultraviolet Sunset Style) ========== */
+    .navbar {
+      position: fixed;
+      top: 16px;
+      left: 2%;
+      width: 96%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 1000;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 58, 237, 0.18);
+      box-shadow: 0 12px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-shrink: 0;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+    .navbar.scrolled {
+      top: 10px;
+      padding: 0.65rem 1.5rem;
+      background: rgba(255, 255, 255, 0.93);
+      border-color: rgba(124, 58, 237, 0.28);
+      box-shadow: 0 16px 50px -10px rgba(124, 58, 237, 0.2), 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    body.dark .navbar {
+      background: rgba(11, 7, 20, 0.85);
+      border-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .navbar.scrolled {
+      background: rgba(9, 5, 16, 0.95);
+      border-color: rgba(245, 158, 11, 0.25);
+      box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.98), 0 0 30px rgba(124, 58, 237, 0.25);
+    }
+
+    /* ----- LOGO (Premium Layout & Amber Gold Ring) ----- */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .logo:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2e1065 0%, #581c87 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.1);
+      border: 2px solid #f59e0b;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .logo:hover .logo-icon {
+      border-color: #f59e0b;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+    .logo-icon i {
+      font-size: 20px;
+      color: #fef3c7;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+    .logo:hover .logo-icon i {
+      color: #ffffff;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #2e1065 20%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s;
+    }
+    body.dark .logo-text {
+      background: linear-gradient(135deg, #ffffff 20%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 1.5px;
+      color: #7c3aed;
+      margin-top: 2px;
+    }
+    body.dark .logo small {
+      color: #fbbf24;
+    }
+
+    /* ----- CENTER NAV MENU ----- */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: rgba(124, 58, 237, 0.03);
+      padding: 0.3rem 0.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(124, 58, 237, 0.05);
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    body.dark .nav-menu {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.04);
+    }
+    .nav-link {
+      position: relative;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #443a55;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .nav-link {
+      color: #c0b6ca;
+    }
+    .nav-link:hover {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    body.dark .nav-link:hover {
+      color: #fcd34d;
+      background: rgba(252, 211, 77, 0.12);
+    }
+    /* Unique glowing dot indicator */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: #7c3aed;
+      border-radius: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+    }
+    body.dark .nav-link::after {
+      background: #fcd34d;
+      box-shadow: 0 0 8px #fcd34d;
+    }
+    .nav-link:hover::after {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px) scale(0.95);
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-width: 220px;
+      border-radius: 20px;
+      padding: 12px 8px;
+      box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(124, 58, 237, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+    }
+    body.dark .dropdown-menu {
+      background: rgba(14, 9, 24, 0.95);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(124, 58, 237, 0.2);
+    }
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3b304c;
+      transition: all 0.2s ease;
+      border-radius: 12px;
+    }
+    body.dark .dropdown-menu a {
+      color: #d8d0e0;
+    }
+    .dropdown-menu a i {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    body.dark .dropdown-menu a i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(124, 58, 237, 0.06);
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .dropdown-menu a:hover {
+      background: rgba(252, 211, 77, 0.08);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .dropdown-menu a:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* RIGHT side actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .icon-btn {
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 1.1rem;
+      color: #584f6b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    body.dark .icon-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #d8d0e0;
+    }
+    .icon-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .icon-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+      box-shadow: 0 8px 20px rgba(252, 211, 77, 0.3);
+    }
+    .login-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      padding: 0 24px;
+      height: 44px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing: 0.4px;
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    body.dark .login-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+    .login-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(124, 58, 237, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .login-btn:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    /* MOBILE / TABLET (<= 1280px) */
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      border-radius: 14px;
+      cursor: pointer;
+      color: #7c3aed;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-menu-btn {
+      background: rgba(252, 211, 77, 0.12);
+      border-color: rgba(252, 211, 77, 0.18);
+      color: #fcd34d;
+    }
+    .mobile-menu-btn:hover {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-menu-btn:hover {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    @media (max-width: 1440px) {
+      .nav-menu { display: none; }
+      .nav-actions { display: none; }
+      .mobile-menu-btn { display: flex; }
+    }
+    /* side drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100vh;
+      background: rgba(255, 253, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 30px 24px;
+      box-shadow: -15px 0 50px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 1px solid rgba(124, 58, 237, 0.12);
+    }
+    body.dark .mobile-drawer {
+      background: rgba(11, 7, 20, 0.98);
+      border-left-color: rgba(255, 255, 255, 0.08);
+      box-shadow: -15px 0 50px rgba(0,0,0,0.8);
+    }
+    .mobile-drawer.open {
+      right: 0;
+    }
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1999;
+      display: none;
+    }
+    .mobile-drawer .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #3b304c;
+      transition: all 0.2s;
+      border: none;
+      background: transparent;
+    }
+    body.dark .mobile-drawer .nav-link {
+      color: #d8d0e0;
+    }
+    .mobile-drawer .nav-link:hover {
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      transform: translateX(6px);
+    }
+    body.dark .mobile-drawer .nav-link:hover {
+      background: rgba(252, 211, 77, 0.1);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.1);
+      color: #7c3aed;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-drawer .nav-link i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-drawer .nav-link:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    .mobile-dropdown .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+      padding: 4px 0 4px 20px;
+      display: none;
+      border: none;
+    }
+    .mobile-dropdown.active .dropdown-menu { display: block; }
+
+    /* Mobile Login Button Pro Style */
+    .mobile-drawer-login {
+      width: 100%;
+      height: 56px; /* Optimized height for visual hierarchy */
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255,255,255,0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.dark .mobile-drawer-login {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+    .mobile-drawer-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(124, 58, 237, 0.4);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .mobile-drawer-login:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 14px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      margin-top: 120px;
+      padding: 5rem 6% 7rem;
+      text-align: center;
+      background: linear-gradient(145deg, #f5f2fa, #fcfaf3);
+      border-radius: 0 0 60px 60px;
+      transition: all 0.3s;
+    }
+    body.dark .hero { background: #0b0714; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #2e1065, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    body.dark .hero h1 {
+      background: linear-gradient(135deg, #ffffff, #fcd34d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: #584f6b;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+    body.dark .hero p { color: #a49ab0; }
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+
+    /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    p, h1, h2, h3, h4, h5, h6, span, a, blockquote {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+    .icon-btn { font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.2rem); }
+    .login-btn { font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); }
+    .mobile-drawer-login { font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem); }
+
+    @media (max-width: 1200px) {
+      .footer-top { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-left: 5% !important; padding-right: 5% !important;
+      }
+      div[class*="grid"], div[class*="layout"], div[class*="panel"], div[class*="wrapper"] {
+        grid-template-columns: 1fr !important; gap: 2rem;
+      }
+      .footer-top { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr !important; gap: 2rem; }
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 4rem !important; padding-bottom: 4rem !important;
+      }
+    }
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+    @media (max-width: 480px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 3rem !important; padding-bottom: 3rem !important; padding-left: 4% !important; padding-right: 4% !important;
+      }
+      div[style*="display: flex"]:not(.navbar):not(.nav-left):not(.nav-right):not(.logo):not(.nav-menu):not(.nav-actions):not(.dropdown):not(.social-socials):not(.footer-socials):not(.newsletter-form):not(.input-wrapper):not(.checkbox-label):not(.event-row) {
+        flex-direction: column; align-items: center; text-align: center;
+      }
+    }
+
+    /* ========== PREMIUM FOOTER (Ultraviolet Sunset Theme) ========== */
+    .footer {
+      background-color: #ffffff;
+      border-top: 1px solid rgba(124, 58, 237, 0.12);
+      padding: 5rem 6% 3rem;
+      margin-top: 4rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 -10px 40px rgba(124, 58, 237, 0.03);
+    }
+    body.dark .footer {
+      background-color: #0b0714;
+      border-top-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .footer-brand p {
+      color: #584f6b;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    body.dark .footer-brand p {
+      color: #a49ab0;
+    }
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2e1065;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    body.dark .footer-title {
+      color: #fcd34d;
+    }
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(135deg, #7c3aed, #f59e0b);
+      border-radius: 2px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-link {
+      color: #443a55;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    body.dark .footer-link {
+      color: #c0b6ca;
+    }
+    .footer-link:hover {
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .footer-link:hover {
+      color: #fcd34d;
+    }
+    .footer-newsletter p {
+      color: #584f6b;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+    body.dark .footer-newsletter p {
+      color: #a49ab0;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      background: rgba(124, 58, 237, 0.02);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #1b1624;
+      outline: none;
+      transition: all 0.3s;
+    }
+    body.dark .newsletter-input {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e4dee8;
+    }
+    .newsletter-input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    body.dark .newsletter-input:focus {
+      border-color: #fcd34d;
+      box-shadow: 0 0 0 3px rgba(252, 211, 77, 0.15);
+    }
+    .newsletter-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      width: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .newsletter-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+    .newsletter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+    }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(124, 58, 237, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    body.dark .footer-bottom {
+      border-top-color: rgba(255, 255, 255, 0.05);
+    }
+    .footer-copyright {
+      color: #7c6f8d;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    body.dark .footer-copyright {
+      color: #8c829c;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #584f6b;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    body.dark .social-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.06);
+      color: #c0b6ca;
+    }
+    .social-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    body.dark .social-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        justify-content: center;
+      }
+    }
+
+    /* ==========================================================================
+       SETUP GUIDES: SPECIALIZED MANUAL LAYOUT MODULES
+       ========================================================================== */
+    .guide-section {
+      padding: 6rem 6%;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+    .guide-header {
+      max-width: 800px;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+    .guide-badge {
+      font-family: monospace;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+    body.dark .guide-badge { background: rgba(245, 158, 11, 0.15); }
+    .guide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: #2e1065;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+    body.dark .guide-title { color: #ffffff; }
+    .guide-desc {
+      color: #584f6b;
+      font-size: 1.05rem;
+      margin-top: 0.6rem;
+      line-height: 1.6;
+    }
+    body.dark .guide-desc { color: #a49ab0; }
+
+    /* SECTION 1: MANUALS GATEWAY HERO */
+    .guide-hero {
+      margin-top: 100px;
+      padding: 7rem 6% 6rem;
+      background: linear-gradient(135deg, #ffffff 0%, #f3effa 100%);
+      border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    body.dark .guide-hero {
+      background: linear-gradient(135deg, #0b0714 0%, #120b22 100%);
+      border-bottom-color: rgba(255,255,255,0.05);
+    }
+    .guide-hero::after {
+      content: '';
+      position: absolute;
+      right: -5%;
+      top: -20%;
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%;
+      border: 1px dashed rgba(124, 58, 237, 0.1);
+      pointer-events: none;
+    }
+    body.dark .guide-hero::after { border-color: rgba(245, 158, 11, 0.08); }
+    .guide-anchors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .anchor-btn {
+      padding: 0.8rem 1.5rem;
+      background: #ffffff;
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 0.65rem + 0.4vw, 0.95rem);
+      color: #2e1065;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.05);
+      outline: none;
+      text-decoration: none;
+    }
+    body.dark .anchor-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #fcd34d;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    .anchor-btn:hover {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      color: #ffffff;
+      border-color: transparent;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .anchor-btn:hover {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+    }
+    .anchor-btn i {
+      transition: transform 0.3s ease;
+    }
+    .anchor-btn:hover i {
+      transform: scale(1.15) rotate(-5deg);
+      color: inherit !important;
+    }
+
+    /* SECTION 2: TURNTABLE INSTALLATION MODULE */
+    .install-box {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 3rem;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.02);
+    }
+    body.dark .install-box {
+      background: rgba(16, 11, 28, 0.4);
+      border-color: rgba(255,255,255,0.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .install-art {
+      width: 100%;
+      border-radius: 20px;
+      border: 2px solid #7c3aed;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .step-btn {
+      width: 100%;
+      text-align: left;
+      padding: 1.2rem 1.5rem;
+      background: rgba(124, 58, 237, 0.02);
+      border-radius: 16px;
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #1b1624;
+    }
+    body.dark .step-btn { background: rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.05); color: #e4dee8; }
+    .step-btn.active, .step-btn:hover {
+      background: #7c3aed;
+      color: white;
+      border-color: #7c3aed;
+      transform: translateX(6px);
+    }
+    body.dark .step-btn.active, body.dark .step-btn:hover {
+      background: #f59e0b;
+      color: #0b0714;
+      border-color: #f59e0b;
+    }
+
+    /* SECTION 3: SPEAKER CONNECTION DIAGRAM CONSOLE */
+    .wiring-console {
+      background: #0b0714;
+      border-radius: 32px;
+      padding: 4rem;
+      border: 2px solid #3b82f6;
+      color: white;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+    }
+    body.dark .wiring-console { border-color: #f59e0b; }
+    .terminal-poles {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+    .terminal-pole {
+      width: 140px;
+      padding: 1.5rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .terminal-pole.pos { border-color: #ef4444; }
+    .terminal-pole.neg { border-color: #94a3b8; }
+
+    /* SECTION 4: VINYL CARE TIPS (Process Carousel Wrap) */
+    .care-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .care-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .care-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem;
+      border-left: 4px solid #10b981;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    body.dark .care-card { background: rgba(16, 11, 28, 0.6); border-left-color: #10b981; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+    /* SECTION 5: NEEDLE REPLACEMENT (Cartridge Profiler Matrix) */
+    .styli-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+    .styli-profile {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      text-align: center;
+      position: relative;
+    }
+    body.dark .styli-profile { background: rgba(16, 11, 28, 0.4); border-color: rgba(255,255,255,0.08); }
+    .styli-cut-icon {
+      width: 60px; height: 60px; margin: 0 auto 1.5rem; border-radius: 12px; background: rgba(124, 58, 237, 0.08); color: #7c3aed; display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+    }
+    body.dark .styli-cut-icon { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
+
+    /* SECTION 6: SOUND OPTIMIZATION (Grounding Stage) */
+    .opt-container {
+      background: #ffffff;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      box-shadow: 0 20px 50px rgba(245, 158, 11, 0.05);
+    }
+    body.dark .opt-container { background: rgba(16, 11, 28, 0.5); border-color: rgba(245, 158, 11, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .opt-art-banner {
+      width: 100%; height: 380px; object-fit: cover;
+    }
+    .opt-content { padding: 4rem; }
+
+    /* SECTION 7: DIAGNOSTIC HOTLINE CHECKLIST */
+    .diag-panel {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.03), rgba(245, 158, 11, 0.03));
+      border-radius: 32px;
+      padding: 4rem;
+      border: 1px dashed rgba(124, 58, 237, 0.3);
+      text-align: center;
+    }
+    body.dark .diag-panel { background: rgba(0,0,0,0.3); border-color: rgba(245, 158, 11, 0.3); }
+
+    @media (max-width: 992px) {
+      .install-box, .care-wrap { grid-template-columns: 1fr; gap: 3rem; padding: 2rem; }
+      .wiring-console { padding: 2.5rem; }
+      .opt-content, .diag-panel { padding: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <!-- LOGO left -->
+  <div class="nav-left">
+    <a href="./index.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+      <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+    </a>
+  </div>
+
+  <!-- CENTER NAV MENU -->
+  <div class="nav-menu" id="navMenu">
+    <!-- HOME with dropdown -->
+    <div class="dropdown">
+      <a href="./index.html" class="nav-link" id="homeLink">Home <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./index.html" id="home1Option"> Home 1</a>
+        <a href="./home 2.html" id="home2Option"> Home 2</a>
+      </div>
+    </div>
+    <a href="./about.html" class="nav-link"> About</a>
+    <!-- ARRIVALS with dropdown -->
+    <div class="dropdown">
+      <a href="./new arrivals.html" class="nav-link" id="arrivalsLink">Arrivals <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./new arrivals.html"> New Arrivals</a>
+        <a href="./vinyl collections.html">Vinyl Collections</a>
+      </div>
+    </div>
+    <a href="./turntables.html" class="nav-link">Turntables</a>
+    <a href="./cartridge selection.html" class="nav-link">Cartridges</a>
+    <a href="./setup guides.html" class="nav-link" style="color: #7c3aed;">Setup Guides</a>
+    <a href="./trade-in program.html" class="nav-link">Trade-In Program</a>
+    <a href="./local pickup.html" class="nav-link">Local Pickup</a>
+    <a href="./audio lounge.html" class="nav-link">Audio Lounge</a>
+    <a href="./contact.html" class="nav-link">Contact</a>
+  </div>
+
+  <!-- RIGHT side actions -->
+  <div class="nav-right">
+    <div class="nav-actions">
+      <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL direction"><i class="fa-solid fa-right-left"></i></button>
+      <button class="login-btn" id="loginBtn">Login <i class="fas fa-arrow-right-to-bracket" style="font-size: 12px;"></i></button>
+    </div>
+    <!-- Mobile Hamburger -->
+    <button class="mobile-menu-btn" id="mobileHamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center;">
+      <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: #7c3aed;">MENU</span>
+    </div>
+    <button id="closeDrawer" style="background: rgba(0,0,0,0.04); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; color: #584f6b; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
+  </div>
+  <div class="mobile-dropdown" id="mobileHomeDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Home</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./index.html" id="mobileHome1" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 1 </a>
+      <a href="./home 2.html" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
+    </div>
+  </div>
+  <a href="./about.html" class="nav-link"> About</a>
+  <div class="mobile-dropdown" id="mobileArrivalsDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Arrivals</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
+      <a href="./vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
+    </div>
+  </div>
+  <a href="./turntables.html" class="nav-link"> Turntables</a>
+  <a href="./cartridge selection.html" class="nav-link"> Cartridges</a>
+  <a href="./setup guides.html" class="nav-link" style="color: #7c3aed;"> Setup Guides</a>
+  <a href="./trade-in program.html" class="nav-link"> Trade-In Program</a>
+  <a href="./local pickup.html" class="nav-link"> Local Pickup</a>
+  <a href="./audio lounge.html" class="nav-link"> Audio Lounge</a>
+  <a href="./contact.html" class="nav-link"> Contact</a>
+  <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
+  
+  <a class="nav-link" id="mobileDarkToggle" style="cursor: pointer;"><i class="fas fa-moon"></i> Dark Mode</a>
+  <a class="nav-link" id="mobileRtlToggle" style="cursor: pointer;"><i class="fa-solid fa-right-left"></i> RTL Mode</a>
+  
+  <div style="margin-top: 8px;">
+    <button class="mobile-drawer-login" id="mobileLoginBtn">
+      <span>Login</span>
+      <i class="fas fa-arrow-right-to-bracket" style="font-size: 1.2rem;"></i>
+    </button>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ==========================================
+     SECTION 1: MANUALS GATEWAY (HERO INDEX)
+     ========================================== -->
+<section class="guide-hero">
+  <span class="guide-badge">Technical Studio Archives</span>
+  <h1 class="guide-title">Turntable & Sound Setup Guides</h1>
+  <p class="guide-desc" style="max-width: 700px;">
+    Precision engineering handbooks covering cartridge over-hang vectors, phono phase configurations, and long-term vinyl disc custody profiles.
+  </p>
+  
+  <div class="guide-anchors">
+    <a href="#secInstall" class="anchor-btn"><i class="fas fa-compass-drafting" style="color: #7c3aed;"></i> Turntable Installation</a>
+    <a href="#secSpeakers" class="anchor-btn"><i class="fas fa-plug-circle-bolt" style="color: #3b82f6;"></i> Speaker Connection</a>
+    <a href="#secCare" class="anchor-btn"><i class="fas fa-sparkles" style="color: #10b981;"></i> Vinyl Care Tips</a>
+    <a href="#secNeedle" class="anchor-btn"><i class="fas fa-eye-dropper" style="color: #f59e0b;"></i> Needle Replacement</a>
+    <a href="#secOpt" class="anchor-btn"><i class="fas fa-sliders" style="color: #ec4899;"></i> Sound Optimization</a>
+    <a href="#secDiagnostics" class="anchor-btn"><i class="fas fa-stethoscope" style="color: #6366f1;"></i> Diagnostics</a>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 2: TURNTABLE INSTALLATION (Azimuth & VTA)
+     ========================================== -->
+<section class="guide-section" id="secInstall">
+  <div class="guide-header">
+    <span class="guide-badge">Phase 01: Physical Assembly</span>
+    <h2 class="guide-title">Turntable Installation & Geometry</h2>
+    <p class="guide-desc">Establishing precision spatial relationships between tone-arm pivot centers, spindle radii, and record groove walls.</p>
+  </div>
+
+  <div class="install-box">
+    <div class="step-list">
+      <div class="step-btn active" onclick="document.getElementById('installStepText').innerText='Align cartridge body tangent to internal null points (66.04mm and 120.9mm radii) minimizing lateral tracing error across the arc.'">
+        <div>
+          <span style="font-family: monospace; font-weight: 800; color: white; margin-right: 8px;">STEP 1</span>
+          <span style="font-weight: 700;">Overhang Protractor Mapping</span>
+        </div>
+        <i class="fas fa-circle-check"></i>
+      </div>
+
+      <div class="step-btn" onclick="document.getElementById('installStepText').innerText='Adjust tonearm base pillar vertical level to position tonearm wand parallel with the 180g surface boundary during playback.'">
+        <div>
+          <span style="font-family: monospace; font-weight: 800; color: #7c3aed; margin-right: 8px;">STEP 2</span>
+          <span style="font-weight: 700;">Vertical Tracking Angle (VTA)</span>
+        </div>
+        <i class="fas fa-circle-check"></i>
+      </div>
+
+      <div class="step-btn" onclick="document.getElementById('installStepText').innerText='Rotate headshell collar viewing directly from the frontal plane until stylus sits strictly orthogonal (90 degrees) inside unmodulated test cuts.'">
+        <div>
+          <span style="font-family: monospace; font-weight: 800; color: #7c3aed; margin-right: 8px;">STEP 3</span>
+          <span style="font-weight: 700;">Azimuth Orthogonal Alignment</span>
+        </div>
+        <i class="fas fa-circle-check"></i>
+      </div>
+
+      <div style="margin-top: 1rem; padding: 1.5rem; background: rgba(124, 58, 237, 0.03); border-radius: 16px; border-left: 3px solid #7c3aed;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #7c3aed; text-transform: uppercase; letter-spacing: 1px; display: block;">Active Parameter Focus</span>
+        <p id="installStepText" style="font-size: 0.9rem; color: #584f6b; margin-top: 4px; line-height: 1.5;">
+          Align cartridge body tangent to internal null points (66.04mm and 120.9mm radii) minimizing lateral tracing error across the arc.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <img src="images/guide_installation.png" alt="Turntable Stylus Protractor Installation View" class="install-art">
+      <span style="display: block; text-align: center; font-size: 0.75rem; color: #8c829c; margin-top: 12px; font-family: monospace;">RUBY CANTILEVER AZIMUTH CHECK</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 3: SPEAKER CONNECTION (Phase Integrity)
+     ========================================== -->
+<section class="guide-section" id="secSpeakers" style="background: rgba(59, 130, 246, 0.02);">
+  <div class="guide-header">
+    <span class="guide-badge" style="color: #3b82f6; background: rgba(59, 130, 246, 0.1);">Phase 02: Electrical Interface</span>
+    <h2 class="guide-title">Speaker Connection & Ground Staging</h2>
+    <p class="guide-desc">Preventing acoustic phase cancellations and isolated ground loops across multi-stage discrete component connections.</p>
+  </div>
+
+  <div class="wiring-console">
+    <span style="font-family: monospace; font-size: 0.85rem; color: #93c5fd; letter-spacing: 3px; display: block;">AMPLIFIER OUTPUT BINDING POSTS</span>
+    <h3 style="font-family: serif; font-size: 2rem; margin-top: 4px;">Speaker Phase Verifier Console</h3>
+    <p style="color: #94a3b8; font-size: 0.95rem; max-width: 600px; margin: 8px auto 0;">
+      Ensure matching positive and negative node configurations across passive crossover networks to prevent low-frequency wave cancelation.
+    </p>
+
+    <div class="terminal-poles">
+      <div class="terminal-pole pos">
+        <span style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; width: 24px; height: 24px; border-radius: 50%; font-weight: 800; font-size: 0.8rem; display: flex; align-items: center; justify-content: center;">+</span>
+        <span style="font-weight: 800; font-size: 1.1rem; display: block; color: #ef4444;">RED POLE</span>
+        <span style="font-size: 0.75rem; color: #94a3b8; margin-top: 4px; display: block;">Active Output</span>
+      </div>
+
+      <div class="terminal-pole neg">
+        <span style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #94a3b8; color: #0b0714; width: 24px; height: 24px; border-radius: 50%; font-weight: 800; font-size: 0.8rem; display: flex; align-items: center; justify-content: center;">-</span>
+        <span style="font-weight: 800; font-size: 1.1rem; display: block; color: #cbd5e1;">BLACK POLE</span>
+        <span style="font-size: 0.75rem; color: #94a3b8; margin-top: 4px; display: block;">Common Ground</span>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <button class="login-btn" style="background: #3b82f6; color: white !important;" onclick="alert('🔊 Phase matched perfectly. Center imaging vocal solid.')">Execute Speaker Sweep Signal</button>
+      <button class="login-btn" style="background: rgba(255,255,255,0.1); color: white !important;" onclick="alert('🔌 Ground wire bonded to pre-amplifier terminal. 60Hz ambient room hum suppressed.')">Verify Ground Loop Pin</button>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 4: VINYL CARE TIPS (Preservation)
+     ========================================== -->
+<section class="guide-section" id="secCare">
+  <div class="guide-header">
+    <span class="guide-badge" style="color: #10b981; background: rgba(16, 185, 129, 0.1);">Phase 03: Disc Longevity</span>
+    <h2 class="guide-title">Vinyl Care Tips & Custody</h2>
+    <p class="guide-desc">Advanced surface discharge procedures mitigating ambient crackle artifacts and physical micro-abrasion deposits.</p>
+  </div>
+
+  <div class="care-wrap">
+    <div>
+      <img src="images/guide_care.png" alt="Carbon Fiber Brush LP Surface Application" style="width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 2px solid #10b981;">
+    </div>
+
+    <div class="care-cards">
+      <div class="care-card">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: inherit; display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-bolt" style="color: #10b981;"></i> Pre-Playback Static Sweep
+        </h3>
+        <p style="color: #584f6b; font-size: 0.9rem; margin-top: 6px; line-height: 1.5;">
+          Gently hold the carbon fiber brush across spinning inner radii to route residual friction potential charges directly away from tone arm heads.
+        </p>
+      </div>
+
+      <div class="care-card" style="border-left-color: #3b82f6;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: inherit; display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-droplet" style="color: #3b82f6;"></i> Ultrasonic Deep Basin Bath
+        </h3>
+        <p style="color: #584f6b; font-size: 0.9rem; margin-top: 6px; line-height: 1.5;">
+          Submerge rare collector pressings in degassed distilled fluids at 40kHz sonic burst configurations to clear historic pressing mold-release residues.
+        </p>
+      </div>
+
+      <div class="care-card" style="border-left-color: #f59e0b;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: inherit; display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-temperature-half" style="color: #f59e0b;"></i> Vertical Storage Ambient Climate
+        </h3>
+        <p style="color: #584f6b; font-size: 0.9rem; margin-top: 6px; line-height: 1.5;">
+          Store records strictly vertical at constant 45% relative humidity indices below 21°C to avoid irreversible thermal inner-groove warping.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 5: NEEDLE REPLACEMENT (Cartridge Matrix)
+     ========================================== -->
+<section class="guide-section" id="secNeedle" style="background: rgba(245, 158, 11, 0.02);">
+  <div class="guide-header">
+    <span class="guide-badge">Phase 04: Hardware Refresh</span>
+    <h2 class="guide-title">Needle Replacement Matrix</h2>
+    <p class="guide-desc">Understanding mechanical wear limitations across customized industrial diamond profile geometries.</p>
+  </div>
+
+  <div class="styli-matrix">
+    <div class="styli-profile">
+      <div class="styli-cut-icon"><i class="fas fa-circle"></i></div>
+      <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800;">300 - 500 HOURS</span>
+      <h3 style="font-size: 1.2rem; font-weight: 700; margin-top: 4px;">Conical / Spherical Cut</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Thick contact patch. Resilient against heavy direct cue drop actions but rolls off frequencies early above 15kHz.
+      </p>
+    </div>
+
+    <div class="styli-profile" style="border-color: #f59e0b;">
+      <div class="styli-cut-icon" style="background: #f59e0b; color: white;"><i class="fas fa-diamond"></i></div>
+      <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800;">500 - 800 HOURS</span>
+      <h3 style="font-size: 1.2rem; font-weight: 700; margin-top: 4px;">Elliptical Contact</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Narrow side scanning profile tracking deep inside tight inner radii cuts with substantially reduced phase tracing distortion.
+      </p>
+    </div>
+
+    <div class="styli-profile">
+      <div class="styli-cut-icon"><i class="fas fa-shield-halved"></i></div>
+      <span style="font-family: monospace; font-size: 0.75rem; color: #10b981; font-weight: 800;">1000+ HOURS</span>
+      <h3 style="font-size: 1.2rem; font-weight: 700; margin-top: 4px;">MicroLine / Shibata</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Laser cut precision contact wall mapping unmodulated top/bottom groove paths. Captures true master transient dynamics.
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 3rem;">
+    <button class="login-btn" onclick="alert('🛒 Stylus upgrade recommendation guide dispatched to dashboard profile.')">Consult Upgrade Configurator</button>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 6: SOUND OPTIMIZATION (Room Grounding)
+     ========================================== -->
+<section class="guide-section" id="secOpt">
+  <div class="guide-header">
+    <span class="guide-badge" style="color: #ec4899; background: rgba(236, 72, 153, 0.1);">Phase 05: Room Staging</span>
+    <h2 class="guide-title">Sound Optimization & Grounding</h2>
+    <p class="guide-desc">Physical dampening integration procedures supporting ultra-silent analog performance floors.</p>
+  </div>
+
+  <div class="opt-container">
+    <img src="images/guide_optimization.png" alt="High End Monoblock Tube Output Optimization" class="opt-art-banner">
+    
+    <div class="opt-content">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem;">
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 800; color: #f59e0b; text-transform: uppercase; letter-spacing: 1px; display: block;">Sub-Chassis Isolation</span>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; margin-top: 4px;">Sorbothane Plinth Cones</h3>
+          <p style="color: #584f6b; font-size: 0.9rem; margin-top: 6px; line-height: 1.5;">
+            Decouple high-mass turntables directly from low-frequency subwoofer room rumble passing across wooden support consoles.
+          </p>
+        </div>
+
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 800; color: #7c3aed; text-transform: uppercase; letter-spacing: 1px; display: block;">Mains Staging Filters</span>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; margin-top: 4px;">Pure AC Line Conditioning</h3>
+          <p style="color: #584f6b; font-size: 0.9rem; margin-top: 6px; line-height: 1.5;">
+            Clean sine curve generation protecting sensitive low-output moving coil transformers against external digital hash.
+          </p>
+        </div>
+
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 800; color: #10b981; text-transform: uppercase; letter-spacing: 1px; display: block;">Azimuth Test Tone</span>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; margin-top: 4px;">1kHz Intermodulation Check</h3>
+          <p style="color: #584f6b; font-size: 0.9rem; margin-top: 6px; line-height: 1.5;">
+            Verify identical left/right channel scope cross-talk output values mapping precise stylus tracking down center balance vectors.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 7: TROUBLESHOOTING HOTLINE & DIAGNOSTIC
+     ========================================== -->
+<section class="guide-section" id="secDiagnostics">
+  <div class="diag-panel">
+    <span style="font-family: monospace; font-size: 0.85rem; color: #7c3aed; font-weight: 800; letter-spacing: 2px; display: block;">REALTIME TROUBLESHOOTING CONSOLE</span>
+    <h2 class="guide-title" style="font-size: 2.2rem; margin-top: 4px;">Acoustic Calibration Assist</h2>
+    <p class="guide-desc" style="max-width: 600px; margin: 8px auto 0;">
+      Encountering unexpected sound signatures? Select the specific playback distortion anomaly below to run diagnostic parameters instantly.
+    </p>
+
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+      <button class="anchor-btn" onclick="alert('🛠️ Inner Groove Distortion: Elevate anti-skating setting slightly. Double check alignment against interior null point.')"><i class="fas fa-triangle-exclamation" style="color: #ef4444;"></i> Inner Groove Splatter</button>
+      <button class="anchor-btn" onclick="alert('🛠️ Stylus Skipping: Counterweight mass too light. Verify tracking baseline scale at recommended 2.0g minimum.')"><i class="fas fa-forward-step" style="color: #f59e0b;"></i> Needle Skipping Forward</button>
+      <button class="anchor-btn" onclick="alert('🛠️ 60Hz Electrical Hum: Disconnect active components and firmly anchor grounding fork wire terminal onto receiver phono stage.')"><i class="fas fa-bolt" style="color: #3b82f6;"></i> Persistent Ground Hum</button>
+      <button class="anchor-btn" onclick="alert('🛠️ Sibilant Harsh Treble: Cartridge body tail tracking too high. Lower Vertical Tracking Angle (VTA) pivot height.')"><i class="fas fa-wave-square" style="color: #7c3aed;"></i> Harsh Highs (Sibilance)</button>
+    </div>
+
+    <div style="margin-top: 2.5rem; pt-top: 2rem; border-top: 1px solid rgba(124, 58, 237, 0.1);">
+      <p style="font-size: 0.85rem; color: #8c829c; margin-bottom: 12px;">Require custom physical plinth evaluation?</p>
+      <button class="login-btn" onclick="alert('📅 Expert setup lounge appointment reserved.')">Schedule One-on-One Workbench Setup</button>
+    </div>
+  </div>
+</section>
+
+<!-- Premium Footer Section -->
+<footer class="footer">
+  <div class="footer-top">
+    <!-- Brand Info -->
+    <div class="footer-brand">
+      <a href="./index.html" class="logo" style="margin-bottom: 0.5rem;">
+        <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+        <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+      </a>
+      <p>Custom sound architecture, pristine audiophile pressings, and expert turntable calibration supporting pure analog depth since 2012.</p>
+      <div style="display: flex; align-items: center; gap: 8px; color: #7c3aed; font-size: 0.85rem; font-weight: 600;">
+        <i class="fas fa-location-dot"></i>
+        <span style="color: inherit;">Studio 45, Analogue District, NY</span>
+      </div>
+    </div>
+
+    <!-- Navigation Column 1 -->
+    <div>
+      <h3 class="footer-title">Studio Vault</h3>
+      <ul class="footer-links">
+        <li><a href="./index.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./about.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> About Us</a></li>
+        <li><a href="./new arrivals.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Arrival</a></li>
+        <li><a href="./setup guides.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Setup Guides</a></li>
+        <li><a href="./contact.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Navigation Column 2 -->
+    <div>
+      <h3 class="footer-title">Philosophy</h3>
+      <ul class="footer-links">
+        <li><a href="./home 2.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./vinyl collections.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Vinyl Collection</a></li>
+        <li><a href="./turntables.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Turntable</a></li>
+        <li><a href="./local pickup.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Local Pickup</a></li>
+        <li><a href="./audio lounge.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Audio Lounge</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h3 class="footer-title">Inner Circle</h3>
+      <p>Subscribe for early access to limited pressings, bespoke cartridges, and vintage turntable releases.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('✨ Welcome to the Inner Circle!');">
+        <input type="email" class="newsletter-input" placeholder="Your studio email..." required aria-label="Email subscription">
+        <button type="submit" class="newsletter-btn" aria-label="Subscribe button"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+<script>
+  (function(){
+    // DOM elements
+    const body = document.body;
+    const darkToggle = document.getElementById('darkModeToggle');
+    const rtlToggle = document.getElementById('rtlToggle');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileHamburger = document.getElementById('mobileHamburger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
+    const mobileDarkToggle = document.getElementById('mobileDarkToggle');
+    const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    const navbar = document.getElementById('navbar');
+
+    const home1Option = document.getElementById('home1Option');
+    const home2Option = document.getElementById('home2Option');
+    const mobileHome1 = document.getElementById('mobileHome1');
+    const mobileHome2 = document.getElementById('mobileHome2');
+
+    // ---------- DARK MODE ----------
+    function setDarkMode(enabled) {
+      if(enabled) body.classList.add('dark');
+      else body.classList.remove('dark');
+      localStorage.setItem('vinyl_dark', enabled ? 'true' : 'false');
+      const icon = darkToggle?.querySelector('i');
+      const mobileIcon = mobileDarkToggle?.querySelector('i');
+      if(icon) {
+        if(enabled) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      }
+      if(mobileIcon) {
+        if(enabled) { mobileIcon.classList.remove('fa-moon'); mobileIcon.classList.add('fa-sun'); }
+        else { mobileIcon.classList.remove('fa-sun'); mobileIcon.classList.add('fa-moon'); }
+      }
+    }
+    const savedDark = localStorage.getItem('vinyl_dark') === 'true';
+    if(savedDark) setDarkMode(true);
+    darkToggle?.addEventListener('click', () => setDarkMode(!body.classList.contains('dark')));
+    mobileDarkToggle?.addEventListener('click', () => { setDarkMode(!body.classList.contains('dark')); });
+
+    // ---------- RTL MODE ----------
+    function setRTL(enabled) {
+      if(enabled) body.classList.add('rtl');
+      else body.classList.remove('rtl');
+      localStorage.setItem('vinyl_rtl', enabled ? 'true' : 'false');
+      const arrowIcon = rtlToggle?.querySelector('i');
+      const mobileArrowIcon = mobileRtlToggle?.querySelector('i');
+      if(arrowIcon) {
+        if(enabled) arrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else arrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+      if(mobileArrowIcon) {
+        if(enabled) mobileArrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else mobileArrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+    }
+    const savedRTL = localStorage.getItem('vinyl_rtl') === 'true';
+    if(savedRTL) setRTL(true);
+    rtlToggle?.addEventListener('click', () => setRTL(!body.classList.contains('rtl')));
+    mobileRtlToggle?.addEventListener('click', () => { setRTL(!body.classList.contains('rtl')); });
+
+    // ---------- LOGIN ----------
+    function handleLogin() { window.location.href = './login.html'; }
+    loginBtn?.addEventListener('click', handleLogin);
+    mobileLoginBtn?.addEventListener('click', () => { handleLogin(); });
+
+    // ---------- HOME 1 & HOME 2 interactions (dropdown) ----------
+    home1Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    home2Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome1?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome2?.addEventListener('click', () => { closeDrawerIfOpen(); });
+
+    // optional default home reset style
+    document.getElementById('homeLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './index.html'; });
+    document.getElementById('arrivalsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './new arrivals.html'; });
+
+    // close drawer helpers
+    function closeDrawer() {
+      if(mobileDrawer) mobileDrawer.classList.remove('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'none';
+    }
+    function closeDrawerIfOpen() {
+      if(mobileDrawer?.classList.contains('open')) closeDrawer();
+    }
+    // open mobile drawer
+    mobileHamburger?.addEventListener('click', () => {
+      if(mobileDrawer) mobileDrawer.classList.add('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'block';
+    });
+    closeDrawerBtn?.addEventListener('click', closeDrawer);
+    drawerOverlay?.addEventListener('click', closeDrawer);
+
+    // mobile dropdown toggle inside drawer
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+      const header = dropdown.querySelector('div:first-child');
+      header?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    // scroll shadow effect
+    window.addEventListener('scroll', () => {
+      if(!navbar) return;
+      if(window.scrollY > 20) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // --- UNIVERSAL ACTIVE NAV ITEM HIGHLIGHTING ---
+    const navLinksUniversal = document.querySelectorAll('.nav-link, .dropdown-menu a');
+    
+    function safeDecode(str) {
+      try { return decodeURIComponent(str); } catch(e) { return str; }
+    }
+
+    // 1. Clear pre-existing static inline styles to ensure a clean slate
+    navLinksUniversal.forEach(link => {
+      if (link.style.color) link.style.color = '';
+      if (link.style.borderBottom) link.style.borderBottom = '';
+    });
+
+    // 2. Identify current page filename
+    let currentFilename = window.location.pathname.split('/').pop();
+    if (!currentFilename || currentFilename === '/') currentFilename = 'index.html';
+    currentFilename = safeDecode(currentFilename);
+
+    // Function to apply active highlight styling
+    function highlightLink(link) {
+      link.style.color = '#e11d48'; // Active premium Rose highlight
+      link.style.borderBottom = '2px solid #e11d48';
+      link.style.fontWeight = '700';
+
+      // If nested inside a dropdown menu, also highlight the parent category link
+      const parentDropdown = link.closest('.dropdown, .mobile-dropdown');
+      if (parentDropdown) {
+        const parentToggle = parentDropdown.querySelector('.nav-link, div:first-child');
+        if (parentToggle) {
+          parentToggle.style.color = '#e11d48';
+          parentToggle.style.borderBottom = '2px solid #e11d48';
+          parentToggle.style.fontWeight = '700';
+        }
+      }
+    }
+
+    // 3. Apply active state based on current URL
+    navLinksUniversal.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      
+      let targetFilename = href.split('/').pop();
+      if (!targetFilename || targetFilename === '.' || targetFilename === './') targetFilename = 'index.html';
+      targetFilename = safeDecode(targetFilename);
+
+      if (targetFilename === currentFilename) {
+        highlightLink(link);
+      }
+
+      // 4. Attach click listener to update active highlight immediately on user click
+      link.addEventListener('click', function() {
+        navLinksUniversal.forEach(l => {
+          l.style.color = '';
+          l.style.borderBottom = '';
+          l.style.fontWeight = '';
+          const pDrop = l.closest('.dropdown, .mobile-dropdown');
+          if (pDrop) {
+            const pTog = pDrop.querySelector('.nav-link, div:first-child');
+            if (pTog) {
+              pTog.style.color = '';
+              pTog.style.borderBottom = '';
+              pTog.style.fontWeight = '';
+            }
+          }
+        });
+        highlightLink(this);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

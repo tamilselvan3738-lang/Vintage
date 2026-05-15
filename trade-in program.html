@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Vinyl Oasis | Turntable & Vinyl Studio</title>
+  <meta name="description" content="Vinyl Oasis navigation interface showcasing custom premium analog sound design, high-end turntables, and exclusive vinyl record sanctuary features.">
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f6fc;
+      background-image: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 40%), 
+                        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+      color: #1b1624;
+      transition: background 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+    }
+
+    /* ----- DARK MODE (Immersive Deep Studio aesthetic) ----- */
+    body.dark {
+      background-color: #0b0714;
+      background-image: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 45%), 
+                        radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 45%);
+      color: #e4dee8;
+    }
+    body.dark .login-btn {
+      color: #0b0714 !important;
+    }
+
+    /* ----- RTL (right-to-left) support ----- */
+    body.rtl {
+      direction: rtl;
+    }
+    body.rtl .navbar .logo {
+      margin-left: 0;
+      margin-right: -4px;
+    }
+    body.rtl .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(16px) scale(0.95); text-align: right; }
+    body.rtl .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0) scale(1); }
+
+    /* ========== NAVBAR (Premium Ultraviolet Sunset Style) ========== */
+    .navbar {
+      position: fixed;
+      top: 16px;
+      left: 2%;
+      width: 96%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 1000;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 58, 237, 0.18);
+      box-shadow: 0 12px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-shrink: 0;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+    .navbar.scrolled {
+      top: 10px;
+      padding: 0.65rem 1.5rem;
+      background: rgba(255, 255, 255, 0.93);
+      border-color: rgba(124, 58, 237, 0.28);
+      box-shadow: 0 16px 50px -10px rgba(124, 58, 237, 0.2), 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    body.dark .navbar {
+      background: rgba(11, 7, 20, 0.85);
+      border-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .navbar.scrolled {
+      background: rgba(9, 5, 16, 0.95);
+      border-color: rgba(245, 158, 11, 0.25);
+      box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.98), 0 0 30px rgba(124, 58, 237, 0.25);
+    }
+
+    /* ----- LOGO (Premium Layout & Amber Gold Ring) ----- */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .logo:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2e1065 0%, #581c87 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.1);
+      border: 2px solid #f59e0b;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .logo:hover .logo-icon {
+      border-color: #f59e0b;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+    .logo-icon i {
+      font-size: 20px;
+      color: #fef3c7;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+    .logo:hover .logo-icon i {
+      color: #ffffff;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #2e1065 20%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s;
+    }
+    body.dark .logo-text {
+      background: linear-gradient(135deg, #ffffff 20%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 1.5px;
+      color: #7c3aed;
+      margin-top: 2px;
+    }
+    body.dark .logo small {
+      color: #fbbf24;
+    }
+
+    /* ----- CENTER NAV MENU ----- */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: rgba(124, 58, 237, 0.03);
+      padding: 0.3rem 0.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(124, 58, 237, 0.05);
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    body.dark .nav-menu {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.04);
+    }
+    .nav-link {
+      position: relative;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #443a55;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .nav-link {
+      color: #c0b6ca;
+    }
+    .nav-link:hover {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    body.dark .nav-link:hover {
+      color: #fcd34d;
+      background: rgba(252, 211, 77, 0.12);
+    }
+    /* Unique glowing dot indicator */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: #7c3aed;
+      border-radius: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+    }
+    body.dark .nav-link::after {
+      background: #fcd34d;
+      box-shadow: 0 0 8px #fcd34d;
+    }
+    .nav-link:hover::after {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px) scale(0.95);
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-width: 220px;
+      border-radius: 20px;
+      padding: 12px 8px;
+      box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(124, 58, 237, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+    }
+    body.dark .dropdown-menu {
+      background: rgba(14, 9, 24, 0.95);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(124, 58, 237, 0.2);
+    }
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3b304c;
+      transition: all 0.2s ease;
+      border-radius: 12px;
+    }
+    body.dark .dropdown-menu a {
+      color: #d8d0e0;
+    }
+    .dropdown-menu a i {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    body.dark .dropdown-menu a i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(124, 58, 237, 0.06);
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .dropdown-menu a:hover {
+      background: rgba(252, 211, 77, 0.08);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .dropdown-menu a:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* RIGHT side actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .icon-btn {
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 1.1rem;
+      color: #584f6b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    body.dark .icon-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #d8d0e0;
+    }
+    .icon-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .icon-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+      box-shadow: 0 8px 20px rgba(252, 211, 77, 0.3);
+    }
+    .login-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      padding: 0 24px;
+      height: 44px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing: 0.4px;
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    body.dark .login-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+    .login-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(124, 58, 237, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .login-btn:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    /* MOBILE / TABLET (<= 1280px) */
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      border-radius: 14px;
+      cursor: pointer;
+      color: #7c3aed;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-menu-btn {
+      background: rgba(252, 211, 77, 0.12);
+      border-color: rgba(252, 211, 77, 0.18);
+      color: #fcd34d;
+    }
+    .mobile-menu-btn:hover {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-menu-btn:hover {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    @media (max-width: 1440px) {
+      .nav-menu { display: none; }
+      .nav-actions { display: none; }
+      .mobile-menu-btn { display: flex; }
+    }
+    /* side drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100vh;
+      background: rgba(255, 253, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 30px 24px;
+      box-shadow: -15px 0 50px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 1px solid rgba(124, 58, 237, 0.12);
+    }
+    body.dark .mobile-drawer {
+      background: rgba(11, 7, 20, 0.98);
+      border-left-color: rgba(255, 255, 255, 0.08);
+      box-shadow: -15px 0 50px rgba(0,0,0,0.8);
+    }
+    .mobile-drawer.open {
+      right: 0;
+    }
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1999;
+      display: none;
+    }
+    .mobile-drawer .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #3b304c;
+      transition: all 0.2s;
+      border: none;
+      background: transparent;
+    }
+    body.dark .mobile-drawer .nav-link {
+      color: #d8d0e0;
+    }
+    .mobile-drawer .nav-link:hover {
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      transform: translateX(6px);
+    }
+    body.dark .mobile-drawer .nav-link:hover {
+      background: rgba(252, 211, 77, 0.1);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.1);
+      color: #7c3aed;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-drawer .nav-link i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-drawer .nav-link:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    .mobile-dropdown .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+      padding: 4px 0 4px 20px;
+      display: none;
+      border: none;
+    }
+    .mobile-dropdown.active .dropdown-menu { display: block; }
+
+    /* Mobile Login Button Pro Style */
+    .mobile-drawer-login {
+      width: 100%;
+      height: 56px; /* Optimized height for visual hierarchy */
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255,255,255,0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.dark .mobile-drawer-login {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+    .mobile-drawer-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(124, 58, 237, 0.4);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .mobile-drawer-login:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 14px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      margin-top: 120px;
+      padding: 5rem 6% 7rem;
+      text-align: center;
+      background: linear-gradient(145deg, #f5f2fa, #fcfaf3);
+      border-radius: 0 0 60px 60px;
+      transition: all 0.3s;
+    }
+    body.dark .hero { background: #0b0714; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #2e1065, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    body.dark .hero h1 {
+      background: linear-gradient(135deg, #ffffff, #fcd34d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: #584f6b;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+    body.dark .hero p { color: #a49ab0; }
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+
+    /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    p, h1, h2, h3, h4, h5, h6, span, a, blockquote {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+    .icon-btn { font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.2rem); }
+    .login-btn { font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); }
+    .mobile-drawer-login { font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem); }
+
+    @media (max-width: 1200px) {
+      .footer-top { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-left: 5% !important; padding-right: 5% !important;
+      }
+      div[class*="grid"], div[class*="layout"], div[class*="panel"], div[class*="wrapper"] {
+        grid-template-columns: 1fr !important; gap: 2rem;
+      }
+      .footer-top { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr !important; gap: 2rem; }
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 4rem !important; padding-bottom: 4rem !important;
+      }
+    }
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+    @media (max-width: 480px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 3rem !important; padding-bottom: 3rem !important; padding-left: 4% !important; padding-right: 4% !important;
+      }
+      div[style*="display: flex"]:not(.navbar):not(.nav-left):not(.nav-right):not(.logo):not(.nav-menu):not(.nav-actions):not(.dropdown):not(.social-socials):not(.footer-socials):not(.newsletter-form):not(.input-wrapper):not(.checkbox-label):not(.event-row) {
+        flex-direction: column; align-items: center; text-align: center;
+      }
+    }
+
+    /* ========== PREMIUM FOOTER (Ultraviolet Sunset Theme) ========== */
+    .footer {
+      background-color: #ffffff;
+      border-top: 1px solid rgba(124, 58, 237, 0.12);
+      padding: 5rem 6% 3rem;
+      margin-top: 4rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 -10px 40px rgba(124, 58, 237, 0.03);
+    }
+    body.dark .footer {
+      background-color: #0b0714;
+      border-top-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .footer-brand p {
+      color: #584f6b;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    body.dark .footer-brand p {
+      color: #a49ab0;
+    }
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2e1065;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    body.dark .footer-title {
+      color: #fcd34d;
+    }
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(135deg, #7c3aed, #f59e0b);
+      border-radius: 2px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-link {
+      color: #443a55;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    body.dark .footer-link {
+      color: #c0b6ca;
+    }
+    .footer-link:hover {
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .footer-link:hover {
+      color: #fcd34d;
+    }
+    .footer-newsletter p {
+      color: #584f6b;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+    body.dark .footer-newsletter p {
+      color: #a49ab0;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      background: rgba(124, 58, 237, 0.02);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #1b1624;
+      outline: none;
+      transition: all 0.3s;
+    }
+    body.dark .newsletter-input {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e4dee8;
+    }
+    .newsletter-input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    body.dark .newsletter-input:focus {
+      border-color: #fcd34d;
+      box-shadow: 0 0 0 3px rgba(252, 211, 77, 0.15);
+    }
+    .newsletter-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      width: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .newsletter-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+    .newsletter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+    }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(124, 58, 237, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    body.dark .footer-bottom {
+      border-top-color: rgba(255, 255, 255, 0.05);
+    }
+    .footer-copyright {
+      color: #7c6f8d;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    body.dark .footer-copyright {
+      color: #8c829c;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #584f6b;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    body.dark .social-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.06);
+      color: #c0b6ca;
+    }
+    .social-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    body.dark .social-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        justify-content: center;
+      }
+    }
+
+    /* ==========================================================================
+       TRADE-IN PROGRAM: BESPOKE EVALUATION & ARCHIVAL STYLING
+       ========================================================================== */
+    .trade-section {
+      padding: 6rem 6%;
+      position: relative;
+    }
+    .trade-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(245, 158, 11, 0.1));
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #7c3aed;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1rem;
+    }
+    body.dark .trade-pill { color: #fcd34d; border-color: rgba(252, 211, 77, 0.3); }
+    .trade-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      color: #2e1065;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    body.dark .trade-title { color: #ffffff; }
+
+    /* SECTION 1: HERO */
+    .trade-hero {
+      margin-top: 100px;
+      padding: 7rem 6% 6rem;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.03) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+    }
+    body.dark .trade-hero { background: linear-gradient(180deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%); border-bottom-color: rgba(255,255,255,0.05); }
+
+    /* SECTION 2: PROCESS TIMELINE */
+    .process-track {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+      position: relative;
+    }
+    .process-step {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      position: relative;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    }
+    body.dark .process-step { background: rgba(16, 11, 28, 0.4); border-color: rgba(255,255,255,0.06); }
+    .process-step:hover { transform: translateY(-5px); border-color: #7c3aed; box-shadow: 0 15px 35px rgba(124, 58, 237, 0.12); }
+    body.dark .process-step:hover { border-color: #f59e0b; box-shadow: 0 15px 35px rgba(245, 158, 11, 0.15); }
+    .step-badge {
+      position: absolute;
+      top: -16px;
+      left: 24px;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #7c3aed, #f59e0b);
+      color: white;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+
+    /* SECTION 3 & 6: SPLIT ASSETS */
+    .trade-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 4rem;
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      box-shadow: 0 20px 50px rgba(124, 58, 237, 0.03);
+    }
+    .trade-split.reverse { grid-template-columns: 1fr 1fr; border-color: rgba(245, 158, 11, 0.2); }
+    body.dark .trade-split { background: rgba(16, 11, 28, 0.4); border-color: rgba(255,255,255,0.06); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .trade-media {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      border: 2px solid rgba(124, 58, 237, 0.3);
+    }
+    .trade-split.reverse .trade-media { border-color: rgba(245, 158, 11, 0.4); }
+
+    /* SECTION 4: LIVE ESTIMATOR TOOL */
+    .estimator-console {
+      background: linear-gradient(145deg, #0b0714, #1b112c);
+      border-radius: 32px;
+      padding: 4rem;
+      color: white;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .est-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2.5rem 0;
+    }
+    .est-select {
+      width: 100%;
+      padding: 1.2rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      outline: none;
+    }
+    .est-select option { background: #0b0714; color: white; }
+    .est-select:focus { border-color: #f59e0b; }
+    .est-output-box {
+      background: rgba(255,255,255,0.03);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+    }
+
+    /* SECTION 5: GRADING MATRIX */
+    .grading-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .grade-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      text-align: center;
+    }
+    body.dark .grade-card { background: rgba(16, 11, 28, 0.4); border-color: rgba(255,255,255,0.05); }
+    .grade-code {
+      font-family: monospace;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #7c3aed;
+      display: block;
+      margin-bottom: 8px;
+    }
+    body.dark .grade-code { color: #fcd34d; }
+
+    /* SECTION 7: MASONRY ARCHIVE */
+    .archive-payouts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .payout-item {
+      background: rgba(124, 58, 237, 0.02);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border-left: 4px solid #7c3aed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    body.dark .payout-item { background: rgba(255,255,255,0.02); border-left-color: #f59e0b; }
+
+    /* SECTION 8: INTAKE FORM */
+    .intake-panel {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 4rem;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.04);
+    }
+    body.dark .intake-panel { background: rgba(16, 11, 28, 0.5); border-color: rgba(255,255,255,0.08); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+    .intake-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .intake-input {
+      flex: 1;
+      padding: 1.2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      background: rgba(124, 58, 237, 0.01);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: inherit;
+      outline: none;
+    }
+    body.dark .intake-input { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.1); color: #e4dee8; }
+    .intake-input:focus { border-color: #7c3aed; }
+    body.dark .intake-input:focus { border-color: #f59e0b; }
+
+    @media (max-width: 992px) {
+      .trade-split, .trade-split.reverse { grid-template-columns: 1fr; gap: 3rem; padding: 2rem; }
+      .est-controls { grid-template-columns: 1fr; gap: 1.5rem; }
+      .estimator-console { padding: 2.5rem 1.5rem; }
+      .intake-panel { padding: 2.5rem 1.5rem; }
+      .intake-row { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <!-- LOGO left -->
+  <div class="nav-left">
+    <a href="./index.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+      <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+    </a>
+  </div>
+
+  <!-- CENTER NAV MENU -->
+  <div class="nav-menu" id="navMenu">
+    <!-- HOME with dropdown -->
+    <div class="dropdown">
+      <a href="./index.html" class="nav-link" id="homeLink">Home <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./index.html" id="home1Option"> Home 1</a>
+        <a href="./home 2.html" id="home2Option"> Home 2</a>
+      </div>
+    </div>
+    <a href="./about.html" class="nav-link"> About</a>
+    <!-- ARRIVALS with dropdown -->
+    <div class="dropdown">
+      <a href="./new arrivals.html" class="nav-link" id="arrivalsLink">Arrivals <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./new arrivals.html"> New Arrivals</a>
+        <a href="./vinyl collections.html">Vinyl Collections</a>
+      </div>
+    </div>
+    <a href="./turntables.html" class="nav-link">Turntables</a>
+    <a href="./cartridge selection.html" class="nav-link">Cartridges</a>
+    <a href="./setup guides.html" class="nav-link">Setup Guides</a>
+    <a href="./trade-in program.html" class="nav-link" style="color: #7c3aed;">Trade-In Program</a>
+    <a href="./local pickup.html" class="nav-link">Local Pickup</a>
+    <a href="./audio lounge.html" class="nav-link">Audio Lounge</a>
+    <a href="./contact.html" class="nav-link">Contact</a>
+  </div>
+
+  <!-- RIGHT side actions -->
+  <div class="nav-right">
+    <div class="nav-actions">
+      <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL direction"><i class="fa-solid fa-right-left"></i></button>
+      <button class="login-btn" id="loginBtn">Login <i class="fas fa-arrow-right-to-bracket" style="font-size: 12px;"></i></button>
+    </div>
+    <!-- Mobile Hamburger -->
+    <button class="mobile-menu-btn" id="mobileHamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center;">
+      <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: #7c3aed;">MENU</span>
+    </div>
+    <button id="closeDrawer" style="background: rgba(0,0,0,0.04); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; color: #584f6b; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
+  </div>
+  <div class="mobile-dropdown" id="mobileHomeDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Home</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./index.html" id="mobileHome1" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 1 </a>
+      <a href="./home 2.html" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
+    </div>
+  </div>
+  <a href="./about.html" class="nav-link"> About</a>
+  <div class="mobile-dropdown" id="mobileArrivalsDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Arrivals</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
+      <a href="./vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
+    </div>
+  </div>
+  <a href="./turntables.html" class="nav-link"> Turntables</a>
+  <a href="./cartridge selection.html" class="nav-link"> Cartridges</a>
+  <a href="./setup guides.html" class="nav-link"> Setup Guides</a>
+  <a href="./trade-in program.html" class="nav-link" style="color: #7c3aed;"> Trade-In Program</a>
+  <a href="./local pickup.html" class="nav-link"> Local Pickup</a>
+  <a href="./audio lounge.html" class="nav-link"> Audio Lounge</a>
+  <a href="./contact.html" class="nav-link"> Contact</a>
+  <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
+  
+  <a class="nav-link" id="mobileDarkToggle" style="cursor: pointer;"><i class="fas fa-moon"></i> Dark Mode</a>
+  <a class="nav-link" id="mobileRtlToggle" style="cursor: pointer;"><i class="fa-solid fa-right-left"></i> RTL Mode</a>
+  
+  <div style="margin-top: 8px;">
+    <button class="mobile-drawer-login" id="mobileLoginBtn">
+      <span>Login</span>
+      <i class="fas fa-arrow-right-to-bracket" style="font-size: 1.2rem;"></i>
+    </button>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ==========================================
+     SECTION 1: TRADE-IN PORTAL INDEX (HERO)
+     ========================================== -->
+<section class="trade-hero">
+  <span class="trade-pill"><i class="fas fa-arrows-rotate" style="color: #f59e0b;"></i> Certified Circulation Hub</span>
+  <h1 class="trade-title">Vault Trade-In & Acquisition</h1>
+  <p style="color: #584f6b; font-size: 1.15rem; max-width: 750px; margin: 12px auto 0; line-height: 1.6;">
+    Transform dormant archive titles, obsolete tonearms, or inherited vintage pressings directly into premium studio-grade state-of-the-art audiophile hardware.
+  </p>
+  <div style="margin-top: 2rem;">
+    <a href="#secEstimator" class="login-btn" style="text-decoration: none;">Launch Realtime Estimator <i class="fas fa-calculator" style="font-size: 13px;"></i></a>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 2: PROCESS TIMELINE (SELL YOUR VINYL)
+     ========================================== -->
+<section class="trade-section" id="secSell">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <span class="trade-pill" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">Streamlined Liquidation</span>
+    <h2 class="trade-title">Sell Your Vinyl in 4 Steps</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 6px;">
+      Our evaluation workflow guarantees strict transparency, providing fair market-adjusted compensation based on real-time Goldmine inventory demand.
+    </p>
+  </div>
+
+  <div class="process-track">
+    <div class="process-step">
+      <div class="step-badge">1</div>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: #2e1065;">Intake Registry</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Input barcode serials or submit comprehensive batch catalog files via our internal locker portal below and receive .
+      </p>
+    </div>
+
+    <div class="process-step" style="border-color: rgba(245, 158, 11, 0.2);">
+      <div class="step-badge" style="background: #f59e0b;">2</div>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: #2e1065;">Optical Flat Audit</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Our resident audio technicians examine surface luster, unwarped playback axis parameters, and label clarity.
+      </p>
+    </div>
+
+    <div class="process-step">
+      <div class="step-badge" style="background: #7c3aed;">3</div>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: #2e1065;">Ultrasonic Prep</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Every record undergoes wet-bath cavitation clearing out stubborn micro-groove particles prior to master appraisal.
+      </p>
+    </div>
+
+    <div class="process-step" style="border-color: rgba(124, 58, 237, 0.2);">
+      <div class="step-badge" style="background: linear-gradient(135deg, #2e1065, #7c3aed);">4</div>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: #2e1065;">Instant Settlement</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Receive immediate digital check funds transfer or activate boosted exchange credits instantaneously and instant evaluation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 3: EXCHANGE RECORDS INTEGRATION
+     ========================================== -->
+<section class="trade-section" id="secExchange" style="background: rgba(245, 158, 11, 0.01);">
+  <div class="trade-split">
+    <div>
+      <span class="trade-pill" style="color: #d97706; border-color: rgba(245, 158, 11, 0.3);">Upgrade Multiplier</span>
+      <h2 class="trade-title" style="font-size: clamp(2rem, 4vw, 3.2rem);">Exchange Records Towards Premium Gear</h2>
+      <p style="color: #584f6b; font-size: 0.95rem; margin-top: 12px; line-height: 1.6;">
+        Maximize your catalog value. Clients opting to exchange existing titles towards hardware acquisition enjoy an automatic <strong style="color: #7c3aed;">120% credit multi-boost</strong> layered directly atop original standard cash payouts.
+      </p>
+      
+      <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: #443a55; font-weight: 600;">
+          <i class="fas fa-circle-check" style="color: #10b981;"></i> Eligible for new Oasis Hyperion V-MM Cartridges
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: #443a55; font-weight: 600;">
+          <i class="fas fa-circle-check" style="color: #10b981;"></i> Compatible with bespoke reference Turntables
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: #443a55; font-weight: 600;">
+          <i class="fas fa-circle-check" style="color: #10b981;"></i> Applied to any private Audio Lounge studio access passes
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <button class="login-btn" onclick="alert('🔄 Exchange Credit Vault instantiated successfully.')">Activate Exchange Multiplier</button>
+      </div>
+    </div>
+
+    <div>
+      <img src="images/tradein_exchange.png" alt="Flatlay arrangement of vintage vinyl exchange packages" class="trade-media">
+      <span style="display: block; text-align: center; font-size: 0.75rem; color: #8c829c; margin-top: 8px; font-family: monospace;">PROTECTIVE POLYESTER INNER PACKAGING</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 4: REALTIME TRADE-IN VALUE ESTIMATOR
+     ========================================== -->
+<section class="trade-section" id="secEstimator">
+  <div class="estimator-console">
+    <span style="font-family: monospace; font-size: 0.85rem; color: #fcd34d; letter-spacing: 2px; display: block; text-align: center;">CLIENT-SIDE VALUATION LOGIC</span>
+    <h2 class="trade-title" style="color: white; text-align: center; font-size: clamp(1.8rem, 3.5vw, 3rem); margin-top: 4px;">Realtime Trade-In Value Calculator</h2>
+    <p style="color: #94a3b8; font-size: 0.95rem; text-align: center; max-width: 600px; margin: 8px auto 0;">
+      Select structural physical grading profiles and vintage era tiers to dynamically calculate estimated wholesale acquisition credits instantly.
+    </p>
+
+    <div class="est-controls" style="text-align: left;">
+      <div>
+        <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; font-family: monospace;">OPTICAL GRADING STATE</label>
+        <select class="est-select" id="estCondition" onchange="calculateTradeValue()">
+          <option value="mint">Mint / Factory Sealed (M)</option>
+          <option value="nm" selected>Near Mint (NM) — Perfect Surface</option>
+          <option value="vgplus">Very Good Plus (VG+) — Minor Scuffs</option>
+          <option value="vg">Very Good (VG) — Moderate Wear</option>
+        </select>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; font-family: monospace;">PRESSING ARCHIVE TIER</label>
+        <select class="est-select" id="estPressing" onchange="calculateTradeValue()">
+          <option value="original" selected>Original Vintage First Press (&lt; 1975)</option>
+          <option value="audiophile">Premium Heavyweight Audiophile (180g+)</option>
+          <option value="standard">Standard Batch Catalog Re-issue</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="est-output-box">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; letter-spacing: 1px;">ESTIMATED CREDIT VALUE RANGE</span>
+      <div style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: #ffffff; font-family: serif; margin: 8px 0;" id="estPriceDisplay">
+        $35 — $60
+      </div>
+      <p style="font-size: 0.8rem; color: #64748b;">*Values finalized upon physical lab alignment testing at Studio 45.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <button class="login-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706);" onclick="alert('📥 Estimate frozen. Ticket reference ID: VAL-' + Math.floor(Math.random()*90000 + 10000))">Lock-In Quoted Valuation</button>
+    </div>
+  </div>
+
+  <script>
+    function calculateTradeValue() {
+      const cond = document.getElementById('estCondition')?.value || 'nm';
+      const press = document.getElementById('estPressing')?.value || 'original';
+      let baseMin = 10;
+      let baseMax = 20;
+
+      // pressing multipliers
+      if (press === 'original') { baseMin = 25; baseMax = 45; }
+      else if (press === 'audiophile') { baseMin = 18; baseMax = 32; }
+
+      // condition tuning
+      if (cond === 'mint') { baseMin = Math.floor(baseMin * 1.5); baseMax = Math.floor(baseMax * 1.5); }
+      else if (cond === 'nm') { baseMin = Math.floor(baseMin * 1.2); baseMax = Math.floor(baseMax * 1.2); }
+      else if (cond === 'vgplus') { baseMin = Math.floor(baseMin * 0.8); baseMax = Math.floor(baseMax * 0.8); }
+      else if (cond === 'vg') { baseMin = Math.floor(baseMin * 0.4); baseMax = Math.floor(baseMax * 0.4); }
+
+      const display = document.getElementById('estPriceDisplay');
+      if(display) display.innerText = '$' + baseMin + ' — $' + baseMax;
+    }
+    // initialize on load
+    setTimeout(calculateTradeValue, 200);
+  </script>
+</section>
+
+<!-- ==========================================
+     SECTION 5: OPTICAL GRADING SCALE MATRIX
+     ========================================== -->
+<section class="trade-section" id="secGrading">
+  <div style="max-width: 800px;">
+    <span class="trade-pill" style="color: #7c3aed;">International Benchmark</span>
+    <h2 class="trade-title">Goldmine Grading Matrix</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 6px;">
+      Transparent baseline standards preventing ambiguous over-valuations. Review our strict condition definitions below.
+    </p>
+  </div>
+
+  <div class="grading-grid">
+    <div class="grade-card" style="border-top: 4px solid #10b981;">
+      <span class="grade-code" style="color: #10b981;">MINT (M)</span>
+      <h4 style="font-weight: 700; font-size: 0.95rem; color: #2e1065;">Pristine Sanctuary</h4>
+      <p style="color: #584f6b; font-size: 0.8rem; margin-top: 8px; line-height: 1.5;">
+        Absolutely flawless disc inside pristine unblemished gatefold covers. Zero background trace crackle detected.
+      </p>
+    </div>
+
+    <div class="grade-card" style="border-top: 4px solid #3b82f6;">
+      <span class="grade-code" style="color: #3b82f6;">NEAR MINT (NM)</span>
+      <h4 style="font-weight: 700; font-size: 0.95rem; color: #2e1065;">Luminous Surface</h4>
+      <p style="color: #584f6b; font-size: 0.8rem; margin-top: 8px; line-height: 1.5;">
+        Barely played under lightweight tonearm settings. Free of audible dynamic constraints or spindle contact streaks.
+      </p>
+    </div>
+
+    <div class="grade-card" style="border-top: 4px solid #f59e0b;">
+      <span class="grade-code" style="color: #f59e0b;">VERY GOOD+ (VG+)</span>
+      <h4 style="font-weight: 700; font-size: 0.95rem; color: #2e1065;">Audiophile Friendly</h4>
+      <p style="color: #584f6b; font-size: 0.8rem; margin-top: 8px; line-height: 1.5;">
+        Subtle sleeve removal wisps visible under direct studio spots. Unaffected deep groove audio rendering fidelity.
+      </p>
+    </div>
+
+    <div class="grade-card" style="border-top: 4px solid #ef4444;">
+      <span class="grade-code" style="color: #ef4444;">VERY GOOD (VG)</span>
+      <h4 style="font-weight: 700; font-size: 0.95rem; color: #2e1065;">Standard Listening</h4>
+      <p style="color: #584f6b; font-size: 0.8rem; margin-top: 8px; line-height: 1.5;">
+        Continuous surface tracking sound detectable during quiet gaps. Intact master mix punch without active needle skipping.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 6: COLLECTOR APPRAISAL PAVILION
+     ========================================== -->
+<section class="trade-section" id="secAppraisal" style="background: rgba(124, 58, 237, 0.02);">
+  <div class="trade-split reverse">
+    <div>
+      <img src="images/tradein_appraisal.png" alt="Archivist appraising rare vintage gatefold record under studio magnification ring light" class="trade-media">
+      <span style="display: block; text-align: center; font-size: 0.75rem; color: #8c829c; margin-top: 8px; font-family: monospace;">OPTICAL MAGNIFICATION RING EVALUATION</span>
+    </div>
+
+    <div>
+      <span class="trade-pill" style="color: #7c3aed;">Private Curations</span>
+      <h2 class="trade-title" style="font-size: clamp(2rem, 4vw, 3.2rem);">Collector Estate Appraisals</h2>
+      <p style="color: #584f6b; font-size: 0.95rem; margin-top: 12px; line-height: 1.6;">
+        Handling massive multi-thousand album private vaults requires absolute archival mastery. Our head curators perform on-site itemized database assessments, estate liquidations, and complete archive buyouts with certified courier transit security.
+      </p>
+
+      <div style="margin-top: 1.5rem; padding-left: 1rem; border-left: 2px solid #7c3aed;">
+        <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block;">WHITE GLOVE DISPATCH</span>
+        <p style="font-size: 0.85rem; color: #443a55; margin-top: 4px;">Complimentary insured packaging crates shipped direct for entire collections exceeding 250 verified titles.</p>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <button class="login-btn" onclick="alert('🤝 Direct Curator Appointment link configured.')">Schedule Vault Appraiser Visit</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 7: CERTIFIED TRADE-IN HISTORY
+     ========================================== -->
+<section class="trade-section" id="secHistory">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <span class="trade-pill" style="color: #f59e0b;">Historic Liquidity</span>
+    <h2 class="trade-title">Recent Valuations & Payouts</h2>
+    <p style="color: #584f6b; font-size: 0.95rem; margin-top: 6px;">
+      A snapshot review of historical client trade settlements processed through our assessment station over the past 48 hours.
+    </p>
+  </div>
+
+  <div class="archive-payouts">
+    <div class="payout-item">
+      <div>
+        <span style="font-weight: 800; font-size: 0.95rem; color: #2e1065; display: block;">Miles Davis — Kind of Blue</span>
+        <span style="font-size: 0.75rem; color: #8c829c; font-family: monospace;">1959 6-Eye Mono Press (NM)</span>
+      </div>
+      <div style="text-align: right;">
+        <span style="font-weight: 800; font-size: 1.2rem; color: #7c3aed; font-family: serif; display: block;">$340</span>
+        <span style="font-size: 0.65rem; color: #10b981; font-weight: 700;">STORE CREDIT BOOST</span>
+      </div>
+    </div>
+
+    <div class="payout-item" style="border-left-color: #f59e0b;">
+      <div>
+        <span style="font-weight: 800; font-size: 0.95rem; color: #2e1065; display: block;">Pink Floyd — Dark Side</span>
+        <span style="font-size: 0.75rem; color: #8c829c; font-family: monospace;">1973 Solid Blue Triangle (VG+)</span>
+      </div>
+      <div style="text-align: right;">
+        <span style="font-weight: 800; font-size: 1.2rem; color: #d97706; font-family: serif; display: block;">$210</span>
+        <span style="font-size: 0.65rem; color: #f59e0b; font-weight: 700;">DIRECT SETTLEMENT</span>
+      </div>
+    </div>
+
+    <div class="payout-item" style="border-left-color: #3b82f6;">
+      <div>
+        <span style="font-weight: 800; font-size: 0.95rem; color: #2e1065; display: block;">Kraftwerk — Autobahn</span>
+        <span style="font-size: 0.75rem; color: #8c829c; font-family: monospace;">1974 Vertigo Pressing (NM)</span>
+      </div>
+      <div style="text-align: right;">
+        <span style="font-weight: 800; font-size: 1.2rem; color: #3b82f6; font-family: serif; display: block;">$115</span>
+        <span style="font-size: 0.65rem; color: #10b981; font-weight: 700;">STORE CREDIT BOOST</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 8: SECURE INTAKE SUBMIT CONSOLE
+     ========================================== -->
+<section class="trade-section" id="secIntake" style="background: radial-gradient(circle at 50% 100%, rgba(124, 58, 237, 0.04), transparent 60%);">
+  <div class="intake-panel">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="trade-pill" style="color: #7c3aed;">Digital Drop-off</span>
+      <h3 style="font-family: serif; font-size: 2rem; font-weight: 800; color: #2e1065;">Initiate Direct Assessment</h3>
+      <p style="color: #584f6b; font-size: 0.9rem; margin-top: 4px;">
+        Register preliminary inventory details to generate your certified barcode shipping slip instantly.
+      </p>
+    </div>
+
+    <form style="text-align: left;" onsubmit="event.preventDefault(); alert('🚀 Preliminary registry complete! Print voucher code: REG-99411.');">
+      <div class="intake-row">
+        <input type="text" class="intake-input" placeholder="Album Artist or Composer..." required aria-label="Artist name">
+        <input type="text" class="intake-input" placeholder="Specific Album Title..." required aria-label="Album title">
+      </div>
+
+      <div class="intake-row">
+        <input type="text" class="intake-input" placeholder="Catalog Reference SKU / Matrix code..." aria-label="Catalog code">
+        <select class="intake-input" style="color: inherit; cursor: pointer;" aria-label="Condition picker">
+          <option value="" disabled selected>Estimated Condition...</option>
+          <option value="m">Mint / NM</option>
+          <option value="vg">Very Good Plus (VG+)</option>
+          <option value="g">Standard User Play</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 2rem;">
+        <textarea class="intake-input" rows="3" placeholder="Additional provenance details (e.g. original store tags, signatures, lyric booklets)..." style="width: 100%; resize: vertical;" aria-label="Provenance details"></textarea>
+      </div>
+
+      <div style="text-align: center;">
+        <button type="submit" class="login-btn" style="width: 100%; max-width: 400px; height: 52px; font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.15rem);">Generate Shipping Slip <i class="fas fa-barcode" style="font-size: 1.2rem;"></i></button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Premium Footer Section -->
+<footer class="footer">
+  <div class="footer-top">
+    <!-- Brand Info -->
+    <div class="footer-brand">
+      <a href="./index.html" class="logo" style="margin-bottom: 0.5rem;">
+        <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+        <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+      </a>
+      <p>Custom sound architecture, pristine audiophile pressings, and expert turntable calibration supporting pure analog depth since 2012.</p>
+      <div style="display: flex; align-items: center; gap: 8px; color: #7c3aed; font-size: 0.85rem; font-weight: 600;">
+        <i class="fas fa-location-dot"></i>
+        <span style="color: inherit;">Studio 45, Analogue District, NY</span>
+      </div>
+    </div>
+
+    <!-- Navigation Column 1 -->
+    <div>
+      <h3 class="footer-title">Studio Vault</h3>
+      <ul class="footer-links">
+        <li><a href="./index.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./about.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> About Us</a></li>
+        <li><a href="./new arrivals.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Arrival</a></li>
+        <li><a href="./setup guides.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Setup Guides</a></li>
+        <li><a href="./contact.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Navigation Column 2 -->
+    <div>
+      <h3 class="footer-title">Philosophy</h3>
+      <ul class="footer-links">
+        <li><a href="./home 2.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./vinyl collections.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Vinyl Collection</a></li>
+        <li><a href="./turntables.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Turntable</a></li>
+        <li><a href="./local pickup.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Local Pickup</a></li>
+        <li><a href="./audio lounge.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Audio Lounge</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h3 class="footer-title">Inner Circle</h3>
+      <p>Subscribe for early access to limited pressings, bespoke cartridges, and vintage turntable releases.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('✨ Welcome to the Inner Circle!');">
+        <input type="email" class="newsletter-input" placeholder="Your studio email..." required aria-label="Email subscription">
+        <button type="submit" class="newsletter-btn" aria-label="Subscribe button"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+<script>
+  (function(){
+    // DOM elements
+    const body = document.body;
+    const darkToggle = document.getElementById('darkModeToggle');
+    const rtlToggle = document.getElementById('rtlToggle');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileHamburger = document.getElementById('mobileHamburger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
+    const mobileDarkToggle = document.getElementById('mobileDarkToggle');
+    const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    const navbar = document.getElementById('navbar');
+
+    const home1Option = document.getElementById('home1Option');
+    const home2Option = document.getElementById('home2Option');
+    const mobileHome1 = document.getElementById('mobileHome1');
+    const mobileHome2 = document.getElementById('mobileHome2');
+
+    // ---------- DARK MODE ----------
+    function setDarkMode(enabled) {
+      if(enabled) body.classList.add('dark');
+      else body.classList.remove('dark');
+      localStorage.setItem('vinyl_dark', enabled ? 'true' : 'false');
+      const icon = darkToggle?.querySelector('i');
+      const mobileIcon = mobileDarkToggle?.querySelector('i');
+      if(icon) {
+        if(enabled) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      }
+      if(mobileIcon) {
+        if(enabled) { mobileIcon.classList.remove('fa-moon'); mobileIcon.classList.add('fa-sun'); }
+        else { mobileIcon.classList.remove('fa-sun'); mobileIcon.classList.add('fa-moon'); }
+      }
+    }
+    const savedDark = localStorage.getItem('vinyl_dark') === 'true';
+    if(savedDark) setDarkMode(true);
+    darkToggle?.addEventListener('click', () => setDarkMode(!body.classList.contains('dark')));
+    mobileDarkToggle?.addEventListener('click', () => { setDarkMode(!body.classList.contains('dark')); });
+
+    // ---------- RTL MODE ----------
+    function setRTL(enabled) {
+      if(enabled) body.classList.add('rtl');
+      else body.classList.remove('rtl');
+      localStorage.setItem('vinyl_rtl', enabled ? 'true' : 'false');
+      const arrowIcon = rtlToggle?.querySelector('i');
+      const mobileArrowIcon = mobileRtlToggle?.querySelector('i');
+      if(arrowIcon) {
+        if(enabled) arrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else arrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+      if(mobileArrowIcon) {
+        if(enabled) mobileArrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else mobileArrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+    }
+    const savedRTL = localStorage.getItem('vinyl_rtl') === 'true';
+    if(savedRTL) setRTL(true);
+    rtlToggle?.addEventListener('click', () => setRTL(!body.classList.contains('rtl')));
+    mobileRtlToggle?.addEventListener('click', () => { setRTL(!body.classList.contains('rtl')); });
+
+    // ---------- LOGIN ----------
+    function handleLogin() { window.location.href = './login.html'; }
+    loginBtn?.addEventListener('click', handleLogin);
+    mobileLoginBtn?.addEventListener('click', () => { handleLogin(); });
+
+    // ---------- HOME 1 & HOME 2 interactions (dropdown) ----------
+    home1Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    home2Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome1?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome2?.addEventListener('click', () => { closeDrawerIfOpen(); });
+
+    // optional default home reset style
+    document.getElementById('homeLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './index.html'; });
+    document.getElementById('arrivalsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './new arrivals.html'; });
+
+    // close drawer helpers
+    function closeDrawer() {
+      if(mobileDrawer) mobileDrawer.classList.remove('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'none';
+    }
+    function closeDrawerIfOpen() {
+      if(mobileDrawer?.classList.contains('open')) closeDrawer();
+    }
+    // open mobile drawer
+    mobileHamburger?.addEventListener('click', () => {
+      if(mobileDrawer) mobileDrawer.classList.add('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'block';
+    });
+    closeDrawerBtn?.addEventListener('click', closeDrawer);
+    drawerOverlay?.addEventListener('click', closeDrawer);
+
+    // mobile dropdown toggle inside drawer
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+      const header = dropdown.querySelector('div:first-child');
+      header?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    // scroll shadow effect
+    window.addEventListener('scroll', () => {
+      if(!navbar) return;
+      if(window.scrollY > 20) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // --- UNIVERSAL ACTIVE NAV ITEM HIGHLIGHTING ---
+    const navLinksUniversal = document.querySelectorAll('.nav-link, .dropdown-menu a');
+    
+    function safeDecode(str) {
+      try { return decodeURIComponent(str); } catch(e) { return str; }
+    }
+
+    // 1. Clear pre-existing static inline styles to ensure a clean slate
+    navLinksUniversal.forEach(link => {
+      if (link.style.color) link.style.color = '';
+      if (link.style.borderBottom) link.style.borderBottom = '';
+    });
+
+    // 2. Identify current page filename
+    let currentFilename = window.location.pathname.split('/').pop();
+    if (!currentFilename || currentFilename === '/') currentFilename = 'index.html';
+    currentFilename = safeDecode(currentFilename);
+
+    // Function to apply active highlight styling
+    function highlightLink(link) {
+      link.style.color = '#e11d48'; // Active premium Rose highlight
+      link.style.borderBottom = '2px solid #e11d48';
+      link.style.fontWeight = '700';
+
+      // If nested inside a dropdown menu, also highlight the parent category link
+      const parentDropdown = link.closest('.dropdown, .mobile-dropdown');
+      if (parentDropdown) {
+        const parentToggle = parentDropdown.querySelector('.nav-link, div:first-child');
+        if (parentToggle) {
+          parentToggle.style.color = '#e11d48';
+          parentToggle.style.borderBottom = '2px solid #e11d48';
+          parentToggle.style.fontWeight = '700';
+        }
+      }
+    }
+
+    // 3. Apply active state based on current URL
+    navLinksUniversal.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      
+      let targetFilename = href.split('/').pop();
+      if (!targetFilename || targetFilename === '.' || targetFilename === './') targetFilename = 'index.html';
+      targetFilename = safeDecode(targetFilename);
+
+      if (targetFilename === currentFilename) {
+        highlightLink(link);
+      }
+
+      // 4. Attach click listener to update active highlight immediately on user click
+      link.addEventListener('click', function() {
+        navLinksUniversal.forEach(l => {
+          l.style.color = '';
+          l.style.borderBottom = '';
+          l.style.fontWeight = '';
+          const pDrop = l.closest('.dropdown, .mobile-dropdown');
+          if (pDrop) {
+            const pTog = pDrop.querySelector('.nav-link, div:first-child');
+            if (pTog) {
+              pTog.style.color = '';
+              pTog.style.borderBottom = '';
+              pTog.style.fontWeight = '';
+            }
+          }
+        });
+        highlightLink(this);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

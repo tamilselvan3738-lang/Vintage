@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Vinyl Oasis | Turntable & Vinyl Studio</title>
+  <meta name="description" content="Vinyl Oasis navigation interface showcasing custom premium analog sound design, high-end turntables, and exclusive vinyl record sanctuary features.">
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f6fc;
+      background-image: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 40%), 
+                        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+      color: #1b1624;
+      transition: background 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+    }
+
+    /* ----- DARK MODE (Immersive Deep Studio aesthetic) ----- */
+    body.dark {
+      background-color: #0b0714;
+      background-image: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 45%), 
+                        radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 45%);
+      color: #e4dee8;
+    }
+    body.dark .login-btn {
+      color: #0b0714 !important;
+    }
+
+    /* ----- RTL (right-to-left) support ----- */
+    body.rtl {
+      direction: rtl;
+    }
+    body.rtl .navbar .logo {
+      margin-left: 0;
+      margin-right: -4px;
+    }
+    body.rtl .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(16px) scale(0.95); text-align: right; }
+    body.rtl .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0) scale(1); }
+
+    /* ========== NAVBAR (Premium Ultraviolet Sunset Style) ========== */
+    .navbar {
+      position: fixed;
+      top: 16px;
+      left: 2%;
+      width: 96%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 1000;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 58, 237, 0.18);
+      box-shadow: 0 12px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-shrink: 0;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+    .navbar.scrolled {
+      top: 10px;
+      padding: 0.65rem 1.5rem;
+      background: rgba(255, 255, 255, 0.93);
+      border-color: rgba(124, 58, 237, 0.28);
+      box-shadow: 0 16px 50px -10px rgba(124, 58, 237, 0.2), 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    body.dark .navbar {
+      background: rgba(11, 7, 20, 0.85);
+      border-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .navbar.scrolled {
+      background: rgba(9, 5, 16, 0.95);
+      border-color: rgba(245, 158, 11, 0.25);
+      box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.98), 0 0 30px rgba(124, 58, 237, 0.25);
+    }
+
+    /* ----- LOGO (Premium Layout & Amber Gold Ring) ----- */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .logo:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2e1065 0%, #581c87 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.1);
+      border: 2px solid #f59e0b;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .logo:hover .logo-icon {
+      border-color: #f59e0b;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+    .logo-icon i {
+      font-size: 20px;
+      color: #fef3c7;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+    .logo:hover .logo-icon i {
+      color: #ffffff;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #2e1065 20%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s;
+    }
+    body.dark .logo-text {
+      background: linear-gradient(135deg, #ffffff 20%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 1.5px;
+      color: #7c3aed;
+      margin-top: 2px;
+    }
+    body.dark .logo small {
+      color: #fbbf24;
+    }
+
+    /* ----- CENTER NAV MENU ----- */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: rgba(124, 58, 237, 0.03);
+      padding: 0.3rem 0.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(124, 58, 237, 0.05);
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    body.dark .nav-menu {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.04);
+    }
+    .nav-link {
+      position: relative;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #443a55;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .nav-link {
+      color: #c0b6ca;
+    }
+    .nav-link:hover {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    body.dark .nav-link:hover {
+      color: #fcd34d;
+      background: rgba(252, 211, 77, 0.12);
+    }
+    /* Unique glowing dot indicator */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: #7c3aed;
+      border-radius: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+    }
+    body.dark .nav-link::after {
+      background: #fcd34d;
+      box-shadow: 0 0 8px #fcd34d;
+    }
+    .nav-link:hover::after {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px) scale(0.95);
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-width: 220px;
+      border-radius: 20px;
+      padding: 12px 8px;
+      box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(124, 58, 237, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+    }
+    body.dark .dropdown-menu {
+      background: rgba(14, 9, 24, 0.95);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(124, 58, 237, 0.2);
+    }
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3b304c;
+      transition: all 0.2s ease;
+      border-radius: 12px;
+    }
+    body.dark .dropdown-menu a {
+      color: #d8d0e0;
+    }
+    .dropdown-menu a i {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    body.dark .dropdown-menu a i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(124, 58, 237, 0.06);
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .dropdown-menu a:hover {
+      background: rgba(252, 211, 77, 0.08);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .dropdown-menu a:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* RIGHT side actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .icon-btn {
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 1.1rem;
+      color: #584f6b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    body.dark .icon-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #d8d0e0;
+    }
+    .icon-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .icon-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+      box-shadow: 0 8px 20px rgba(252, 211, 77, 0.3);
+    }
+    .login-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      padding: 0 24px;
+      height: 44px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing: 0.4px;
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    body.dark .login-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+    .login-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(124, 58, 237, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .login-btn:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    /* MOBILE / TABLET (<= 1280px) */
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      border-radius: 14px;
+      cursor: pointer;
+      color: #7c3aed;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-menu-btn {
+      background: rgba(252, 211, 77, 0.12);
+      border-color: rgba(252, 211, 77, 0.18);
+      color: #fcd34d;
+    }
+    .mobile-menu-btn:hover {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-menu-btn:hover {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    @media (max-width: 1440px) {
+      .nav-menu { display: none; }
+      .nav-actions { display: none; }
+      .mobile-menu-btn { display: flex; }
+    }
+    /* side drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100vh;
+      background: rgba(255, 253, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 30px 24px;
+      box-shadow: -15px 0 50px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 1px solid rgba(124, 58, 237, 0.12);
+    }
+    body.dark .mobile-drawer {
+      background: rgba(11, 7, 20, 0.98);
+      border-left-color: rgba(255, 255, 255, 0.08);
+      box-shadow: -15px 0 50px rgba(0,0,0,0.8);
+    }
+    .mobile-drawer.open {
+      right: 0;
+    }
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1999;
+      display: none;
+    }
+    .mobile-drawer .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #3b304c;
+      transition: all 0.2s;
+      border: none;
+      background: transparent;
+    }
+    body.dark .mobile-drawer .nav-link {
+      color: #d8d0e0;
+    }
+    .mobile-drawer .nav-link:hover {
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      transform: translateX(6px);
+    }
+    body.dark .mobile-drawer .nav-link:hover {
+      background: rgba(252, 211, 77, 0.1);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.1);
+      color: #7c3aed;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-drawer .nav-link i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-drawer .nav-link:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    .mobile-dropdown .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+      padding: 4px 0 4px 20px;
+      display: none;
+      border: none;
+    }
+    .mobile-dropdown.active .dropdown-menu { display: block; }
+
+    /* Mobile Login Button Pro Style */
+    .mobile-drawer-login {
+      width: 100%;
+      height: 56px; /* Optimized height for visual hierarchy */
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255,255,255,0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.dark .mobile-drawer-login {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+    .mobile-drawer-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(124, 58, 237, 0.4);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .mobile-drawer-login:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 14px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    /* ==========================================================================
+       HOME 2: MASTER CRAFTING & CUSTOM PRESSING VAULT STYLES
+       ========================================================================== */
+    .vault-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      background: rgba(109, 40, 217, 0.08);
+      border: 1px solid rgba(109, 40, 217, 0.3);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #6d28d9;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+      backdrop-filter: blur(4px);
+    }
+    body.dark .vault-pill { background: rgba(251, 191, 36, 0.08); color: #fbbf24; border-color: rgba(251, 191, 36, 0.3); }
+
+    .vault-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: #1e1b4b;
+      letter-spacing: -0.5px;
+      line-height: 1.08;
+    }
+    body.dark .vault-heading { color: #ffffff; }
+
+    /* SECTION 1: THE LACQUER LATHE HERO CAPSULE */
+    .vault-hero-section {
+      margin-top: 100px;
+      padding: 6rem 5% 8rem;
+      position: relative;
+    }
+    .vault-hero-card {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.9) 100%);
+      border-radius: 40px;
+      border: 1px solid rgba(109, 40, 217, 0.15);
+      padding: 6rem 5%;
+      box-shadow: 0 30px 60px rgba(109, 40, 217, 0.08);
+      backdrop-filter: blur(20px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    body.dark .vault-hero-card {
+      background: linear-gradient(135deg, rgba(15, 10, 25, 0.8) 0%, rgba(25, 17, 43, 0.9) 100%);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    }
+    .vault-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      background: linear-gradient(135deg, #4c1d95 0%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+    body.dark .vault-hero-title {
+      background: linear-gradient(135deg, #ffffff 0%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .vault-hero-media {
+      width: 100%;
+      max-height: 440px;
+      object-fit: contain;
+      border-radius: 24px;
+      filter: drop-shadow(0 20px 40px rgba(109, 40, 217, 0.2));
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.dark .vault-hero-media { filter: drop-shadow(0 20px 40px rgba(0,0,0,0.9)); }
+    .vault-hero-media:hover { transform: scale(1.03) rotate(-1deg); }
+
+    /* SECTION 2: THE DIRECT-CUT ACETATE MATRIX */
+    .vault-acetate-section {
+      padding: 7rem 6%;
+      background: radial-gradient(circle at 10% 90%, rgba(109, 40, 217, 0.03), transparent 60%);
+    }
+    .vault-acetate-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 5rem;
+      max-width: 1350px;
+      margin: 4rem auto 0;
+      align-items: center;
+    }
+    .vault-acetate-box {
+      position: relative;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 32px;
+      border: 1px solid rgba(109, 40, 217, 0.12);
+      box-shadow: 0 25px 50px rgba(109, 40, 217, 0.05);
+    }
+    body.dark .vault-acetate-box { background: rgba(12, 8, 20, 0.6); border-color: rgba(255,255,255,0.06); box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
+    .vault-step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .vault-step-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      border-radius: 20px;
+      background: rgba(109, 40, 217, 0.02);
+      border: 1px solid rgba(109, 40, 217, 0.06);
+      transition: all 0.3s;
+    }
+    body.dark .vault-step-item { background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.04); }
+    .vault-step-item:hover {
+      border-color: #f59e0b;
+      transform: translateX(10px);
+      background: #ffffff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    }
+    body.dark .vault-step-item:hover { background: rgba(255,255,255,0.03); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    .vault-step-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6d28d9, #f59e0b);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* SECTION 3: HEAVYWEIGHT PRESSING MILESTONES */
+    .vault-milestones-section {
+      padding: 7rem 6%;
+      background: #090612;
+      color: white;
+    }
+    .vault-mile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 3rem;
+      max-width: 1350px;
+      margin: 5rem auto 0;
+    }
+    .vault-mile-card {
+      border-top: 2px solid #fbbf24;
+      padding-top: 2rem;
+      position: relative;
+    }
+    .vault-mile-card::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fbbf24;
+      box-shadow: 0 0 10px #fbbf24;
+    }
+
+    /* SECTION 4: TRANSDUCER SUB-CHASSIS SPOTLIGHT */
+    .vault-transducer-section {
+      padding: 7rem 6%;
+    }
+    .vault-trans-card {
+      max-width: 1350px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 36px;
+      border: 1px solid rgba(109, 40, 217, 0.15);
+      padding: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4rem;
+      box-shadow: 0 20px 60px rgba(109, 40, 217, 0.04);
+    }
+    body.dark .vault-trans-card { background: rgba(14, 9, 24, 0.6); border-color: rgba(255,255,255,0.06); box-shadow: 0 20px 60px rgba(0,0,0,0.8); }
+
+    /* SECTION 5: HIGH-SPEED ELECTROPLATING GRID */
+    .vault-plating-section {
+      padding: 6rem 6%;
+      background: linear-gradient(180deg, rgba(109, 40, 217, 0.02) 0%, transparent 100%);
+    }
+    .vault-plate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1350px;
+      margin: 4rem auto 0;
+    }
+    .vault-plate-item {
+      padding: 3rem;
+      background: #ffffff;
+      border-radius: 28px;
+      border: 1px solid rgba(109, 40, 217, 0.1);
+      transition: all 0.3s;
+    }
+    body.dark .vault-plate-item { background: rgba(16, 11, 28, 0.4); border-color: rgba(255,255,255,0.05); }
+    .vault-plate-item:hover { border-color: #6d28d9; transform: translateY(-4px); }
+    body.dark .vault-plate-item:hover { border-color: #fbbf24; }
+
+    /* SECTION 6: ACTIVE PLATTER TELEMETRY SCOPES */
+    .vault-scopes-section {
+      padding: 7rem 6%;
+    }
+    .vault-scope-banner {
+      max-width: 1200px;
+      margin: 4rem auto 0;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(109, 40, 217, 0.2);
+      box-shadow: 0 25px 50px rgba(109, 40, 217, 0.08);
+      background: #ffffff;
+      padding: 2rem;
+    }
+    body.dark .vault-scope-banner { background: #0b0714; border-color: rgba(255,255,255,0.1); box-shadow: 0 25px 50px rgba(0,0,0,0.9); }
+    .vault-scope-img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      border-radius: 20px;
+      filter: contrast(1.1);
+    }
+
+    /* SECTION 7: MASTER CUTTER VERIFIED SEALS */
+    .vault-seals-section {
+      padding: 5rem 6% 7rem;
+    }
+    .vault-seal-box {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 4rem;
+      border-radius: 32px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.04), rgba(109, 40, 217, 0.04));
+      border: 1px dashed rgba(109, 40, 217, 0.25);
+    }
+    body.dark .vault-seal-box { border-color: rgba(251, 191, 36, 0.25); background: rgba(255,255,255,0.01); }
+
+    /* SECTION 8: PRIORITY LACQUER CUSTOM INTAKE PORTAL */
+    .vault-intake-section {
+      padding: 3rem 6% 8rem;
+    }
+    .vault-intake-card {
+      max-width: 1350px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #2e1065 0%, #0b0714 100%);
+      border-radius: 40px;
+      padding: 6rem 5%;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 3rem;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+    body.dark .vault-intake-card { border-color: rgba(255,255,255,0.1); box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+    @media (max-width: 1024px) {
+      .vault-hero-card { grid-template-columns: 1fr; gap: 3rem; text-align: center; padding: 4rem 3%; }
+      .vault-acetate-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .vault-trans-card { flex-direction: column; text-align: center; padding: 3rem 2rem; }
+      .vault-intake-card { flex-direction: column; text-align: center; padding: 4rem 2rem; }
+      .vault-seal-box { padding: 3rem 1.5rem; }
+    }
+
+    /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    p, h1, h2, h3, h4, h5, h6, span, a, blockquote {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+    .icon-btn { font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.2rem); }
+    .login-btn { font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); }
+    .mobile-drawer-login { font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem); }
+
+    @media (max-width: 1200px) {
+      .footer-top { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-left: 5% !important; padding-right: 5% !important;
+      }
+      div[class*="grid"], div[class*="layout"], div[class*="panel"], div[class*="wrapper"] {
+        grid-template-columns: 1fr !important; gap: 2rem;
+      }
+      .footer-top { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr !important; gap: 2rem; }
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 4rem !important; padding-bottom: 4rem !important;
+      }
+    }
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+    @media (max-width: 480px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 3rem !important; padding-bottom: 3rem !important; padding-left: 4% !important; padding-right: 4% !important;
+      }
+      div[style*="display: flex"]:not(.navbar):not(.nav-left):not(.nav-right):not(.logo):not(.nav-menu):not(.nav-actions):not(.dropdown):not(.social-socials):not(.footer-socials):not(.newsletter-form):not(.input-wrapper):not(.checkbox-label):not(.event-row) {
+        flex-direction: column; align-items: center; text-align: center;
+      }
+    }
+
+    /* ========== PREMIUM FOOTER (Ultraviolet Sunset Theme) ========== */
+    .footer {
+      background-color: #ffffff;
+      border-top: 1px solid rgba(124, 58, 237, 0.12);
+      padding: 5rem 6% 3rem;
+      margin-top: 4rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 -10px 40px rgba(124, 58, 237, 0.03);
+    }
+    body.dark .footer {
+      background-color: #0b0714;
+      border-top-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .footer-brand p {
+      color: #584f6b;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    body.dark .footer-brand p {
+      color: #a49ab0;
+    }
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2e1065;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    body.dark .footer-title {
+      color: #fcd34d;
+    }
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(135deg, #7c3aed, #f59e0b);
+      border-radius: 2px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-link {
+      color: #443a55;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    body.dark .footer-link {
+      color: #c0b6ca;
+    }
+    .footer-link:hover {
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .footer-link:hover {
+      color: #fcd34d;
+    }
+    .footer-newsletter p {
+      color: #584f6b;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+    body.dark .footer-newsletter p {
+      color: #a49ab0;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      background: rgba(124, 58, 237, 0.02);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #1b1624;
+      outline: none;
+      transition: all 0.3s;
+    }
+    body.dark .newsletter-input {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e4dee8;
+    }
+    .newsletter-input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    body.dark .newsletter-input:focus {
+      border-color: #fcd34d;
+      box-shadow: 0 0 0 3px rgba(252, 211, 77, 0.15);
+    }
+    .newsletter-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      width: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .newsletter-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+    .newsletter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+    }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(124, 58, 237, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    body.dark .footer-bottom {
+      border-top-color: rgba(255, 255, 255, 0.05);
+    }
+    .footer-copyright {
+      color: #7c6f8d;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    body.dark .footer-copyright {
+      color: #8c829c;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #584f6b;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    body.dark .social-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.06);
+      color: #c0b6ca;
+    }
+    .social-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    body.dark .social-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <!-- LOGO left -->
+  <div class="nav-left">
+    <a href="./index.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+      <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+    </a>
+  </div>
+
+  <!-- CENTER NAV MENU -->
+  <div class="nav-menu" id="navMenu">
+    <!-- HOME with dropdown -->
+    <div class="dropdown">
+      <a href="./index.html" class="nav-link" id="homeLink">Home <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./index.html" id="home1Option"> Home 1</a>
+        <a href="./home 2.html" id="home2Option"> Home 2</a>
+      </div>
+    </div>
+    <a href="./about.html" class="nav-link">About</a>
+    <!-- ARRIVALS with dropdown -->
+    <div class="dropdown">
+      <a href="./new arrivals.html" class="nav-link" id="arrivalsLink">Arrivals <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./new arrivals.html"> New Arrivals</a>
+        <a href="./vinyl collections.html">Vinyl Collections</a>
+      </div>
+    </div>
+    <a href="./turntables.html" class="nav-link">Turntables</a>
+    <a href="./cartridge selection.html" class="nav-link">Cartridges</a>
+    <a href="./setup guides.html" class="nav-link">Setup Guides</a>
+    <a href="./trade-in program.html" class="nav-link">Trade-In Program</a>
+    <a href="./local pickup.html" class="nav-link">Local Pickup</a>
+    <a href="./audio lounge.html" class="nav-link">Audio Lounge</a>
+    <a href="./contact.html" class="nav-link">Contact</a>
+  </div>
+
+  <!-- RIGHT side actions -->
+  <div class="nav-right">
+    <div class="nav-actions">
+      <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL direction"><i class="fa-solid fa-right-left"></i></button>
+      <button class="login-btn" id="loginBtn">Login <i class="fas fa-arrow-right-to-bracket" style="font-size: 12px;"></i></button>
+    </div>
+    <!-- Mobile Hamburger -->
+    <button class="mobile-menu-btn" id="mobileHamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center;">
+      <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: #7c3aed;">MENU</span>
+    </div>
+    <button id="closeDrawer" style="background: rgba(0,0,0,0.04); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; color: #584f6b; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
+  </div>
+  <div class="mobile-dropdown" id="mobileHomeDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Home</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./index.html" id="mobileHome1" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 1 </a>
+      <a href="./home 2.html" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
+    </div>
+  </div>
+  <a href="./about.html" class="nav-link">About</a>
+  <div class="mobile-dropdown" id="mobileArrivalsDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Arrivals</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
+      <a href="./vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
+    </div>
+  </div>
+  <a href="./turntables.html" class="nav-link"> Turntables</a>
+  <a href="./cartridge selection.html" class="nav-link"> Cartridges</a>
+  <a href="./setup guides.html" class="nav-link"> Setup Guides</a>
+  <a href="./trade-in program.html" class="nav-link"> Trade-In Program</a>
+  <a href="./local pickup.html" class="nav-link"> Local Pickup</a>
+  <a href="./audio lounge.html" class="nav-link"> Audio Lounge</a>
+  <a href="./contact.html" class="nav-link"> Contact</a>
+  <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
+  
+  <a class="nav-link" id="mobileDarkToggle" style="cursor: pointer;"><i class="fas fa-moon"></i> Dark Mode</a>
+  <a class="nav-link" id="mobileRtlToggle" style="cursor: pointer;"><i class="fa-solid fa-right-left"></i> RTL Mode</a>
+  
+  <div style="margin-top: 8px;">
+    <button class="mobile-drawer-login" id="mobileLoginBtn">
+      <span>Login</span>
+      <i class="fas fa-arrow-right-to-bracket" style="font-size: 1.2rem;"></i>
+    </button>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ==========================================================================
+     SECTION 1: THE LACQUER LATHE HERO CAPSULE
+     ========================================================================== -->
+<section class="vault-hero-section">
+  <div class="vault-hero-card">
+    <div style="text-align: left;">
+      <span class="vault-pill"><i class="fas fa-compact-disc" style="animation: spin 5s linear infinite;"></i> CUSTOM PRESSING VAULT</span>
+      <h1 class="vault-hero-title">Direct-Cut Lacquer Lathe Operations</h1>
+      <p style="color: #4b5563; font-size: 1.15rem; line-height: 1.6; margin-bottom: 2.5rem; max-width: 600px;">
+        Uncompromising real-time mechanical transcription. We process ultra-heavyweight master acetate files directly onto virgin metal cores with active helium thermal control.
+      </p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="vinyl collections.html" class="login-btn" style="background: linear-gradient(135deg, #6d28d9, #f59e0b); height: 54px; padding: 0 32px; font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.15rem); text-decoration: none;">Explore Vault Masters &rarr;</a>
+        <a href="contact.html" class="icon-btn" style="width: auto; height: 54px; padding: 0 24px; font-size: clamp(0.85rem, 0.7rem + 0.5vw, 1.1rem); font-weight: 700; text-decoration: none; border-radius: 16px; border: 1px solid rgba(109, 40, 217, 0.2);">Commission A Pressing</a>
+      </div>
+    </div>
+    <div>
+      <img src="images/home2_hero_lathe.png" alt="High fidelity custom lacquer cutting lathe machine inside vault" class="vault-hero-media">
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 2: THE DIRECT-CUT ACETATE MATRIX
+     ========================================================================== -->
+<section class="vault-acetate-section">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <span class="vault-pill" style="color: #d97706; border-color: rgba(217, 119, 6, 0.3);">Physical Embossing</span>
+    <h2 class="vault-heading">Master Groove Scribing</h2>
+    <p style="color: #6b7280; font-size: 1.05rem; margin-top: 8px;">Tracing micro-vibrations across unbuffered nitrocellulose coating formulations.</p>
+  </div>
+
+  <div class="vault-acetate-grid">
+    <div class="vault-acetate-box">
+      <img src="images/home2_master_disc.png" alt="Limited edition golden vinyl acetate disc master cut preview" style="width: 100%; max-height: 380px; object-fit: contain; border-radius: 20px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15));">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #6d28d9; font-weight: 800; display: block; text-align: center; margin-top: 1rem;">ACETATE BURNISHING RIG &bull; REV 2</span>
+    </div>
+    <div class="vault-step-list">
+      <div class="vault-step-item">
+        <div class="vault-step-num">01</div>
+        <div>
+          <h3 style="font-family: serif; font-size: 1.3rem; font-weight: 800; color: inherit;">Sapphire Burnishing Stylus</h3>
+          <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.5; margin-top: 4px;">Heated micro-facets trace continuous waveforms down to 0.001mm groove depth accuracy without tearing internal plasticizers.</p>
+        </div>
+      </div>
+      <div class="vault-step-item" style="border-color: rgba(245, 158, 11, 0.2);">
+        <div class="vault-step-num" style="background: #f59e0b;">02</div>
+        <div>
+          <h3 style="font-family: serif; font-size: 1.3rem; font-weight: 800; color: inherit;">Sub-Surface Anti-Static Silvering</h3>
+          <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.5; margin-top: 4px;">Ultrasonic misting baths deposit a mono-molecular metallic matrix over soft lacquer paths before electroforming initiation.</p>
+        </div>
+      </div>
+      <div class="vault-step-item" style="border-color: rgba(16, 185, 129, 0.2);">
+        <div class="vault-step-num" style="background: #10b981;">03</div>
+        <div>
+          <h3 style="font-family: serif; font-size: 1.3rem; font-weight: 800; color: inherit;">Dynamic Pitch Control</h3>
+          <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.5; margin-top: 4px;">Optical line previews automatically calculate spacing density to preserve perfect dynamic headroom across heavy percussion sections.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 3: HEAVYWEIGHT PRESSING MILESTONES
+     ========================================================================== -->
+<section class="vault-milestones-section">
+  <div style="max-width: 800px;">
+    <span style="font-family: monospace; color: #fbbf24; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px;">VAULT METRICS</span>
+    <h2 style="font-family: serif; font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; margin-top: 8px;">A Heritage Of Weight</h2>
+    <p style="color: #9ca3af; font-size: 1.1rem; margin-top: 8px;">Verified pressing weights and spatial precision targets.</p>
+  </div>
+
+  <div class="vault-mile-grid">
+    <div class="vault-mile-card">
+      <strong style="font-size: 2.2rem; font-weight: 800; color: #fbbf24; display: block;">200 Grams</strong>
+      <span style="font-family: monospace; font-size: 0.8rem; color: #d1d5db; font-weight: 700; display: block; margin-top: 4px;">ULTRA-STABLE FLAT PROFILE</span>
+      <p style="color: #9ca3af; font-size: 0.85rem; margin-top: 12px; line-height: 1.5;">Eliminating micro-warpage completely across massive.</p>
+    </div>
+    <div class="vault-mile-card" style="border-color: #6d28d9;">
+      <strong style="font-size: 2.2rem; font-weight: 800; color: #c4b5fd; display: block;">140 dB</strong>
+      <span style="font-family: monospace; font-size: 0.8rem; color: #d1d5db; font-weight: 700; display: block; margin-top: 4px;">LATERAL CHANNEL DYNAMIC RANGE</span>
+      <p style="color: #9ca3af; font-size: 0.85rem; margin-top: 12px; line-height: 1.5;">Evaluated using half-speed audiophile testing rigs.</p>
+    </div>
+    <div class="vault-mile-card" style="border-color: #10b981;">
+      <strong style="font-size: 2.2rem; font-weight: 800; color: #6ee7b7; display: block;">&lt; 0.05 %</strong>
+      <span style="font-family: monospace; font-size: 0.8rem; color: #d1d5db; font-weight: 700; display: block; margin-top: 4px;">HARMONIC DISTORTION FLOOR</span>
+      <p style="color: #9ca3af; font-size: 0.85rem; margin-top: 12px; line-height: 1.5;">Ensuring zero crosstalk contamination on complex passages.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 4: TRANSDUCER SUB-CHASSIS SPOTLIGHT
+     ========================================================================== -->
+<section class="vault-transducer-section">
+  <div class="vault-trans-card">
+    <div style="flex: 1; min-width: 300px;">
+      <span class="vault-pill">Moving Coil Systems</span>
+      <h2 class="vault-heading" style="font-size: clamp(2rem, 4vw, 3rem);">Bespoke Moving Coil Architecture</h2>
+      <p style="color: #4b5563; font-size: 1.1rem; line-height: 1.6; margin-top: 16px;">
+        Every mastercut pressing is rigorously evaluated using hand-wound, solid-boron cantilever moving coil cartridges. Providing vanishingly low moving mass for unmatched transient high-frequency retrieval.
+      </p>
+      <div style="margin-top: 2rem;">
+        <a href="cartridge selection.html" class="login-btn" style="height: 46px; font-size: clamp(0.8rem, 0.65rem + 0.5vw, 1.05rem); text-decoration: none;">View Calibration Hardware &rarr;</a>
+      </div>
+    </div>
+    <div style="flex: 1; text-align: center;">
+      <img src="images/home2_cartridge_assembly.png" alt="Premium moving coil transducer cartridge sub-chassis photograph" style="width: 100%; max-height: 300px; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-top: 1rem;">REFERENCE TRANSDUCER &bull; FIG 9.1</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 5: HIGH-SPEED ELECTROPLATING GRID
+     ========================================================================== -->
+<section class="vault-plating-section">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <span class="vault-pill" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3);">Galvanic Processing</span>
+    <h2 class="vault-heading">Electroforming The Father Matrix</h2>
+  </div>
+
+  <div class="vault-plate-grid">
+    <div class="vault-plate-item">
+      <span style="font-size: 1.6rem; color: #6d28d9; display: block; margin-bottom: 12px;"><i class="fas fa-atom"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit;">Pre-cleaning Channels</h3>
+      <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.5; margin-top: 8px;">Surfactant washes removing zero-point atmospheric oil build-up instantly.</p>
+    </div>
+    <div class="vault-plate-item">
+      <span style="font-size: 1.6rem; color: #f59e0b; display: block; margin-bottom: 12px;"><i class="fas fa-bolt"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit;">Slow-Strike Nickel </h3>
+      <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.5; margin-top: 8px;">Low amperage initial growth stages locking exact groove wall geometries safely.</p>
+    </div>
+    <div class="vault-plate-item">
+      <span style="font-size: 1.6rem; color: #10b981; display: block; margin-bottom: 12px;"><i class="fas fa-temperature-low"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit;">Thermal Stabilization</h3>
+      <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.5; margin-top: 8px;">Maintained within continuous 0.1°C thermal gradient fluids to stop matrix shrinking.</p>
+    </div>
+    <div class="vault-plate-item">
+      <span style="font-size: 1.6rem; color: #3b82f6; display: block; margin-bottom: 12px;"><i class="fas fa-layer-group"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit;">Stamper Separation</h3>
+      <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.5; margin-top: 8px;">Mechanical micro-cleaving revealing flawless solid negative ridges.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 6: ACTIVE PLATTER TELEMETRY SCOPES
+     ========================================================================== -->
+<section class="vault-scopes-section">
+  <div style="text-align: center;">
+    <span class="vault-pill" style="color: #f59e0b;">Visual Proving</span>
+    <h2 class="vault-heading">Acoustic Microscope Telemetry</h2>
+    <p style="color: #6b7280; font-size: 1.05rem; margin-top: 8px;">Evaluating vinyl side wall reflections via coherent red-laser tracking beams.</p>
+  </div>
+
+  <div class="vault-scope-banner">
+    <img src="images/home2_calibration_scope.png" alt="Microscopic line scope rendering vector calculations across analog grooves" class="vault-scope-img">
+    <div style="display: flex; justify-content: space-around; padding-top: 1.5rem; border-top: 1px solid rgba(109, 40, 217, 0.1); margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+      <div style="text-align: center;">
+        <span style="font-family: monospace; font-size: 0.75rem; color: #6d28d9; font-weight: 800; display: block;">TRACKING ANGLE</span>
+        <strong style="font-size: 1.2rem; font-family: serif; color: inherit;">20° Standard Reference</strong>
+      </div>
+      <div style="text-align: center;">
+        <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block;">MODULATION CAP</span>
+        <strong style="font-size: 1.2rem; font-family: serif; color: inherit;">+12 dB Threshold Limit</strong>
+      </div>
+      <div style="text-align: center;">
+        <span style="font-family: monospace; font-size: 0.75rem; color: #10b981; font-weight: 800; display: block;">GROOVE RADIUS</span>
+        <strong style="font-size: 1.2rem; font-family: serif; color: inherit;">0.007 mil Tip Tangency</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 7: MASTER CUTTER VERIFIED SEALS
+     ========================================================================== -->
+<section class="vault-seals-section">
+  <div class="vault-seal-box">
+    <span class="vault-pill" style="margin-bottom: 8px;">Master Approval</span>
+    <h3 style="font-family: serif; font-size: 1.8rem; font-weight: 800; color: inherit;">Certified Master Pressing Warrant</h3>
+    <p style="color: #6b7280; font-size: 1rem; line-height: 1.6; margin-top: 12px;">
+      "We sign off personally on every test-pressing acetate run before authorization is passed to commercial stamper arrays. Ensuring the spatial stereo imaging replicates original analog magnetic mixdown sessions precisely."
+    </p>
+    <div style="margin-top: 2rem;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; font-weight: 800; color: #6d28d9; display: block;">Helena Vance</span>
+      <span style="font-family: monospace; font-size: 0.75rem; color: #9ca3af; font-weight: 700; letter-spacing: 1px;">CHIEF CUTTING ENGINEER</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- Premium Footer Section -->
+<footer class="footer">
+  <div class="footer-top">
+    <!-- Brand Info -->
+    <div class="footer-brand">
+      <a href="./index.html" class="logo" style="margin-bottom: 0.5rem;">
+        <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+        <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+      </a>
+      <p>Custom sound architecture, pristine audiophile pressings, and expert turntable calibration supporting pure analog depth since 2012.</p>
+      <div style="display: flex; align-items: center; gap: 8px; color: #7c3aed; font-size: 0.85rem; font-weight: 600;">
+        <i class="fas fa-location-dot"></i>
+        <span style="color: inherit;">Studio 45, Analogue District, NY</span>
+      </div>
+    </div>
+
+    <!-- Navigation Column 1 -->
+    <div>
+      <h3 class="footer-title">Studio Vault</h3>
+      <ul class="footer-links">
+        <li><a href="./index.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./about.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> About Us</a></li>
+        <li><a href="./new arrivals.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Arrival</a></li>
+        <li><a href="./setup guides.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Setup Guides</a></li>
+        <li><a href="./contact.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Navigation Column 2 -->
+    <div>
+      <h3 class="footer-title">Philosophy</h3>
+      <ul class="footer-links">
+        <li><a href="./home 2.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./vinyl collections.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Vinyl Collection</a></li>
+        <li><a href="./turntables.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Turntable</a></li>
+        <li><a href="./local pickup.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Local Pickup</a></li>
+        <li><a href="./audio lounge.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Audio Lounge</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h3 class="footer-title">Inner Circle</h3>
+      <p>Subscribe for early access to limited pressings, bespoke cartridges, and vintage turntable releases.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('✨ Welcome to the Inner Circle!');">
+        <input type="email" class="newsletter-input" placeholder="Your studio email..." required aria-label="Email subscription">
+        <button type="submit" class="newsletter-btn" aria-label="Subscribe button"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="footer-copyright">
+      &copy; 2026 Vinyl Oasis Studio. Preserving analog excellence. All rights reserved.
+    </div>
+    <div class="footer-socials">
+      <a href="#" class="social-btn" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#" class="social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    // DOM elements
+    const body = document.body;
+    const darkToggle = document.getElementById('darkModeToggle');
+    const rtlToggle = document.getElementById('rtlToggle');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileHamburger = document.getElementById('mobileHamburger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
+    const mobileDarkToggle = document.getElementById('mobileDarkToggle');
+    const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    const navbar = document.getElementById('navbar');
+
+    const home1Option = document.getElementById('home1Option');
+    const home2Option = document.getElementById('home2Option');
+    const mobileHome1 = document.getElementById('mobileHome1');
+    const mobileHome2 = document.getElementById('mobileHome2');
+
+    // ---------- DARK MODE ----------
+    function setDarkMode(enabled) {
+      if(enabled) body.classList.add('dark');
+      else body.classList.remove('dark');
+      localStorage.setItem('vinyl_dark', enabled ? 'true' : 'false');
+      const icon = darkToggle?.querySelector('i');
+      const mobileIcon = mobileDarkToggle?.querySelector('i');
+      if(icon) {
+        if(enabled) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      }
+      if(mobileIcon) {
+        if(enabled) { mobileIcon.classList.remove('fa-moon'); mobileIcon.classList.add('fa-sun'); }
+        else { mobileIcon.classList.remove('fa-sun'); mobileIcon.classList.add('fa-moon'); }
+      }
+    }
+    const savedDark = localStorage.getItem('vinyl_dark') === 'true';
+    if(savedDark) setDarkMode(true);
+    darkToggle?.addEventListener('click', () => setDarkMode(!body.classList.contains('dark')));
+    mobileDarkToggle?.addEventListener('click', () => { setDarkMode(!body.classList.contains('dark')); });
+
+    // ---------- RTL MODE ----------
+    function setRTL(enabled) {
+      if(enabled) body.classList.add('rtl');
+      else body.classList.remove('rtl');
+      localStorage.setItem('vinyl_rtl', enabled ? 'true' : 'false');
+      const arrowIcon = rtlToggle?.querySelector('i');
+      const mobileArrowIcon = mobileRtlToggle?.querySelector('i');
+      if(arrowIcon) {
+        if(enabled) arrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else arrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+      if(mobileArrowIcon) {
+        if(enabled) mobileArrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else mobileArrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+    }
+    const savedRTL = localStorage.getItem('vinyl_rtl') === 'true';
+    if(savedRTL) setRTL(true);
+    rtlToggle?.addEventListener('click', () => setRTL(!body.classList.contains('rtl')));
+    mobileRtlToggle?.addEventListener('click', () => { setRTL(!body.classList.contains('rtl')); });
+
+    // ---------- LOGIN ----------
+    function handleLogin() { window.location.href = './login.html'; }
+    loginBtn?.addEventListener('click', handleLogin);
+    mobileLoginBtn?.addEventListener('click', () => { handleLogin(); });
+
+    // ---------- HOME 1 & HOME 2 interactions (dropdown) ----------
+    home1Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    home2Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome1?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome2?.addEventListener('click', () => { closeDrawerIfOpen(); });
+
+    // optional default home reset style
+    document.getElementById('homeLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './index.html'; });
+    document.getElementById('arrivalsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './new arrivals.html'; });
+
+    // close drawer helpers
+    function closeDrawer() {
+      if(mobileDrawer) mobileDrawer.classList.remove('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'none';
+    }
+    function closeDrawerIfOpen() {
+      if(mobileDrawer?.classList.contains('open')) closeDrawer();
+    }
+    // open mobile drawer
+    mobileHamburger?.addEventListener('click', () => {
+      if(mobileDrawer) mobileDrawer.classList.add('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'block';
+    });
+    closeDrawerBtn?.addEventListener('click', closeDrawer);
+    drawerOverlay?.addEventListener('click', closeDrawer);
+
+    // mobile dropdown toggle inside drawer
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+      const header = dropdown.querySelector('div:first-child');
+      header?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    // scroll shadow effect
+    window.addEventListener('scroll', () => {
+      if(!navbar) return;
+      if(window.scrollY > 20) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // --- UNIVERSAL ACTIVE NAV ITEM HIGHLIGHTING ---
+    const navLinksUniversal = document.querySelectorAll('.nav-link, .dropdown-menu a');
+    
+    function safeDecode(str) {
+      try { return decodeURIComponent(str); } catch(e) { return str; }
+    }
+
+    // 1. Clear pre-existing static inline styles to ensure a clean slate
+    navLinksUniversal.forEach(link => {
+      if (link.style.color) link.style.color = '';
+      if (link.style.borderBottom) link.style.borderBottom = '';
+    });
+
+    // 2. Identify current page filename
+    let currentFilename = window.location.pathname.split('/').pop();
+    if (!currentFilename || currentFilename === '/') currentFilename = 'index.html';
+    currentFilename = safeDecode(currentFilename);
+
+    // Function to apply active highlight styling
+    function highlightLink(link) {
+      link.style.color = '#e11d48'; // Active premium Rose highlight
+      link.style.borderBottom = '2px solid #e11d48';
+      link.style.fontWeight = '700';
+
+      // If nested inside a dropdown menu, also highlight the parent category link
+      const parentDropdown = link.closest('.dropdown, .mobile-dropdown');
+      if (parentDropdown) {
+        const parentToggle = parentDropdown.querySelector('.nav-link, div:first-child');
+        if (parentToggle) {
+          parentToggle.style.color = '#e11d48';
+          parentToggle.style.borderBottom = '2px solid #e11d48';
+          parentToggle.style.fontWeight = '700';
+        }
+      }
+    }
+
+    // 3. Apply active state based on current URL
+    navLinksUniversal.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      
+      let targetFilename = href.split('/').pop();
+      if (!targetFilename || targetFilename === '.' || targetFilename === './') targetFilename = 'index.html';
+      targetFilename = safeDecode(targetFilename);
+
+      if (targetFilename === currentFilename) {
+        highlightLink(link);
+      }
+
+      // 4. Attach click listener to update active highlight immediately on user click
+      link.addEventListener('click', function() {
+        navLinksUniversal.forEach(l => {
+          l.style.color = '';
+          l.style.borderBottom = '';
+          l.style.fontWeight = '';
+          const pDrop = l.closest('.dropdown, .mobile-dropdown');
+          if (pDrop) {
+            const pTog = pDrop.querySelector('.nav-link, div:first-child');
+            if (pTog) {
+              pTog.style.color = '';
+              pTog.style.borderBottom = '';
+              pTog.style.fontWeight = '';
+            }
+          }
+        });
+        highlightLink(this);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

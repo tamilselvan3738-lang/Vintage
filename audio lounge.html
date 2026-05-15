@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Vinyl Oasis | Exclusive Audio Lounge & Acoustic Vault</title>
+  <meta name="description" content="Discover the Vinyl Oasis Audio Lounge portal showcasing dedicated Listening Rooms, legendary Featured Artists, expert Vinyl Recommendations, and our comprehensive Music Blog.">
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f6fc;
+      background-image: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 40%), 
+                        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+      color: #1b1624;
+      transition: background 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+    }
+
+    /* ----- DARK MODE (Immersive Deep Studio aesthetic) ----- */
+    body.dark {
+      background-color: #0b0714;
+      background-image: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 45%), 
+                        radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 45%);
+      color: #e4dee8;
+    }
+    body.dark .login-btn {
+      color: #0b0714 !important;
+    }
+
+    /* ----- RTL (right-to-left) support ----- */
+    body.rtl {
+      direction: rtl;
+    }
+    body.rtl .navbar .logo {
+      margin-left: 0;
+      margin-right: -4px;
+    }
+    body.rtl .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(16px) scale(0.95); text-align: right; }
+    body.rtl .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0) scale(1); }
+
+    /* ========== NAVBAR (Premium Ultraviolet Sunset Style) ========== */
+    .navbar {
+      position: fixed;
+      top: 16px;
+      left: 2%;
+      width: 96%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 1000;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 58, 237, 0.18);
+      box-shadow: 0 12px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-shrink: 0;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+    .navbar.scrolled {
+      top: 10px;
+      padding: 0.65rem 1.5rem;
+      background: rgba(255, 255, 255, 0.93);
+      border-color: rgba(124, 58, 237, 0.28);
+      box-shadow: 0 16px 50px -10px rgba(124, 58, 237, 0.2), 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    body.dark .navbar {
+      background: rgba(11, 7, 20, 0.85);
+      border-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .navbar.scrolled {
+      background: rgba(9, 5, 16, 0.95);
+      border-color: rgba(245, 158, 11, 0.25);
+      box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.98), 0 0 30px rgba(124, 58, 237, 0.25);
+    }
+
+    /* ----- LOGO (Premium Layout & Amber Gold Ring) ----- */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .logo:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2e1065 0%, #581c87 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.1);
+      border: 2px solid #f59e0b;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .logo:hover .logo-icon {
+      border-color: #f59e0b;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+    .logo-icon i {
+      font-size: 20px;
+      color: #fef3c7;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+    .logo:hover .logo-icon i {
+      color: #ffffff;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #2e1065 20%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s;
+    }
+    body.dark .logo-text {
+      background: linear-gradient(135deg, #ffffff 20%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 1.5px;
+      color: #7c3aed;
+      margin-top: 2px;
+    }
+    body.dark .logo small {
+      color: #fbbf24;
+    }
+
+    /* ----- CENTER NAV MENU ----- */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: rgba(124, 58, 237, 0.03);
+      padding: 0.3rem 0.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(124, 58, 237, 0.05);
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    body.dark .nav-menu {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.04);
+    }
+    .nav-link {
+      position: relative;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #443a55;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .nav-link {
+      color: #c0b6ca;
+    }
+    .nav-link:hover {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    body.dark .nav-link:hover {
+      color: #fcd34d;
+      background: rgba(252, 211, 77, 0.12);
+    }
+    /* Unique glowing dot indicator */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: #7c3aed;
+      border-radius: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+    }
+    body.dark .nav-link::after {
+      background: #fcd34d;
+      box-shadow: 0 0 8px #fcd34d;
+    }
+    .nav-link:hover::after {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px) scale(0.95);
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-width: 220px;
+      border-radius: 20px;
+      padding: 12px 8px;
+      box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(124, 58, 237, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+    }
+    body.dark .dropdown-menu {
+      background: rgba(14, 9, 24, 0.95);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(124, 58, 237, 0.2);
+    }
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3b304c;
+      transition: all 0.2s ease;
+      border-radius: 12px;
+    }
+    body.dark .dropdown-menu a {
+      color: #d8d0e0;
+    }
+    .dropdown-menu a i {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    body.dark .dropdown-menu a i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(124, 58, 237, 0.06);
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .dropdown-menu a:hover {
+      background: rgba(252, 211, 77, 0.08);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .dropdown-menu a:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* RIGHT side actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .icon-btn {
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 1.1rem;
+      color: #584f6b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    body.dark .icon-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #d8d0e0;
+    }
+    .icon-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .icon-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+      box-shadow: 0 8px 20px rgba(252, 211, 77, 0.3);
+    }
+    .login-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      padding: 0 24px;
+      height: 44px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing: 0.4px;
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    body.dark .login-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+    .login-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(124, 58, 237, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .login-btn:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    /* MOBILE / TABLET (<= 1280px) */
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      border-radius: 14px;
+      cursor: pointer;
+      color: #7c3aed;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-menu-btn {
+      background: rgba(252, 211, 77, 0.12);
+      border-color: rgba(252, 211, 77, 0.18);
+      color: #fcd34d;
+    }
+    .mobile-menu-btn:hover {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-menu-btn:hover {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    @media (max-width: 1440px) {
+      .nav-menu { display: none; }
+      .nav-actions { display: none; }
+      .mobile-menu-btn { display: flex; }
+    }
+    /* side drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100vh;
+      background: rgba(255, 253, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 30px 24px;
+      box-shadow: -15px 0 50px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 1px solid rgba(124, 58, 237, 0.12);
+    }
+    body.dark .mobile-drawer {
+      background: rgba(11, 7, 20, 0.98);
+      border-left-color: rgba(255, 255, 255, 0.08);
+      box-shadow: -15px 0 50px rgba(0,0,0,0.8);
+    }
+    .mobile-drawer.open {
+      right: 0;
+    }
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1999;
+      display: none;
+    }
+    .mobile-drawer .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #3b304c;
+      transition: all 0.2s;
+      border: none;
+      background: transparent;
+    }
+    body.dark .mobile-drawer .nav-link {
+      color: #d8d0e0;
+    }
+    .mobile-drawer .nav-link:hover {
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      transform: translateX(6px);
+    }
+    body.dark .mobile-drawer .nav-link:hover {
+      background: rgba(252, 211, 77, 0.1);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.1);
+      color: #7c3aed;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-drawer .nav-link i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-drawer .nav-link:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    .mobile-dropdown .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+      padding: 4px 0 4px 20px;
+      display: none;
+      border: none;
+    }
+    .mobile-dropdown.active .dropdown-menu { display: block; }
+
+    /* Mobile Login Button Pro Style */
+    .mobile-drawer-login {
+      width: 100%;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255,255,255,0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.dark .mobile-drawer-login {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+    .mobile-drawer-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(124, 58, 237, 0.4);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .mobile-drawer-login:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 14px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    /* ==========================================================================
+       AUDIO LOUNGE: EXCLUSIVE ACOUSTIC LAYOUT STYLES (UNIQUE ARCHITECTURE)
+       ========================================================================== */
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      color: #2e1065;
+      letter-spacing: -0.5px;
+      margin-top: 6px;
+      line-height: 1.1;
+    }
+    body.dark .section-title { color: #ffffff; }
+
+    .lounge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(245, 158, 11, 0.1));
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #7c3aed;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.2rem;
+    }
+    body.dark .lounge-pill { color: #fcd34d; border-color: rgba(252, 211, 77, 0.3); }
+
+    /* SECTION 1: AUDIO LOUNGE HERO */
+    .lounge-hero {
+      margin-top: 100px;
+      padding: 6rem 6% 7rem;
+      background: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+    }
+    body.dark .lounge-hero {
+      background: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.15) 0%, transparent 75%);
+      border-bottom-color: rgba(255, 255, 255, 0.05);
+    }
+    .audio-waves-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      height: 40px;
+      margin-bottom: 1.5rem;
+    }
+    .audio-wave {
+      width: 4px;
+      height: 10px;
+      background: #7c3aed;
+      border-radius: 4px;
+      animation: pulse-wave 1.2s ease-in-out infinite alternate;
+    }
+    body.dark .audio-wave { background: #fcd34d; }
+    .audio-wave:nth-child(1) { animation-delay: 0.1s; height: 15px; }
+    .audio-wave:nth-child(2) { animation-delay: 0.3s; height: 35px; }
+    .audio-wave:nth-child(3) { animation-delay: 0.2s; height: 20px; }
+    .audio-wave:nth-child(4) { animation-delay: 0.5s; height: 28px; }
+    .audio-wave:nth-child(5) { animation-delay: 0.4s; height: 12px; }
+
+    @keyframes pulse-wave {
+      0% { transform: scaleY(0.4); opacity: 0.6; }
+      100% { transform: scaleY(1.1); opacity: 1; }
+    }
+
+    /* SECTION 2: LISTENING ROOMS HUB */
+    .listening-rooms-hub {
+      padding: 6rem 6%;
+      position: relative;
+    }
+    .room-selector-panel {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .room-tab-btn {
+      background: #ffffff;
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      border-radius: 24px;
+      padding: 2rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    body.dark .room-tab-btn {
+      background: rgba(16, 11, 28, 0.4);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+    .room-tab-btn.active {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.05), rgba(245, 158, 11, 0.05));
+      border-color: #7c3aed;
+      box-shadow: 0 15px 35px rgba(124, 58, 237, 0.08);
+    }
+    body.dark .room-tab-btn.active {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(245, 158, 11, 0.1));
+      border-color: #f59e0b;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+    }
+    .room-tab-btn:hover:not(.active) {
+      border-color: rgba(124, 58, 237, 0.3);
+      transform: translateY(-2px);
+    }
+    body.dark .room-tab-btn:hover:not(.active) { border-color: rgba(245, 158, 11, 0.3); }
+
+    .room-display-wrapper {
+      margin-top: 2.5rem;
+      background: #ffffff;
+      border-radius: 32px;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(124, 58, 237, 0.04);
+    }
+    body.dark .room-display-wrapper {
+      background: rgba(12, 8, 22, 0.6);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+    .room-display-media {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+    }
+    .room-spec-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    body.dark .room-spec-pill { background: rgba(252, 211, 77, 0.12); color: #fcd34d; }
+
+    /* SECTION 3: FEATURED ARTISTS EDITORIAL GRID */
+    .featured-artists-section {
+      padding: 6rem 6%;
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.015) 0%, transparent 100%);
+    }
+    .artists-editorial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    .artist-mag-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      transition: all 0.4s;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+    }
+    body.dark .artist-mag-card {
+      background: rgba(16, 11, 28, 0.5);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+    .artist-mag-card:hover {
+      transform: translateY(-8px);
+      border-color: #f59e0b;
+      box-shadow: 0 25px 50px rgba(124, 58, 237, 0.12);
+    }
+    body.dark .artist-mag-card:hover { box-shadow: 0 25px 50px rgba(0,0,0,0.8); }
+    .artist-cover-box {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+    }
+    .artist-cover-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .artist-mag-card:hover .artist-cover-img { transform: scale(1.05); }
+    .artist-genre-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(11, 7, 20, 0.85);
+      backdrop-filter: blur(8px);
+      color: #fcd34d;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid rgba(252, 211, 77, 0.3);
+    }
+    .artist-body { padding: 2rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+
+    /* SECTION 4: VINYL RECOMMENDATIONS ACCORDION */
+    .recommendations-section {
+      padding: 6rem 6%;
+    }
+    .rec-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 3.5rem;
+      margin-top: 3.5rem;
+      align-items: start;
+    }
+    .rec-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .rec-nav-item {
+      padding: 1.5rem;
+      border-radius: 20px;
+      background: rgba(124, 58, 237, 0.02);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    body.dark .rec-nav-item {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+    .rec-nav-item.active {
+      background: #7c3aed;
+      color: #ffffff;
+      border-color: #7c3aed;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .rec-nav-item.active {
+      background: #f59e0b;
+      color: #0b0714;
+      border-color: #f59e0b;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+    }
+    .rec-nav-item:hover:not(.active) {
+      background: rgba(124, 58, 237, 0.06);
+      transform: translateX(4px);
+    }
+    body.dark .rec-nav-item:hover:not(.active) { background: rgba(255, 255, 255, 0.04); }
+
+    .rec-listing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .rec-disc-card {
+      padding: 2rem;
+      border-radius: 24px;
+      background: #ffffff;
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+      transition: all 0.3s;
+    }
+    body.dark .rec-disc-card {
+      background: rgba(16, 11, 28, 0.4);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+    .rec-disc-card:hover {
+      border-color: #7c3aed;
+      transform: translateY(-4px);
+    }
+    body.dark .rec-disc-card:hover { border-color: #f59e0b; }
+
+    /* SECTION 5: HIGH-VOLTAGE AMPLIFICATION MATRIX */
+    .amplification-matrix {
+      padding: 6rem 6%;
+      background: radial-gradient(circle at 20% 50%, rgba(245, 158, 11, 0.04), transparent 60%);
+    }
+    .matrix-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-top: 4rem;
+    }
+    .amp-card {
+      padding: 2.5rem;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      position: relative;
+      box-shadow: 0 12px 35px rgba(124, 58, 237, 0.02);
+    }
+    body.dark .amp-card {
+      background: rgba(16, 11, 28, 0.4);
+      border-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+    }
+    .amp-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f59e0b;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      box-shadow: 0 0 12px #f59e0b;
+    }
+
+    /* SECTION 6: THE MUSIC BLOG */
+    .music-blog-section {
+      padding: 6rem 6%;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    .blog-card {
+      background: #ffffff;
+      border-radius: 28px;
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(124, 58, 237, 0.02);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+    }
+    body.dark .blog-card {
+      background: rgba(16, 11, 28, 0.4);
+      border-color: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      border-color: #7c3aed;
+    }
+    body.dark .blog-card:hover { border-color: #fcd34d; }
+    .blog-content { padding: 2.5rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+
+    /* SECTION 7: VIP AUDITION PASS */
+    .vip-pass-section {
+      padding: 5rem 6%;
+    }
+    .vip-card-box {
+      background: linear-gradient(135deg, #100b1c 0%, #2e1065 100%);
+      border-radius: 32px;
+      padding: 5rem;
+      color: white;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .vip-card-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* SECTION 8: COMMUNITY SESSIONS MATRIX */
+    .community-matrix {
+      padding: 6rem 6%;
+      background: rgba(124, 58, 237, 0.015);
+    }
+    .event-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      margin-bottom: 1.5rem;
+      transition: all 0.3s;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    body.dark .event-row {
+      background: rgba(16, 11, 28, 0.5);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+    .event-row:hover {
+      border-color: #f59e0b;
+      transform: scale(1.01);
+    }
+
+    /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    p, h1, h2, h3, h4, h5, h6, span, a, blockquote {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+    .icon-btn { font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.2rem); }
+    .login-btn { font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); }
+    .mobile-drawer-login { font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem); }
+
+    @media (max-width: 1200px) {
+      .footer-top { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-left: 5% !important; padding-right: 5% !important;
+      }
+      div[class*="grid"], div[class*="layout"], div[class*="panel"], div[class*="wrapper"] {
+        grid-template-columns: 1fr !important; gap: 2rem;
+      }
+      .footer-top { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr !important; gap: 2rem; }
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 4rem !important; padding-bottom: 4rem !important;
+      }
+    }
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+    @media (max-width: 480px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 3rem !important; padding-bottom: 3rem !important; padding-left: 4% !important; padding-right: 4% !important;
+      }
+      div[style*="display: flex"]:not(.navbar):not(.nav-left):not(.nav-right):not(.logo):not(.nav-menu):not(.nav-actions):not(.dropdown):not(.social-socials):not(.footer-socials):not(.newsletter-form):not(.input-wrapper):not(.checkbox-label):not(.event-row) {
+        flex-direction: column; align-items: center; text-align: center;
+      }
+    }
+
+    /* ========== PREMIUM FOOTER (Ultraviolet Sunset Theme) ========== */
+    .footer {
+      background-color: #ffffff;
+      border-top: 1px solid rgba(124, 58, 237, 0.12);
+      padding: 5rem 6% 3rem;
+      margin-top: 4rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 -10px 40px rgba(124, 58, 237, 0.03);
+    }
+    body.dark .footer {
+      background-color: #0b0714;
+      border-top-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .footer-brand p {
+      color: #584f6b;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    body.dark .footer-brand p {
+      color: #a49ab0;
+    }
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2e1065;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    body.dark .footer-title {
+      color: #fcd34d;
+    }
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(135deg, #7c3aed, #f59e0b);
+      border-radius: 2px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-link {
+      color: #443a55;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    body.dark .footer-link {
+      color: #c0b6ca;
+    }
+    .footer-link:hover {
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .footer-link:hover {
+      color: #fcd34d;
+    }
+    .footer-newsletter p {
+      color: #584f6b;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+    body.dark .footer-newsletter p {
+      color: #a49ab0;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      background: rgba(124, 58, 237, 0.02);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #1b1624;
+      outline: none;
+      transition: all 0.3s;
+    }
+    body.dark .newsletter-input {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e4dee8;
+    }
+    .newsletter-input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    body.dark .newsletter-input:focus {
+      border-color: #fcd34d;
+      box-shadow: 0 0 0 3px rgba(252, 211, 77, 0.15);
+    }
+    .newsletter-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      width: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .newsletter-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+    .newsletter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+    }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(124, 58, 237, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    body.dark .footer-bottom {
+      border-top-color: rgba(255, 255, 255, 0.05);
+    }
+    .footer-copyright {
+      color: #7c6f8d;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    body.dark .footer-copyright {
+      color: #8c829c;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #584f6b;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    body.dark .social-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.06);
+      color: #c0b6ca;
+    }
+    .social-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    body.dark .social-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* Responsive grid adjustments */
+    @media (max-width: 1024px) {
+      .room-display-wrapper { grid-template-columns: 1fr; gap: 3rem; padding: 2.5rem; }
+      .rec-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .rec-nav { flex-direction: row; overflow-x: auto; padding-bottom: 8px; }
+      .rec-nav-item { white-space: nowrap; font-size: 1rem; padding: 1rem 1.5rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .room-selector-panel { grid-template-columns: 1fr; }
+      .vip-card-box { padding: 3rem 2rem; }
+    }
+    @media (max-width: 600px) {
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; justify-content: center; }
+      .event-row { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <!-- LOGO left -->
+  <div class="nav-left">
+    <a href="./index.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+      <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+    </a>
+  </div>
+
+  <!-- CENTER NAV MENU -->
+  <div class="nav-menu" id="navMenu">
+    <!-- HOME with dropdown -->
+    <div class="dropdown">
+      <a href="./index.html" class="nav-link" id="homeLink">Home <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./index.html" id="home1Option"> Home 1</a>
+        <a href="./home 2.html" id="home2Option"> Home 2</a>
+      </div>
+    </div>
+    <a href="./about.html" class="nav-link">About</a>
+    <!-- ARRIVALS with dropdown -->
+    <div class="dropdown">
+      <a href="./new arrivals.html" class="nav-link" id="arrivalsLink">Arrivals <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./new arrivals.html"> New Arrivals</a>
+        <a href="./vinyl collections.html">Vinyl Collections</a>
+      </div>
+    </div>
+    <a href="./turntables.html" class="nav-link">Turntables</a>
+    <a href="./cartridge selection.html" class="nav-link">Cartridges</a>
+    <a href="./setup guides.html" class="nav-link">Setup Guides</a>
+    <a href="./trade-in program.html" class="nav-link">Trade-In Program</a>
+    <a href="./local pickup.html" class="nav-link">Local Pickup</a>
+    <a href="./audio lounge.html" class="nav-link" style="color: #7c3aed;">Audio Lounge</a>
+    <a href="./contact.html" class="nav-link">Contact</a>
+  </div>
+
+  <!-- RIGHT side actions -->
+  <div class="nav-right">
+    <div class="nav-actions">
+      <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL direction"><i class="fa-solid fa-right-left"></i></button>
+      <button class="login-btn" id="loginBtn">Login <i class="fas fa-arrow-right-to-bracket" style="font-size: 12px;"></i></button>
+    </div>
+    <!-- Mobile Hamburger -->
+    <button class="mobile-menu-btn" id="mobileHamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center;">
+      <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: #7c3aed;">MENU</span>
+    </div>
+    <button id="closeDrawer" style="background: rgba(0,0,0,0.04); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; color: #584f6b; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
+  </div>
+  <div class="mobile-dropdown" id="mobileHomeDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Home</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./index.html" id="mobileHome1" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 1 </a>
+      <a href="./home 2.html" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
+    </div>
+  </div>
+  <a href="./about.html" class="nav-link">About</a>
+  <div class="mobile-dropdown" id="mobileArrivalsDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Arrivals</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
+      <a href="./vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
+    </div>
+  </div>
+  <a href="./turntables.html" class="nav-link"> Turntables</a>
+  <a href="./cartridge selection.html" class="nav-link"> Cartridges</a>
+  <a href="./setup guides.html" class="nav-link"> Setup Guides</a>
+  <a href="./trade-in program.html" class="nav-link"> Trade-In Program</a>
+  <a href="./local pickup.html" class="nav-link"> Local Pickup</a>
+  <a href="./audio lounge.html" class="nav-link" style="color: #7c3aed;"> Audio Lounge</a>
+  <a href="./contact.html" class="nav-link"> Contact</a>
+  <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
+  
+  <a class="nav-link" id="mobileDarkToggle" style="cursor: pointer;"><i class="fas fa-moon"></i> Dark Mode</a>
+  <a class="nav-link" id="mobileRtlToggle" style="cursor: pointer;"><i class="fa-solid fa-right-left"></i> RTL Mode</a>
+  
+  <div style="margin-top: 8px;">
+    <button class="mobile-drawer-login" id="mobileLoginBtn">
+      <span>Login</span>
+      <i class="fas fa-arrow-right-to-bracket" style="font-size: 1.2rem;"></i>
+    </button>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ==========================================================================
+     SECTION 1: AUDIO LOUNGE ACOUSTIC SANCTUARY (HERO)
+     ========================================================================== -->
+<section class="lounge-hero">
+  <div class="audio-waves-container">
+    <div class="audio-wave"></div>
+    <div class="audio-wave"></div>
+    <div class="audio-wave"></div>
+    <div class="audio-wave"></div>
+    <div class="audio-wave"></div>
+  </div>
+
+  <span class="lounge-pill"><i class="fas fa-waveform" style="color: #f59e0b;"></i> Zero Vibration Floor</span>
+  <h1 class="section-title" id="dynamicTitle">The Premium Audio Lounge & Vault</h1>
+  <p id="dynamicDesc" style="color: #584f6b; font-size: 1.15rem; max-width: 720px; margin: 1rem auto 2.5rem; line-height: 1.6;">
+    An uncompromised physical environment engineered specifically for reference analog evaluation. Experience high-gain vacuum tube amplification, calibrated point-source tracking, and deep gatefold acoustic absorption.
+  </p>
+
+  <div>
+    <a href="#secRooms" class="login-btn" style="text-decoration: none;">Explore Chambers <i class="fas fa-arrow-down" style="font-size: 12px;"></i></a>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 2: LISTENING ROOMS HUB (INTERACTIVE ARCHITECTURE)
+     ========================================================================== -->
+<section class="listening-rooms-hub" id="secRooms">
+  <div class="section-header">
+    <span class="lounge-pill" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">Isolated Fidelity</span>
+    <h2 class="section-title">Select Listening Chamber</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 8px;">
+      Toggle across our physical custom test vaults equipped with tailored harmonic configurations to preview hardware characteristics.
+    </p>
+  </div>
+
+  <div class="room-selector-panel">
+    <div class="room-tab-btn active" onclick="switchChamber('tube', this)">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block; margin-bottom: 8px;">CHAMBER ALPHA</span>
+      <strong style="font-size: 1.15rem; color: inherit; display: block;">Vacuum Tube Reference</strong>
+      <p style="font-size: 0.85rem; color: #8c829c; margin-top: 4px;">Rich 300B Triode Warmth</p>
+    </div>
+
+    <div class="room-tab-btn" onclick="switchChamber('solid', this)">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-bottom: 8px;">CHAMBER BETA</span>
+      <strong style="font-size: 1.15rem; color: inherit; display: block;">Pure Solid-State Dynamics</strong>
+      <p style="font-size: 0.85rem; color: #8c829c; margin-top: 4px;">Zero THD High Mass Isolation</p>
+    </div>
+
+    <div class="room-tab-btn" onclick="switchChamber('baffle', this)">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #10b981; font-weight: 800; display: block; margin-bottom: 8px;">CHAMBER GAMMA</span>
+      <strong style="font-size: 1.15rem; color: inherit; display: block;">Open-Baffle Point Source</strong>
+      <p style="font-size: 0.85rem; color: #8c829c; margin-top: 4px;">High-Efficiency Horn Soundstage</p>
+    </div>
+  </div>
+
+  <div class="room-display-wrapper">
+    <div>
+      <img src="images/lounge_deck_primary.png" alt="Listening Room acoustic playback hardware layout" class="room-display-media" id="chamberMedia">
+      <span style="display: block; text-align: center; font-size: 0.75rem; color: #8c829c; margin-top: 8px; font-family: monospace;" id="chamberMediaLabel">TURNTABLE CHASSIS STAGING</span>
+    </div>
+
+    <div>
+      <div style="margin-bottom: 1rem;">
+        <span class="room-spec-pill" id="spec1">RT60 Decay: 0.35s</span>
+        <span class="room-spec-pill" id="spec2">Noise Floor: &lt; 22dBA</span>
+      </div>
+
+      <h3 style="font-family: serif; font-size: 2.2rem; font-weight: 800; color: inherit;" id="chamberTitle">Vacuum Tube Reference Suite</h3>
+      <p style="color: #7c6f8d; font-size: 1rem; margin-top: 12px; line-height: 1.6;" id="chamberDesc">
+        Configured specifically to reveal subtle micro-dynamics and natural mid-range bloom. Anchored by dual monoblock pure Class-A tube amplification preamps driving ultra-low crossover point arrays.
+      </p>
+
+      <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(124, 58, 237, 0.08); color: #7c3aed; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+          <i class="fas fa-sliders"></i>
+        </div>
+        <div>
+          <strong style="font-size: 0.85rem; display: block; color: inherit;">Calibrated Cartridge Pairing</strong>
+          <span style="font-size: 0.8rem; color: #8c829c;" id="chamberPairing">Oasis Master Moving Coil (0.3mV output)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 3: FEATURED ARTISTS SHOWCASE (EDITORIAL CAROUSEL GRID)
+     ========================================================================== -->
+<section class="featured-artists-section">
+  <div class="section-header">
+    <span class="lounge-pill" style="color: #7c3aed;">Archival Highlights</span>
+    <h2 class="section-title">Featured Artists Staged Today</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 8px;">
+      Audition master original tapes and ultra-high-dynamic-range half-speed vinyl releases from world-renowned musical innovators.
+    </p>
+  </div>
+
+  <div class="artists-editorial-grid">
+    <div class="artist-mag-card">
+      <div class="artist-cover-box">
+        <span class="artist-genre-tag">Audiophile Jazz</span>
+        <img src="images/lounge_jazz_cover.png" alt="Featured Jazz Artist Album Pressing Cover" class="artist-cover-img">
+      </div>
+      <div class="artist-body">
+        <div>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; color: inherit;">Miles Davis Master Archive</h3>
+          <p style="color: #7c6f8d; font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">
+            Rare single-sided test pressings capturing unedited studio dialogue and pristine brass dynamics from the legendary 1959.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem; border-top: 1px solid rgba(124, 58, 237, 0.08); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #7c3aed;">DR14 SIGNAL RANGE</span>
+          <button class="icon-btn" style="width: 36px; height: 36px; font-size: 0.85rem;" onclick="alert('🎵 Preview track initialized over active lounge master buffers.')"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="artist-mag-card" style="border-color: rgba(245, 158, 11, 0.2);">
+      <div class="artist-cover-box">
+        <span class="artist-genre-tag" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">Progressive Rock</span>
+        <img src="images/lounge_rock_cover.png" alt="Featured Rock Artist Master tape box artwork" class="artist-cover-img">
+      </div>
+      <div class="artist-body">
+        <div>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; color: inherit;">Pink Floyd — Half Speed Cuts</h3>
+          <p style="color: #7c6f8d; font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">
+            Direct tape playback transferring pristine low-end synthesizer frequencies directly to pristine 200g heavy solid vinyl profiles.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem; border-top: 1px solid rgba(124, 58, 237, 0.08); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #f59e0b;">ABBEY ROAD REMASTERS</span>
+          <button class="icon-btn" style="width: 36px; height: 36px; font-size: 0.85rem;" onclick="alert('🎵 Preview track initialized over active lounge master buffers.')"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="artist-mag-card">
+      <div class="artist-cover-box">
+        <span class="artist-genre-tag" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3);">Pure Electronica</span>
+        <img src="images/lounge_elec_cover.png" alt="Electronic Minimalist Artist Vinyl package staging" class="artist-cover-img">
+      </div>
+      <div class="artist-body">
+        <div>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; color: inherit;">Daft Punk & Analog Synths</h3>
+          <p style="color: #7c6f8d; font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">
+            High voltage transient evaluation pressings featuring analog vocoder paths mastered entirely without aggressive digital peak limiting.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem; border-top: 1px solid rgba(124, 58, 237, 0.08); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #10b981;">DIRECT-TO-DISC STAGING</span>
+          <button class="icon-btn" style="width: 36px; height: 36px; font-size: 0.85rem;" onclick="alert('🎵 Preview track initialized over active lounge master buffers.')"><i class="fas fa-play"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 4: VINYL RECOMMENDATIONS ACCORDION INTERFACE
+     ========================================================================== -->
+<section class="recommendations-section">
+  <div class="section-header">
+    <span class="lounge-pill" style="color: #f59e0b;">Curator Picks</span>
+    <h2 class="section-title">Essential Vinyl Recommendations</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 8px;">
+      Explore highly endorsed dynamic reference albums certified by our leading vault acoustic architects to push your speakers.
+    </p>
+  </div>
+
+  <div class="rec-layout">
+    <div class="rec-nav">
+      <div class="rec-nav-item active" onclick="switchRecommendation('jazz', this)">
+        <span>Jazz Audiophile</span>
+        <i class="fas fa-arrow-right" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="rec-nav-item" onclick="switchRecommendation('prog', this)">
+        <span>Progressive Master</span>
+        <i class="fas fa-arrow-right" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="rec-nav-item" onclick="switchRecommendation('ambient', this)">
+        <span>Ambient Electronica</span>
+        <i class="fas fa-arrow-right" style="font-size: 0.9rem;"></i>
+      </div>
+    </div>
+
+    <div class="rec-listing-grid" id="recListingContainer">
+      <div class="rec-disc-card">
+        <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block; margin-bottom: 6px;">45RPM REFERENCE CUT</span>
+        <strong style="font-size: 1.15rem; color: inherit; display: block;">John Coltrane — Blue Train</strong>
+        <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Mastered straight from the first-generation analog safety tapes by Kevin Gray. Double heavy platter format and make it easy to handle.</p>
+        <div style="margin-top: 1rem; font-size: 0.8rem; color: #10b981; font-weight: 600;"><i class="fas fa-shield-halved"></i> Vault Available</div>
+      </div>
+
+      <div class="rec-disc-card">
+        <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-bottom: 6px;">DIRECT TO PLINTH</span>
+        <strong style="font-size: 1.15rem; color: inherit; display: block;">Bill Evans Trio — Sunday at the Village</strong>
+        <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Incredibly authentic soundstage staging depth capturing live audience ambient noise and acoustic bass texture flawlessly.</p>
+        <div style="margin-top: 1rem; font-size: 0.8rem; color: #10b981; font-weight: 600;"><i class="fas fa-shield-halved"></i> Vault Available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 5: HIGH-VOLTAGE AMPLIFICATION MATRIX
+     ========================================================================== -->
+<section class="amplification-matrix">
+  <div class="section-header">
+    <span class="lounge-pill" style="color: #7c3aed;">Hardware Pulse</span>
+    <h2 class="section-title" style="font-size: clamp(1.8rem, 4vw, 3rem);">Pure Signal Hardware Infrastructure</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 8px;">
+      Behind every immersive audition lies our custom multi-stage voltage alignment arrays isolating micro-signals from standard powerline noise.
+    </p>
+  </div>
+
+  <div class="matrix-cards">
+    <div class="amp-card">
+      <div class="amp-indicator"></div>
+      <i class="fas fa-bolt-lightning" style="font-size: 2rem; color: #f59e0b; margin-bottom: 1rem;"></i>
+      <strong style="font-size: 1.1rem; display: block; color: inherit;">Dual-Mono Preamp Rails</strong>
+      <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Completely decoupled channel paths preventing high-frequency cross-talk and widening the stereophonic panorama.</p>
+    </div>
+
+    <div class="amp-card" style="border-color: rgba(124, 58, 237, 0.25);">
+      <div class="amp-indicator" style="background: #7c3aed; box-shadow: 0 0 12px #7c3aed;"></div>
+      <i class="fas fa-sliders" style="font-size: 2rem; color: #7c3aed; margin-bottom: 1rem;"></i>
+      <strong style="font-size: 1.1rem; display: block; color: inherit;">Balanced AC Re-generators</strong>
+      <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Rebuilding raw sine waves from absolute baseline levels to guarantee pristine direct drive rotational stabilization.</p>
+    </div>
+
+    <div class="amp-card">
+      <div class="amp-indicator" style="background: #10b981; box-shadow: 0 0 12px #10b981;"></div>
+      <i class="fas fa-layer-group" style="font-size: 2rem; color: #10b981; margin-bottom: 1rem;"></i>
+      <strong style="font-size: 1.1rem; display: block; color: inherit;">Pneumatic Floating Pods</strong>
+      <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Massive multi-ton decoupling foundations absorbing nearby heavy road freight vibrations prior to cartridge entry.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 6: THE MUSIC BLOG & TECHNICAL ARCHIVE
+     ========================================================================== -->
+<section class="music-blog-section">
+  <div class="section-header">
+    <span class="lounge-pill" style="color: #f59e0b;">Audio Editorial</span>
+    <h2 class="section-title">The Master Music & Technical Blog</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 8px;">
+      In-depth essays published by our staff mastering engineers tracing the exact science behind pure analog acoustics.
+    </p>
+  </div>
+
+  <div class="blog-grid">
+    <div class="blog-card">
+      <div class="blog-content">
+        <div>
+          <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block; margin-bottom: 8px;">TECHNICAL INVESTIGATION</span>
+          <h3 style="font-family: serif; font-size: 1.35rem; font-weight: 800; color: inherit; line-height: 1.2;">Anatomy of a 180-Gram Deep Groove Vinyl Platter</h3>
+          <p style="color: #7c6f8d; font-size: 0.95rem; margin-top: 12px; line-height: 1.6;">
+            Why raw mass prevents physical stylus deformation under elevated temperature cycles. Tracing standard profile differences across vintage pressing machines.
+          </p>
+        </div>
+        <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: #8c829c; border-top: 1px solid rgba(124, 58, 237, 0.08); padding-top: 1rem;">
+          <span>By Archival Staff</span>
+          <span style="color: #7c3aed; font-weight: 700; cursor: pointer;">Read Longform →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-card" style="border-color: rgba(245, 158, 11, 0.2);">
+      <div class="blog-content">
+        <div>
+          <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-bottom: 8px;">CARTRIDGE DYNAMICS</span>
+          <h3 style="font-family: serif; font-size: 1.35rem; font-weight: 800; color: inherit; line-height: 1.2;">Moving Magnet vs Moving Coil under 100x Magnification</h3>
+          <p style="color: #7c6f8d; font-size: 0.95rem; margin-top: 12px; line-height: 1.6;">
+            Examining the physical differences in cantilever compliance and transient tracking accuracy across heavy modulation micro-grooves.
+          </p>
+        </div>
+        <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: #8c829c; border-top: 1px solid rgba(124, 58, 237, 0.08); padding-top: 1rem;">
+          <span>By Lab Architect</span>
+          <span style="color: #f59e0b; font-weight: 700; cursor: pointer;">Read Longform →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-content">
+        <div>
+          <span style="font-family: monospace; font-size: 0.75rem; color: #10b981; font-weight: 800; display: block; margin-bottom: 8px;">ROOM CALIBRATION</span>
+          <h3 style="font-family: serif; font-size: 1.35rem; font-weight: 800; color: inherit; line-height: 1.2;">Optimizing Room Acoustics Without Micro-Dynamics</h3>
+          <p style="color: #7c6f8d; font-size: 0.95rem; margin-top: 12px; line-height: 1.6;">
+            Balancing physical corner diffusion traps alongside early reflection point deadening to let string harmonics decay naturally over pure silence.
+          </p>
+        </div>
+        <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: #8c829c; border-top: 1px solid rgba(124, 58, 237, 0.08); padding-top: 1rem;">
+          <span>By Master Calibrator</span>
+          <span style="color: #10b981; font-weight: 700; cursor: pointer;">Read Longform →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 7: VIP AUDITION PASS INVITATION
+     ========================================================================== -->
+<section class="vip-pass-section">
+  <div class="vip-card-box">
+    <span style="padding: 4px 12px; background: rgba(245, 158, 11, 0.2); color: #fcd34d; border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; display: inline-block; margin-bottom: 1.5rem; border: 1px solid rgba(252, 211, 77, 0.3);">INVITATION ONLY ACCESS</span>
+    <h2 style="font-family: serif; font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; line-height: 1.1;">Secure Sunday Masterclass Access</h2>
+    <p style="font-size: 1.05rem; color: #d8d0e0; max-width: 600px; margin: 1rem auto 2.5rem; line-height: 1.6;">
+      Every Sunday morning, our chief acoustic staff stage locked-gate single-pressing evaluations for certified lounge pass holders. Experience real master-tape comparisons over high voltage amplification paths.
+    </p>
+
+    <button class="login-btn" style="height: 52px; font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.15rem); padding: 0 32px;" onclick="alert('🎟️ VIP Masterclass trajectory request logged. Expect encrypted review form via client mail.')">Apply for Audio Lounge Pass <i class="fas fa-key" style="margin-left: 6px;"></i></button>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 8: COMMUNITY LISTENING EVENT MATRIX
+     ========================================================================== -->
+<section class="community-matrix">
+  <div class="section-header">
+    <span class="lounge-pill" style="color: #7c3aed;">Physical Gatherings</span>
+    <h2 class="section-title">Upcoming Lounge Staging Events</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 8px;">
+      Join local audiophiles for specialized format evaluation panels staged inside our master acoustics compartments.
+    </p>
+  </div>
+
+  <div style="max-width: 900px; margin: 3.5rem auto 0;">
+    <div class="event-row">
+      <div>
+        <span style="font-size: 0.75rem; color: #7c3aed; font-family: monospace; font-weight: 700; display: block;">OCTOBER 14 — 02:00 PM</span>
+        <strong style="font-size: 1.2rem; color: inherit; display: block; margin-top: 4px;">Direct-to-Disc Live Signal Stream</strong>
+        <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 2px;">Evaluating analog dynamic tracking limitations under intense physical vinyl groove stress.</p>
+      </div>
+      <button class="icon-btn" style="width: auto; padding: 0 20px; font-size: 0.85rem; font-weight: 600;" onclick="alert('📅 Staging reminder mapped to internal user profile.')">Set Staging Reminder</button>
+    </div>
+
+    <div class="event-row" style="border-color: rgba(245, 158, 11, 0.2);">
+      <div>
+        <span style="font-size: 0.75rem; color: #f59e0b; font-family: monospace; font-weight: 700; display: block;">OCTOBER 22 — 11:00 AM</span>
+        <strong style="font-size: 1.2rem; color: inherit; display: block; margin-top: 4px;">Vintage Moving Coil Hardware Meet</strong>
+        <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 2px;">Bring your custom cartridge frames for professional visual alignment reviews under 100x.</p>
+      </div>
+      <button class="icon-btn" style="width: auto; padding: 0 20px; font-size: 0.85rem; font-weight: 600;" onclick="alert('📅 Staging reminder mapped to internal user profile.')">Set Staging Reminder</button>
+    </div>
+
+    <div class="event-row">
+      <div>
+        <span style="font-size: 0.75rem; color: #10b981; font-family: monospace; font-weight: 700; display: block;">NOVEMBER 04 — 04:00 PM</span>
+        <strong style="font-size: 1.2rem; color: inherit; display: block; margin-top: 4px;">Blue Note Original Master Unboxing</strong>
+        <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 2px;">First-play public screening of pristine unreleased analog master tape cuts inside.</p>
+      </div>
+      <button class="icon-btn" style="width: auto; padding: 0 20px; font-size: 0.85rem; font-weight: 600;" onclick="alert('📅 Staging reminder mapped to internal user profile.')">Set Staging Reminder</button>
+    </div>
+  </div>
+</section>
+
+<!-- Premium Footer Section -->
+<footer class="footer">
+  <div class="footer-top">
+    <!-- Brand Info -->
+    <div class="footer-brand">
+      <a href="./index.html" class="logo" style="margin-bottom: 0.5rem;">
+        <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+        <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+      </a>
+      <p>Custom sound architecture, pristine audiophile pressings, and expert turntable calibration supporting pure analog depth since 2012.</p>
+      <div style="display: flex; align-items: center; gap: 8px; color: #7c3aed; font-size: 0.85rem; font-weight: 600;">
+        <i class="fas fa-location-dot"></i>
+        <span style="color: inherit;">Studio 45, Analogue District, NY</span>
+      </div>
+    </div>
+
+    <!-- Navigation Column 1 -->
+    <div>
+      <h3 class="footer-title">Studio Vault</h3>
+      <ul class="footer-links">
+        <li><a href="./index.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./about.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> About Us</a></li>
+        <li><a href="./new arrivals.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Arrival</a></li>
+        <li><a href="./setup guides.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Setup Guides</a></li>
+        <li><a href="./contact.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Navigation Column 2 -->
+    <div>
+      <h3 class="footer-title">Philosophy</h3>
+      <ul class="footer-links">
+        <li><a href="./home 2.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./vinyl collections.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Vinyl Collection</a></li>
+        <li><a href="./turntables.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Turntable</a></li>
+        <li><a href="./local pickup.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Local Pickup</a></li>
+        <li><a href="./audio lounge.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Audio Lounge</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h3 class="footer-title">Inner Circle</h3>
+      <p>Subscribe for early access to limited pressings, bespoke cartridges, and vintage turntable releases.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('✨ Welcome to the Inner Circle!');">
+        <input type="email" class="newsletter-input" placeholder="Your studio email..." required aria-label="Email subscription">
+        <button type="submit" class="newsletter-btn" aria-label="Subscribe button"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+<script>
+  // Dynamic audio chamber tab switcher logic
+  function switchChamber(key, elem) {
+    document.querySelectorAll('.room-tab-btn').forEach(btn => btn.classList.remove('active'));
+    elem.classList.add('active');
+
+    const title = document.getElementById('chamberTitle');
+    const desc = document.getElementById('chamberDesc');
+    const pairing = document.getElementById('chamberPairing');
+    const media = document.getElementById('chamberMedia');
+    const label = document.getElementById('chamberMediaLabel');
+    const spec1 = document.getElementById('spec1');
+    const spec2 = document.getElementById('spec2');
+
+    if(!title) return;
+
+    if(key === 'tube') {
+      title.innerText = 'Vacuum Tube Reference Suite';
+      desc.innerText = 'Configured specifically to reveal subtle micro-dynamics and natural mid-range bloom. Anchored by dual monoblock pure Class-A tube amplification preamps driving ultra-low crossover point arrays.';
+      pairing.innerText = 'Oasis Master Moving Coil (0.3mV output)';
+      if(media) media.src = 'images/lounge_deck_primary.png';
+      if(label) label.innerText = 'TURNTABLE CHASSIS STAGING';
+      if(spec1) spec1.innerText = 'RT60 Decay: 0.35s';
+      if(spec2) spec2.innerText = 'Noise Floor: < 22dBA';
+    } else if(key === 'solid') {
+      title.innerText = 'Solid-State Ultra Isolation Lab';
+      desc.innerText = 'Designed for zero harmonic smearing. Featuring ultra-damped mass acoustic plinths and direct solid-state monoblocks capable of unyielding sub-bass structural clarity.';
+      pairing.innerText = 'Hyperion High-Output Moving Magnet (5.0mV)';
+      if(media) media.src = 'images/lounge_isolation_lab.png';
+      if(label) label.innerText = 'PNEUMATIC MASS ISOLATION';
+      if(spec1) spec1.innerText = 'RT60 Decay: 0.28s';
+      if(spec2) spec2.innerText = 'Noise Floor: < 19dBA';
+    } else if(key === 'baffle') {
+      title.innerText = 'Open-Baffle High Sensitivity Loft';
+      desc.innerText = 'Emulating legendary vintage auditorium listening spaces. Configured with zero box colorations, soft natural wool diffusive traps, and high-efficiency multi-cell audio horns.';
+      pairing.innerText = 'Vintage Reference Decca London (1.2mV)';
+      if(media) media.src = 'images/lounge_horn_staging.png';
+      if(label) label.innerText = 'POINT-SOURCE HORN STAGING';
+      if(spec1) spec1.innerText = 'RT60 Decay: 0.42s';
+      if(spec2) spec2.innerText = 'Noise Floor: < 24dBA';
+    }
+  }
+
+  // Dynamic recommendations tab category selector logic
+  function switchRecommendation(cat, elem) {
+    document.querySelectorAll('.rec-nav-item').forEach(item => item.classList.remove('active'));
+    elem.classList.add('active');
+
+    const cont = document.getElementById('recListingContainer');
+    if(!cont) return;
+
+    if(cat === 'jazz') {
+      cont.innerHTML = `
+        <div class="rec-disc-card">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block; margin-bottom: 6px;">45RPM REFERENCE CUT</span>
+          <strong style="font-size: 1.15rem; color: inherit; display: block;">John Coltrane — Blue Train</strong>
+          <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Mastered straight from the first-generation analog safety tapes by Kevin Gray. Double heavy platter format.</p>
+          <div style="margin-top: 1rem; font-size: 0.8rem; color: #10b981; font-weight: 600;"><i class="fas fa-shield-halved"></i> Vault Available</div>
+        </div>
+        <div class="rec-disc-card">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-bottom: 6px;">DIRECT TO PLINTH</span>
+          <strong style="font-size: 1.15rem; color: inherit; display: block;">Bill Evans Trio — Sunday at the Village Vanguard</strong>
+          <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Incredibly authentic soundstage staging depth capturing live audience ambient noise and acoustic bass texture flawlessly.</p>
+          <div style="margin-top: 1rem; font-size: 0.8rem; color: #10b981; font-weight: 600;"><i class="fas fa-shield-halved"></i> Vault Available</div>
+        </div>
+      `;
+    } else if(cat === 'prog') {
+      cont.innerHTML = `
+        <div class="rec-disc-card" style="border-color: rgba(245, 158, 11, 0.3);">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-bottom: 6px;">HALF SPEED REMASTER</span>
+          <strong style="font-size: 1.15rem; color: inherit; display: block;">Pink Floyd — Wish You Were Here</strong>
+          <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Immense signal tracking requirements testing tonearm lateral damping arrays perfectly. Original master pressings.</p>
+          <div style="margin-top: 1rem; font-size: 0.8rem; color: #10b981; font-weight: 600;"><i class="fas fa-shield-halved"></i> Vault Available</div>
+        </div>
+        <div class="rec-disc-card">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block; margin-bottom: 6px;">GATEFOLD HEAVY PRESS</span>
+          <strong style="font-size: 1.15rem; color: inherit; display: block;">King Crimson — In the Court of the Crimson</strong>
+          <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Extreme transient attack profiles demanding highly accurate dual-rail solid state cartridge compliance matching.</p>
+          <div style="margin-top: 1rem; font-size: 0.8rem; color: #10b981; font-weight: 600;"><i class="fas fa-shield-halved"></i> Vault Available</div>
+        </div>
+      `;
+    } else if(cat === 'ambient') {
+      cont.innerHTML = `
+        <div class="rec-disc-card" style="border-color: rgba(16, 185, 129, 0.3);">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #10b981; font-weight: 800; display: block; margin-bottom: 6px;">HIGH GAIN CUT</span>
+          <strong style="font-size: 1.15rem; color: inherit; display: block;">Daft Punk — Random Access Memories</strong>
+          <p style="font-size: 0.9rem; color: #7c6f8d; margin-top: 8px; line-height: 1.5;">Massive sub-bass frequency allocations captured directly across master 180g low-floor dynamic platforms.</p>
+          <div style="margin-top: 1rem; font-size: 0.8rem; color: #10b981; font-weight: 600;"><i class="fas fa-shield-halved"></i> Vault Available</div>
+        </div>
+      `;
+    }
+  }
+
+  (function(){
+    // DOM elements
+    const body = document.body;
+    const darkToggle = document.getElementById('darkModeToggle');
+    const rtlToggle = document.getElementById('rtlToggle');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileHamburger = document.getElementById('mobileHamburger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
+    const mobileDarkToggle = document.getElementById('mobileDarkToggle');
+    const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    const navbar = document.getElementById('navbar');
+
+    const home1Option = document.getElementById('home1Option');
+    const home2Option = document.getElementById('home2Option');
+    const mobileHome1 = document.getElementById('mobileHome1');
+    const mobileHome2 = document.getElementById('mobileHome2');
+
+    // ---------- DARK MODE ----------
+    function setDarkMode(enabled) {
+      if(enabled) body.classList.add('dark');
+      else body.classList.remove('dark');
+      localStorage.setItem('vinyl_dark', enabled ? 'true' : 'false');
+      const icon = darkToggle?.querySelector('i');
+      const mobileIcon = mobileDarkToggle?.querySelector('i');
+      if(icon) {
+        if(enabled) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      }
+      if(mobileIcon) {
+        if(enabled) { mobileIcon.classList.remove('fa-moon'); mobileIcon.classList.add('fa-sun'); }
+        else { mobileIcon.classList.remove('fa-sun'); mobileIcon.classList.add('fa-moon'); }
+      }
+    }
+    const savedDark = localStorage.getItem('vinyl_dark') === 'true';
+    if(savedDark) setDarkMode(true);
+    darkToggle?.addEventListener('click', () => setDarkMode(!body.classList.contains('dark')));
+    mobileDarkToggle?.addEventListener('click', () => { setDarkMode(!body.classList.contains('dark')); });
+
+    // ---------- RTL MODE ----------
+    function setRTL(enabled) {
+      if(enabled) body.classList.add('rtl');
+      else body.classList.remove('rtl');
+      localStorage.setItem('vinyl_rtl', enabled ? 'true' : 'false');
+      const arrowIcon = rtlToggle?.querySelector('i');
+      const mobileArrowIcon = mobileRtlToggle?.querySelector('i');
+      if(arrowIcon) {
+        if(enabled) arrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else arrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+      if(mobileArrowIcon) {
+        if(enabled) mobileArrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else mobileArrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+    }
+    const savedRTL = localStorage.getItem('vinyl_rtl') === 'true';
+    if(savedRTL) setRTL(true);
+    rtlToggle?.addEventListener('click', () => setRTL(!body.classList.contains('rtl')));
+    mobileRtlToggle?.addEventListener('click', () => { setRTL(!body.classList.contains('rtl')); });
+
+    // ---------- LOGIN ----------
+    function handleLogin() { window.location.href = './login.html'; }
+    loginBtn?.addEventListener('click', handleLogin);
+    mobileLoginBtn?.addEventListener('click', () => { handleLogin(); });
+
+    // ---------- HOME 1 & HOME 2 interactions (dropdown) ----------
+    home1Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    home2Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome1?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome2?.addEventListener('click', () => { closeDrawerIfOpen(); });
+
+    // optional default home reset style
+    document.getElementById('homeLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './index.html'; });
+    document.getElementById('arrivalsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './new arrivals.html'; });
+
+    // close drawer helpers
+    function closeDrawer() {
+      if(mobileDrawer) mobileDrawer.classList.remove('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'none';
+    }
+    function closeDrawerIfOpen() {
+      if(mobileDrawer?.classList.contains('open')) closeDrawer();
+    }
+    // open mobile drawer
+    mobileHamburger?.addEventListener('click', () => {
+      if(mobileDrawer) mobileDrawer.classList.add('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'block';
+    });
+    closeDrawerBtn?.addEventListener('click', closeDrawer);
+    drawerOverlay?.addEventListener('click', closeDrawer);
+
+    // mobile dropdown toggle inside drawer
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+      const header = dropdown.querySelector('div:first-child');
+      header?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    // scroll shadow effect
+    window.addEventListener('scroll', () => {
+      if(!navbar) return;
+      if(window.scrollY > 20) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // --- UNIVERSAL ACTIVE NAV ITEM HIGHLIGHTING ---
+    const navLinksUniversal = document.querySelectorAll('.nav-link, .dropdown-menu a');
+    
+    function safeDecode(str) {
+      try { return decodeURIComponent(str); } catch(e) { return str; }
+    }
+
+    // 1. Clear pre-existing static inline styles to ensure a clean slate
+    navLinksUniversal.forEach(link => {
+      if (link.style.color) link.style.color = '';
+      if (link.style.borderBottom) link.style.borderBottom = '';
+    });
+
+    // 2. Identify current page filename
+    let currentFilename = window.location.pathname.split('/').pop();
+    if (!currentFilename || currentFilename === '/') currentFilename = 'index.html';
+    currentFilename = safeDecode(currentFilename);
+
+    // Function to apply active highlight styling
+    function highlightLink(link) {
+      link.style.color = '#e11d48'; // Active premium Rose highlight
+      link.style.borderBottom = '2px solid #e11d48';
+      link.style.fontWeight = '700';
+
+      // If nested inside a dropdown menu, also highlight the parent category link
+      const parentDropdown = link.closest('.dropdown, .mobile-dropdown');
+      if (parentDropdown) {
+        const parentToggle = parentDropdown.querySelector('.nav-link, div:first-child');
+        if (parentToggle) {
+          parentToggle.style.color = '#e11d48';
+          parentToggle.style.borderBottom = '2px solid #e11d48';
+          parentToggle.style.fontWeight = '700';
+        }
+      }
+    }
+
+    // 3. Apply active state based on current URL
+    navLinksUniversal.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      
+      let targetFilename = href.split('/').pop();
+      if (!targetFilename || targetFilename === '.' || targetFilename === './') targetFilename = 'index.html';
+      targetFilename = safeDecode(targetFilename);
+
+      if (targetFilename === currentFilename) {
+        highlightLink(link);
+      }
+
+      // 4. Attach click listener to update active highlight immediately on user click
+      link.addEventListener('click', function() {
+        navLinksUniversal.forEach(l => {
+          l.style.color = '';
+          l.style.borderBottom = '';
+          l.style.fontWeight = '';
+          const pDrop = l.closest('.dropdown, .mobile-dropdown');
+          if (pDrop) {
+            const pTog = pDrop.querySelector('.nav-link, div:first-child');
+            if (pTog) {
+              pTog.style.color = '';
+              pTog.style.borderBottom = '';
+              pTog.style.fontWeight = '';
+            }
+          }
+        });
+        highlightLink(this);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

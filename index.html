@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Vinyl Oasis | Turntable & Vinyl Studio</title>
+  <meta name="description" content="Vinyl Oasis navigation interface showcasing custom premium analog sound design, high-end turntables, and exclusive vinyl record sanctuary features.">
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    p, h1, h2, h3, h4, h5, h6, span, a, blockquote {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f6fc;
+      background-image: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 40%), 
+                        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+      color: #1b1624;
+      transition: background 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+    }
+
+    /* ----- DARK MODE (Immersive Deep Studio aesthetic) ----- */
+    body.dark {
+      background-color: #0b0714;
+      background-image: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 45%), 
+                        radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 45%);
+      color: #e4dee8;
+    }
+    body.dark .login-btn {
+      color: #0b0714 !important;
+    }
+
+    /* ----- RTL (right-to-left) support ----- */
+    body.rtl {
+      direction: rtl;
+    }
+    body.rtl .navbar .logo {
+      margin-left: 0;
+      margin-right: -4px;
+    }
+    body.rtl .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(16px) scale(0.95); text-align: right; }
+    body.rtl .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0) scale(1); }
+
+    /* ========== NAVBAR (Premium Ultraviolet Sunset Style) ========== */
+    .navbar {
+      position: fixed;
+      top: 16px;
+      left: 2%;
+      width: 96%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 1000;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 58, 237, 0.18);
+      box-shadow: 0 12px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-shrink: 0;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+    .navbar.scrolled {
+      top: 10px;
+      padding: 0.65rem 1.5rem;
+      background: rgba(255, 255, 255, 0.93);
+      border-color: rgba(124, 58, 237, 0.28);
+      box-shadow: 0 16px 50px -10px rgba(124, 58, 237, 0.2), 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    body.dark .navbar {
+      background: rgba(11, 7, 20, 0.85);
+      border-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .navbar.scrolled {
+      background: rgba(9, 5, 16, 0.95);
+      border-color: rgba(245, 158, 11, 0.25);
+      box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.98), 0 0 30px rgba(124, 58, 237, 0.25);
+    }
+
+    /* ----- LOGO (Premium Layout & Amber Gold Ring) ----- */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .logo:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2e1065 0%, #581c87 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.1);
+      border: 2px solid #f59e0b;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .logo:hover .logo-icon {
+      border-color: #f59e0b;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+    .logo-icon i {
+      font-size: 20px;
+      color: #fef3c7;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+    .logo:hover .logo-icon i {
+      color: #ffffff;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #2e1065 20%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s;
+    }
+    body.dark .logo-text {
+      background: linear-gradient(135deg, #ffffff 20%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 1.5px;
+      color: #7c3aed;
+      margin-top: 2px;
+    }
+    body.dark .logo small {
+      color: #fbbf24;
+    }
+
+    /* ----- CENTER NAV MENU ----- */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: rgba(124, 58, 237, 0.03);
+      padding: 0.3rem 0.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(124, 58, 237, 0.05);
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    body.dark .nav-menu {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.04);
+    }
+    .nav-link {
+      position: relative;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #443a55;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .nav-link {
+      color: #c0b6ca;
+    }
+    .nav-link:hover {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    body.dark .nav-link:hover {
+      color: #fcd34d;
+      background: rgba(252, 211, 77, 0.12);
+    }
+    /* Unique glowing dot indicator */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: #7c3aed;
+      border-radius: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+    }
+    body.dark .nav-link::after {
+      background: #fcd34d;
+      box-shadow: 0 0 8px #fcd34d;
+    }
+    .nav-link:hover::after {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px) scale(0.95);
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-width: 220px;
+      border-radius: 20px;
+      padding: 12px 8px;
+      box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(124, 58, 237, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+    }
+    body.dark .dropdown-menu {
+      background: rgba(14, 9, 24, 0.95);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(124, 58, 237, 0.2);
+    }
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3b304c;
+      transition: all 0.2s ease;
+      border-radius: 12px;
+    }
+    body.dark .dropdown-menu a {
+      color: #d8d0e0;
+    }
+    .dropdown-menu a i {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    body.dark .dropdown-menu a i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(124, 58, 237, 0.06);
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .dropdown-menu a:hover {
+      background: rgba(252, 211, 77, 0.08);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .dropdown-menu a:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* RIGHT side actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .icon-btn {
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.2rem);
+      color: #584f6b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    body.dark .icon-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #d8d0e0;
+    }
+    .icon-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .icon-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+      box-shadow: 0 8px 20px rgba(252, 211, 77, 0.3);
+    }
+    .login-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      padding: 0 24px;
+      height: 44px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 700;
+      font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem);
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing: 0.4px;
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    body.dark .login-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+    .login-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(124, 58, 237, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .login-btn:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    /* MOBILE / TABLET (<= 1280px) */
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      border-radius: 14px;
+      cursor: pointer;
+      color: #7c3aed;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-menu-btn {
+      background: rgba(252, 211, 77, 0.12);
+      border-color: rgba(252, 211, 77, 0.18);
+      color: #fcd34d;
+    }
+    .mobile-menu-btn:hover {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-menu-btn:hover {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    @media (max-width: 1440px) {
+      .nav-menu { display: none; }
+      .nav-actions { display: none; }
+      .mobile-menu-btn { display: flex; }
+    }
+    /* side drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100vh;
+      background: rgba(255, 253, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 30px 24px;
+      box-shadow: -15px 0 50px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 1px solid rgba(124, 58, 237, 0.12);
+    }
+    body.dark .mobile-drawer {
+      background: rgba(11, 7, 20, 0.98);
+      border-left-color: rgba(255, 255, 255, 0.08);
+      box-shadow: -15px 0 50px rgba(0,0,0,0.8);
+    }
+    .mobile-drawer.open {
+      right: 0;
+    }
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1999;
+      display: none;
+    }
+    .mobile-drawer .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #3b304c;
+      transition: all 0.2s;
+      border: none;
+      background: transparent;
+    }
+    body.dark .mobile-drawer .nav-link {
+      color: #d8d0e0;
+    }
+    .mobile-drawer .nav-link:hover {
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      transform: translateX(6px);
+    }
+    body.dark .mobile-drawer .nav-link:hover {
+      background: rgba(252, 211, 77, 0.1);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.1);
+      color: #7c3aed;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-drawer .nav-link i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-drawer .nav-link:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    .mobile-dropdown .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+      padding: 4px 0 4px 20px;
+      display: none;
+      border: none;
+    }
+    .mobile-dropdown.active .dropdown-menu { display: block; }
+
+    /* Mobile Login Button Pro Style */
+    .mobile-drawer-login {
+      width: 100%;
+      height: 56px; /* Optimized height for visual hierarchy */
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255,255,255,0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.dark .mobile-drawer-login {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+    .mobile-drawer-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(124, 58, 237, 0.4);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .mobile-drawer-login:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 14px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    /* ==========================================================================
+       HOME PAGE: UNIQUE 8-SECTION EXCLUSIVE STYLES
+       ========================================================================== */
+    .home-header-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(245, 158, 11, 0.08));
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #7c3aed;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+    }
+    body.dark .home-header-pill { color: #fcd34d; border-color: rgba(252, 211, 77, 0.3); }
+
+    .home-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 4.5vw, 3.5rem);
+      font-weight: 800;
+      color: #2e1065;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    body.dark .home-section-title { color: #ffffff; }
+
+    /* SECTION 1: CINEMATIC MAIN HERO */
+    .home-hero-capsule {
+      margin-top: 100px;
+      padding: 7rem 6% 8rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+      background: linear-gradient(135deg, rgba(248, 246, 252, 0.92) 0%, rgba(255, 255, 255, 0.95) 100%);
+    }
+    body.dark .home-hero-capsule {
+      background: linear-gradient(135deg, rgba(11, 7, 20, 0.92) 0%, rgba(18, 12, 31, 0.95) 100%);
+      border-bottom-color: rgba(255, 255, 255, 0.05);
+    }
+    .home-hero-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      filter: blur(10px) saturate(1.2);
+      z-index: 0;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+    body.dark .home-hero-bg-img { opacity: 0.25; mix-blend-mode: screen; }
+    .home-hero-bg-ring {
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 1000px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.04) 0%, transparent 60%);
+      border: 1px dashed rgba(124, 58, 237, 0.12);
+      z-index: 0;
+      pointer-events: none;
+      animation: pulseRing 12s infinite alternate ease-in-out;
+    }
+    body.dark .home-hero-bg-ring { border-color: rgba(245, 158, 11, 0.1); }
+    @keyframes pulseRing {
+      0% { transform: translateX(-50%) scale(0.95); opacity: 0.6; }
+      100% { transform: translateX(-50%) scale(1.05); opacity: 1; }
+    }
+    .home-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .home-hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 4rem;
+      align-items: center;
+      text-align: left;
+    }
+    .home-hero-media-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .home-hero-media {
+      width: 100%;
+      max-height: 480px;
+      object-fit: contain;
+      filter: drop-shadow(0 30px 50px rgba(124, 58, 237, 0.25));
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.dark .home-hero-media { filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.9)); }
+    .home-hero-media-box:hover .home-hero-media {
+      transform: scale(1.04) translateY(-8px);
+      filter: drop-shadow(0 35px 60px rgba(245, 158, 11, 0.3));
+    }
+    .home-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5.5vw, 4.6rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      background: linear-gradient(135deg, #2e1065 20%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+    body.dark .home-hero-title {
+      background: linear-gradient(135deg, #ffffff 20%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    @media (max-width: 1024px) {
+      .home-hero-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+      .home-hero-content .home-header-pill { margin: 0 auto 1.2rem; }
+      .home-hero-content p { margin-left: auto; margin-right: auto; }
+      .home-hero-content div[style*="display: flex"] { justify-content: center; }
+      .home-hero-media { max-height: 380px; }
+    }
+
+    /* SECTION 2: FLAGSHIP TURNTABLES DECK GRID */
+    .home-decks-section {
+      padding: 7rem 6%;
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.02) 0%, transparent 100%);
+    }
+    .home-decks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    .home-deck-card {
+      background: #ffffff;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    body.dark .home-deck-card {
+      background: rgba(16, 11, 28, 0.5);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+    .home-deck-card:hover {
+      transform: translateY(-8px);
+      border-color: #7c3aed;
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.08);
+    }
+    body.dark .home-deck-card:hover { border-color: #f59e0b; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
+    .home-deck-img-wrap {
+      padding: 2.5rem;
+      background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.03), transparent 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+    }
+    body.dark .home-deck-img-wrap { border-bottom-color: rgba(255, 255, 255, 0.04); }
+    .home-deck-img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 20px rgba(0,0,0,0.1));
+      transition: transform 0.4s;
+    }
+    .home-deck-card:hover .home-deck-img { transform: scale(1.06); }
+    .home-deck-info {
+      padding: 2.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* SECTION 3: SONIC ARCHITECTURE PATHWAY */
+    .home-pathway-section {
+      padding: 7rem 6%;
+    }
+    .home-pathway-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+    .home-step-block {
+      padding: 3rem;
+      border-radius: 24px;
+      background: rgba(124, 58, 237, 0.015);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      position: relative;
+    }
+    body.dark .home-step-block { background: rgba(255, 255, 255, 0.015); border-color: rgba(255, 255, 255, 0.05); }
+    .home-step-num {
+      font-family: monospace;
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(124, 58, 237, 0.15);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      line-height: 1;
+    }
+    body.dark .home-step-num { color: rgba(245, 158, 11, 0.15); }
+
+    /* SECTION 4: VAULT CURATIONS SPOTLIGHT */
+    .home-vault-section {
+      padding: 7rem 6%;
+      background: #0b0714;
+      color: white;
+      border-radius: 40px;
+      margin: 0 2%;
+      position: relative;
+      overflow: hidden;
+    }
+    .home-vault-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .home-vault-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .home-vault-item:hover {
+      border-color: #f59e0b;
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .home-vault-cover {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* SECTION 5: MOVING COIL VS STYLUS GEOMETRY SPLIT VIEW */
+    .home-geometry-section {
+      padding: 8rem 6%;
+    }
+    .home-geo-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+    .home-geo-box {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 3rem;
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      box-shadow: 0 20px 50px rgba(124, 58, 237, 0.03);
+    }
+    body.dark .home-geo-box { background: rgba(16, 11, 28, 0.4); border-color: rgba(255, 255, 255, 0.05); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .home-geo-img {
+      width: 100%;
+      height: 280px;
+      object-fit: contain;
+      margin-bottom: 2rem;
+    }
+
+    /* SECTION 6: INTERACTIVE LIVE METRICS HUB */
+    .home-metrics-section {
+      padding: 6rem 6%;
+      text-align: center;
+    }
+    .home-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .home-metric-card {
+      padding: 2.5rem 1.5rem;
+      border-radius: 24px;
+      background: #ffffff;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      transition: all 0.3s;
+    }
+    body.dark .home-metric-card { background: rgba(16, 11, 28, 0.4); border-color: rgba(255, 255, 255, 0.05); }
+    .home-metric-card:hover { border-color: #f59e0b; transform: scale(1.03); }
+    .home-metric-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #7c3aed;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    body.dark .home-metric-val { color: #fcd34d; }
+
+    /* SECTION 7: MASTER ENGINEER TESTIMONIALS */
+    .home-testimonials-section {
+      padding: 7rem 6%;
+      background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.02), transparent 60%);
+    }
+    .home-review-card {
+      max-width: 860px;
+      margin: 4rem auto 0;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 4.5rem;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      position: relative;
+      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.04);
+    }
+    body.dark .home-review-card { background: rgba(12, 8, 22, 0.6); border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 20px 60px rgba(0,0,0,0.7); }
+    .home-quote-icon {
+      position: absolute;
+      top: 2rem;
+      left: 2.5rem;
+      font-size: 5rem;
+      color: rgba(124, 58, 237, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    body.dark .home-quote-icon { color: rgba(245, 158, 11, 0.08); }
+
+    /* SECTION 8: SONIC CONSULTATION DISPATCH TRIGGER */
+    .home-cta-section {
+      padding: 4rem 6% 8rem;
+    }
+    .home-cta-banner {
+      background: linear-gradient(135deg, #2e1065 0%, #7c3aed 100%);
+      border-radius: 32px;
+      padding: 5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 3rem;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 25px 50px rgba(46, 16, 101, 0.25);
+    }
+    body.dark .home-cta-banner {
+      background: linear-gradient(135deg, #120c1f 0%, #4c1d95 100%);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+    }
+
+    @media (max-width: 1024px) {
+      .home-hero-capsule { padding: 6rem 5% 6rem; margin-top: 85px; }
+      .home-decks-section, .home-pathway-section, .home-geometry-section, .home-testimonials-section { padding: 5rem 5%; }
+      .home-metrics-section { padding: 5rem 5%; }
+      .home-cta-section { padding: 3rem 5% 6rem; }
+      .home-decks-grid { grid-template-columns: 1fr; }
+      .home-pathway-steps { grid-template-columns: 1fr; gap: 2rem; }
+      .home-geo-split { grid-template-columns: 1fr; gap: 3rem; }
+      .home-vault-section { margin: 0; border-radius: 28px; padding: 5rem 5%; }
+      .home-review-card { padding: 3rem 2rem; margin-top: 3rem; }
+      .home-cta-banner { flex-direction: column; text-align: center; padding: 4rem 2.5rem; gap: 2rem; }
+      .home-cta-banner div[style*="display: flex"] { justify-content: center; width: 100%; }
+      .home-vault-section div[style*="display: flex"] { justify-content: center; text-align: center; }
+      .home-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      .home-hero-capsule { padding: 5rem 4% 5rem; margin-top: 80px; }
+      .home-decks-section, .home-pathway-section, .home-geometry-section, .home-testimonials-section { padding: 4rem 4%; }
+      .home-metrics-section { padding: 4rem 4%; }
+      .home-cta-section { padding: 2rem 4% 5rem; }
+      .home-vault-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .home-metrics-grid { grid-template-columns: 1fr; }
+      .home-deck-img { height: 180px; }
+      .home-geo-img { height: 220px; }
+      .home-step-block { padding: 2rem; }
+      .home-cta-banner { padding: 3rem 1.5rem; }
+    }
+
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+
+    @media (max-width: 480px) {
+      .home-hero-capsule { padding: 4rem 4% 4rem; margin-top: 75px; }
+      .home-decks-section, .home-pathway-section, .home-geometry-section, .home-testimonials-section { padding: 3rem 4%; }
+      .home-vault-section { padding: 3.5rem 4%; border-radius: 20px; }
+      .home-review-card { padding: 2.5rem 1.5rem; }
+      .home-deck-img-wrap { padding: 1.5rem; }
+      .home-deck-info { padding: 1.5rem; }
+      .home-vault-section div[style*="display: flex"] { flex-direction: column; align-items: center !important; gap: 1rem; }
+    }
+
+    /* ========== PREMIUM FOOTER (Ultraviolet Sunset Theme) ========== */
+    .footer {
+      background-color: #ffffff;
+      border-top: 1px solid rgba(124, 58, 237, 0.12);
+      padding: 5rem 6% 3rem;
+      margin-top: 4rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 -10px 40px rgba(124, 58, 237, 0.03);
+    }
+    body.dark .footer {
+      background-color: #0b0714;
+      border-top-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .footer-brand p {
+      color: #584f6b;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    body.dark .footer-brand p {
+      color: #a49ab0;
+    }
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2e1065;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    body.dark .footer-title {
+      color: #fcd34d;
+    }
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(135deg, #7c3aed, #f59e0b);
+      border-radius: 2px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-link {
+      color: #443a55;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    body.dark .footer-link {
+      color: #c0b6ca;
+    }
+    .footer-link:hover {
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .footer-link:hover {
+      color: #fcd34d;
+    }
+    .footer-newsletter p {
+      color: #584f6b;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+    body.dark .footer-newsletter p {
+      color: #a49ab0;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      background: rgba(124, 58, 237, 0.02);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #1b1624;
+      outline: none;
+      transition: all 0.3s;
+    }
+    body.dark .newsletter-input {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e4dee8;
+    }
+    .newsletter-input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    body.dark .newsletter-input:focus {
+      border-color: #fcd34d;
+      box-shadow: 0 0 0 3px rgba(252, 211, 77, 0.15);
+    }
+    .newsletter-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      width: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .newsletter-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+    .newsletter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+    }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(124, 58, 237, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    body.dark .footer-bottom {
+      border-top-color: rgba(255, 255, 255, 0.05);
+    }
+    .footer-copyright {
+      color: #7c6f8d;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    body.dark .footer-copyright {
+      color: #8c829c;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #584f6b;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    body.dark .social-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.06);
+      color: #c0b6ca;
+    }
+    .social-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    body.dark .social-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <!-- LOGO left -->
+  <div class="nav-left">
+    <a href="./index.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+      <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+    </a>
+  </div>
+
+  <!-- CENTER NAV MENU -->
+  <div class="nav-menu" id="navMenu">
+    <!-- HOME with dropdown -->
+    <div class="dropdown">
+      <a href="./index.html" class="nav-link" id="homeLink">Home <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./index.html" id="home1Option"> Home 1</a>
+        <a href="./home 2.html" id="home2Option"> Home 2</a>
+      </div>
+    </div>
+    <a href="./about.html" class="nav-link" style="color: #7c3aed;"> About</a>
+    <!-- ARRIVALS with dropdown -->
+    <div class="dropdown">
+      <a href="./new arrivals.html" class="nav-link" id="arrivalsLink">Arrivals <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./new arrivals.html"> New Arrivals</a>
+        <a href="./vinyl collections.html">Vinyl Collections</a>
+      </div>
+    </div>
+    <a href="./turntables.html" class="nav-link">Turntables</a>
+    <a href="./cartridge selection.html" class="nav-link">Cartridges</a>
+    <a href="./setup guides.html" class="nav-link">Setup Guides</a>
+    <a href="./trade-in program.html" class="nav-link">Trade-In Program</a>
+    <a href="./local pickup.html" class="nav-link">Local Pickup</a>
+    <a href="./audio lounge.html" class="nav-link">Audio Lounge</a>
+    <a href="./contact.html" class="nav-link">Contact</a>
+  </div>
+
+  <!-- RIGHT side actions -->
+  <div class="nav-right">
+    <div class="nav-actions">
+      <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL direction"><i class="fa-solid fa-right-left"></i></button>
+      <button class="login-btn" id="loginBtn">Login <i class="fas fa-arrow-right-to-bracket" style="font-size: 12px;"></i></button>
+    </div>
+    <!-- Mobile Hamburger -->
+    <button class="mobile-menu-btn" id="mobileHamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center;">
+      <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: #7c3aed;">MENU</span>
+    </div>
+    <button id="closeDrawer" style="background: rgba(0,0,0,0.04); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; color: #584f6b; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
+  </div>
+  <div class="mobile-dropdown" id="mobileHomeDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Home</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./index.html" id="mobileHome1" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 1 </a>
+      <a href="./home 2.html" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
+    </div>
+  </div>
+  <a href="./about.html" class="nav-link" style="color: #7c3aed;"> About</a>
+  <div class="mobile-dropdown" id="mobileArrivalsDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Arrivals</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
+      <a href="./vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
+    </div>
+  </div>
+  <a href="./turntables.html" class="nav-link"> Turntables</a>
+  <a href="./cartridge selection.html" class="nav-link"> Cartridges</a>
+  <a href="./setup guides.html" class="nav-link"> Setup Guides</a>
+  <a href="./trade-in program.html" class="nav-link"> Trade-In Program</a>
+  <a href="./local pickup.html" class="nav-link"> Local Pickup</a>
+  <a href="./audio lounge.html" class="nav-link"> Audio Lounge</a>
+  
+  <a href="./contact.html" class="nav-link"> Contact</a>
+  <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
+  
+  <a class="nav-link" id="mobileDarkToggle" style="cursor: pointer;"><i class="fas fa-moon"></i> Dark Mode</a>
+  <a class="nav-link" id="mobileRtlToggle" style="cursor: pointer;"><i class="fa-solid fa-right-left"></i> RTL Mode</a>
+  
+  <div style="margin-top: 8px;">
+    <button class="mobile-drawer-login" id="mobileLoginBtn">
+      <span>Login</span>
+      <i class="fas fa-arrow-right-to-bracket" style="font-size: 1.2rem;"></i>
+    </button>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ==========================================================================
+     SECTION 1: CINEMATIC MAIN HERO
+     ========================================================================== -->
+<section class="home-hero-capsule">
+  <img src="images/hero_studio_bg.png" alt="Atmospheric ambient analog listening studio room background" class="home-hero-bg-img">
+  <div class="home-hero-bg-ring"></div>
+  <div class="home-hero-content">
+    <div class="home-hero-grid">
+      <div>
+        <span class="home-header-pill"><i class="fas fa-compact-disc" style="animation: spin 4s linear infinite;"></i> ANALOGUE MASTERPIECE SANCTUARY</span>
+        <h1 class="home-hero-title" id="dynamicTitle">Pure. Harmonic. Resonance.</h1>
+        <p id="dynamicDesc" style="color: #584f6b; font-size: 1.2rem; margin-bottom: 2.5rem; line-height: 1.6; max-width: 700px;">
+          Architects of state-of-the-art belt-drive reference tables, hand-wound vacuum cantilever coils, and limited pristine deadstock audiophile pressings.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="turntables.html" class="login-btn" style="height: 52px; font-size: clamp(0.85rem, 0.5rem + 0.6vw, 1.15rem); padding: 0 32px; text-decoration: none;">Explore Flagship Decks &rarr;</a>
+          <a href="audio lounge.html" class="icon-btn" style="width: auto; height: 52px; padding: 0 24px; font-size: clamp(0.8rem, 0.5rem + 0.5vw, 1.05rem); font-weight: 600; text-decoration: none; border-radius: 14px; gap: 8px;"><i class="fas fa-headphones-simple"></i> Book Audition Suite</a>
+        </div>
+      </div>
+      <div class="home-hero-media-box">
+        <img src="images/hero_flagship_turntable.png" alt="State of the art high end flagship belt drive reference turntable" class="home-hero-media">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 2: FLAGSHIP TURNTABLES DECK GRID
+     ========================================================================== -->
+<section class="home-decks-section">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <span class="home-header-pill" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">Precision Platters</span>
+    <h2 class="home-section-title">Acoustic Engineering Masterpieces</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 8px;">
+      Engineered from heavy non-resonant acrylic, mass-loaded polished bearing wells, and isolated synchronous custom dual-motor structures.
+    </p>
+  </div>
+
+  <div class="home-decks-grid">
+    <!-- Premium Deck -->
+    <div class="home-deck-card">
+      <div class="home-deck-img-wrap">
+        <img src="images/index_premium_deck.png" alt="High fidelity premium reference tonearm deck" class="home-deck-img">
+      </div>
+      <div class="home-deck-info">
+        <div>
+          <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block; margin-bottom: 6px;">OASIS REFERENCE V</span>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; color: inherit;">Dual-Plinth Magnetic Suspended</h3>
+          <p style="color: #7c6f8d; font-size: 0.9rem; margin-top: 10px; line-height: 1.5;">
+            Zero acoustic feedback isolated plinth featuring pure carbon core arms and sapphire jewel pivot mounts.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #f59e0b;">33.3 / 45 Electronic</span>
+          <a href="turntables.html" style="font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); font-weight: 700; color: #7c3aed; text-decoration: none;">View Calibration Specs &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vintage Deck -->
+    <div class="home-deck-card" style="border-color: rgba(245, 158, 11, 0.2);">
+      <div class="home-deck-img-wrap">
+        <img src="images/index_vintage_deck.png" alt="Classic heavyweight solid timber vintage turntable" class="home-deck-img">
+      </div>
+      <div class="home-deck-info">
+        <div>
+          <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-bottom: 6px;">ARCHIVAL SERIES 1974</span>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; color: inherit;">Restored Solid Teak Direct-Drive</h3>
+          <p style="color: #7c6f8d; font-size: 0.9rem; margin-top: 10px; line-height: 1.5;">
+            Masterfully rebuilt idler wheel mechanisms producing intense visceral midrange rhythm and profound bottom-end authority.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #10b981;">Restored &amp; Recertified</span>
+          <a href="turntables.html" style="font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); font-weight: 700; color: #f59e0b; text-decoration: none;">View Archive Drop &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DJ Studio Deck -->
+    <div class="home-deck-card">
+      <div class="home-deck-img-wrap">
+        <img src="images/index_dj_deck.png" alt="Professional broadcast high torque performance deck" class="home-deck-img">
+      </div>
+      <div class="home-deck-info">
+        <div>
+          <span style="font-family: monospace; font-size: 0.75rem; color: #3b82f6; font-weight: 800; display: block; margin-bottom: 6px;">BROADCAST PRO TQ-3</span>
+          <h3 style="font-family: serif; font-size: 1.4rem; font-weight: 800; color: inherit;">High-Torque Quartz Locked</h3>
+          <p style="color: #7c6f8d; font-size: 0.9rem; margin-top: 10px; line-height: 1.5;">
+            Instantaneous 4.5kg/cm start torque. Optimized for seamless mastering loop evaluation and live vinyl sampling environments.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #3b82f6;">Adjustable S-Tonearm</span>
+          <a href="turntables.html" style="font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); font-weight: 700; color: #3b82f6; text-decoration: none;">View DJ Console &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 3: SONIC ARCHITECTURE PATHWAY (ISOMETRIC CONCEPT FLOW)
+     ========================================================================== -->
+<section class="home-pathway-section">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <span class="home-header-pill" style="color: #7c3aed;">The Signal Chain</span>
+    <h2 class="home-section-title">Analogue Preservation Pipeline</h2>
+  </div>
+
+  <div class="home-pathway-steps">
+    <div class="home-step-block">
+      <div class="home-step-num">01</div>
+      <span style="display:inline-block; padding: 10px; background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-radius: 12px; font-size: 1.3rem; margin-bottom: 1.2rem;"><i class="fas fa-weight-scale"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit; margin-bottom: 8px;">Azimuth &amp; Anti-Skate Balance</h3>
+      <p style="color: #7c6f8d; font-size: 0.9rem; line-height: 1.5;">
+        Calibrating vertical tracking angles to extract extreme high-frequency spatial cues without micro-groove inner-wall distortion and phase cancellation.
+      </p>
+    </div>
+
+    <div class="home-step-block" style="border-color: rgba(245, 158, 11, 0.2);">
+      <div class="home-step-num" style="color: rgba(245, 158, 11, 0.15);">02</div>
+      <span style="display:inline-block; padding: 10px; background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-radius: 12px; font-size: 1.3rem; margin-bottom: 1.2rem;"><i class="fas fa-wand-magic-sparkles"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit; margin-bottom: 8px;">Vacuum Cavity Ultrasonic Cleanse</h3>
+      <p style="color: #7c6f8d; font-size: 0.9rem; line-height: 1.5;">
+        Removing molecular particulate debris matrices using custom variable frequency sweeps and ultra-pure double-distilled fluid loops.
+      </p>
+    </div>
+
+    <div class="home-step-block" style="border-color: rgba(16, 185, 129, 0.2);">
+      <div class="home-step-num" style="color: rgba(16, 185, 129, 0.15);">03</div>
+      <span style="display:inline-block; padding: 10px; background: rgba(16, 185, 129, 0.1); color: #10b981; border-radius: 12px; font-size: 1.3rem; margin-bottom: 1.2rem;"><i class="fas fa-ear-listen"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit; margin-bottom: 8px;">Pure Class-A Point Source Playback</h3>
+      <p style="color: #7c6f8d; font-size: 0.9rem; line-height: 1.5;">
+        Passing the raw microscopic micro-volt outputs direct into zero-feedback zero-crossover single-ended audio amplification suites.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 4: VAULT CURATIONS SPOTLIGHT (RARE PRESSINGS ARCHIVE)
+     ========================================================================== -->
+<section class="home-vault-section">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2rem;">
+    <div>
+      <span style="font-family: monospace; color: #f59e0b; font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; display: block; margin-bottom: 6px;">DEADSTOCK IMPORTS</span>
+      <h2 style="font-family: serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: white;">Featured Release Vault</h2>
+    </div>
+    <a href="new arrivals.html" class="login-btn" style="height: 42px; font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); text-decoration: none;">Inspect Entire Catalog &rarr;</a>
+  </div>
+
+  <div class="home-vault-grid">
+    <div class="home-vault-item">
+      <img src="images/index_jazz_cover.png" alt="Classic instrumental jazz ensemble live recording cover art" class="home-vault-cover">
+      <span style="font-family: monospace; font-size: 0.7rem; color: #fcd34d; font-weight: 800; display: block;">ORIGINAL MASTER RECORDING &bull; 180G</span>
+      <strong style="font-family: serif; font-size: 1.15rem; display: block; margin: 4px 0 2px;">Midnight Saxophone Quartet</strong>
+      <p style="font-size: 0.8rem; color: #a49ab0;">Live at Village Vanguard 1961 — Remastered Mono</p>
+    </div>
+
+    <div class="home-vault-item">
+      <img src="images/index_rock_cover.png" alt="Legendary alternative rock psych stage album cover" class="home-vault-cover">
+      <span style="font-family: monospace; font-size: 0.7rem; color: #7c3aed; font-weight: 800; display: block;">TEST PRESSING &bull; LIMITED TO 50</span>
+      <strong style="font-family: serif; font-size: 1.15rem; display: block; margin: 4px 0 2px;">Sonic Highway Overdrive</strong>
+      <p style="font-size: 0.8rem; color: #a49ab0;">Psych Fuzz Archives Vol. 2 — Uncut Double Gatefold</p>
+    </div>
+
+    <div class="home-vault-item">
+      <img src="images/index_elec_cover.png" alt="Ambient experimental deep modular synthesis pressing cover" class="home-vault-cover">
+      <span style="font-family: monospace; font-size: 0.7rem; color: #10b981; font-weight: 800; display: block;">AUDIOPHILE 45 RPM CUT</span>
+      <strong style="font-family: serif; font-size: 1.15rem; display: block; margin: 4px 0 2px;">Modular Drift &amp; Horizon Loop</strong>
+      <p style="font-size: 0.8rem; color: #a49ab0;">Deep Ambient Synths — Direct-to-Disc Master Press</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 5: MOVING COIL VS STYLUS GEOMETRY SPLIT VIEW
+     ========================================================================== -->
+<section class="home-geometry-section">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <span class="home-header-pill" style="color: #f59e0b;">Microscopic Interfaces</span>
+    <h2 class="home-section-title">The Art of Extreme Tracking</h2>
+  </div>
+
+  <div class="home-geo-split">
+    <!-- Moving Coil -->
+    <div class="home-geo-box">
+      <img src="images/index_cartridge_mc.png" alt="Extreme low mass moving coil cartridge architecture internal view" class="home-geo-img">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block; margin-bottom: 6px;">INTERNAL CORE PHYSICS</span>
+      <h3 style="font-family: serif; font-size: 1.5rem; font-weight: 800; color: inherit;">Ultra Low-Mass Moving Coils</h3>
+      <p style="color: #7c6f8d; font-size: 0.95rem; margin-top: 10px; line-height: 1.6;">
+        By affixing the miniature hand-wound microscopic coil blocks directly onto the cantilever pivot center, our cartridges drop structural moving mass by 65%. Resulting in instantaneous lightning-fast transient response capability.
+      </p>
+      <div style="margin-top: 1.5rem;"><a href="cartridge selection.html" style="font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); font-weight: 700; color: #7c3aed; text-decoration: none;">Configure MC System &rarr;</a></div>
+    </div>
+
+    <!-- Stylus tip -->
+    <div class="home-geo-box" style="border-color: rgba(245, 158, 11, 0.2);">
+      <img src="images/index_stylus_tip.png" alt="Precision diamond microscopic line contact stylus tip cross section" class="home-geo-img">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-bottom: 6px;">DIAMOND PROFILE CUTS</span>
+      <h3 style="font-family: serif; font-size: 1.5rem; font-weight: 800; color: inherit;">Micro-Ridge Naked Diamond Tips</h3>
+      <p style="color: #7c6f8d; font-size: 0.95rem; margin-top: 10px; line-height: 1.6;">
+        Laser-oriented grain structures polished into pure Line-Contact profiles. Reaching extreme bottom layers of ancient groove formats to extract pristine audio untouched by basic conical or spherical replacement styli and phase cancellations.
+      </p>
+      <div style="margin-top: 1.5rem;"><a href="cartridge selection.html" style="font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); font-weight: 700; color: #f59e0b; text-decoration: none;">Compare Stylus Profiles &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 6: INTERACTIVE LIVE METRICS HUB
+     ========================================================================== -->
+<section class="home-metrics-section">
+  <span class="home-header-pill" style="color: #7c3aed;">Real-time Facility Feedback</span>
+  <h2 class="home-section-title">Verified Sonic Precision Standards</h2>
+
+  <div class="home-metrics-grid">
+    <div class="home-metric-card">
+      <div class="home-metric-val">33.333</div>
+      <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block;">RPM STABILITY RATING</span>
+      <p style="color: #7c6f8d; font-size: 0.85rem; margin-top: 8px;">Quartz crystal synch deviation maintained below 0.002% wow &amp; flutter make it unique and creative.</p>
+    </div>
+
+    <div class="home-metric-card">
+      <div class="home-metric-val">&lt; 0.1&#176;</div>
+      <span style="font-family: monospace; font-size: 0.75rem; color: #10b981; font-weight: 800; display: block;">AZIMUTH DEVIATION</span>
+      <p style="color: #7c6f8d; font-size: 0.85rem; margin-top: 8px;">Laser interferometry alignment protecting absolute Left/Right stereo cross-talk separation.</p>
+    </div>
+
+    <div class="home-metric-card">
+      <div class="home-metric-val">92 dB</div>
+      <span style="font-family: monospace; font-size: 0.75rem; color: #3b82f6; font-weight: 800; display: block;">DYNAMIC CEILING</span>
+      <p style="color: #7c6f8d; font-size: 0.85rem; margin-top: 8px;">Maximum analog groove potential uncompressed across fully direct cut mastering discs.</p>
+    </div>
+
+    <div class="home-metric-card">
+      <div class="home-metric-val">14.2k</div>
+      <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block;">TITLES IN SANCTUARY</span>
+      <p style="color: #7c6f8d; font-size: 0.85rem; margin-top: 8px;">Temperature controlled pristine deadstock library archived inside our structural climate bins.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 7: MASTER ENGINEER TESTIMONIALS
+     ========================================================================== -->
+<section class="home-testimonials-section">
+  <div style="text-align: center;">
+    <span class="home-header-pill" style="color: #f59e0b;">Certified Auditions</span>
+    <h2 class="home-section-title">Endorsed by Analogue Purists</h2>
+  </div>
+
+  <div class="home-review-card">
+    <div class="home-quote-icon"><i class="fas fa-quote-left"></i></div>
+    <div style="display: flex; gap: 4px; color: #f59e0b; font-size: 1.1rem; margin-bottom: 1.5rem;">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <blockquote style="font-family: serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-style: italic; color: inherit; line-height: 1.6;">
+      "The custom belt-drive reference rig built by Vinyl Oasis transformed our mastering studio control environment. The bottom-end floor definition is staggering, and their meticulous dual-box safe transit methodology ensured absolute alignment out of the box."
+    </blockquote>
+    <div style="margin-top: 2rem; border-top: 1px solid rgba(124, 58, 237, 0.1); padding-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+      <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #f59e0b); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">
+        HV
+      </div>
+      <div>
+        <strong style="font-family: serif; font-size: 1.1rem; display: block; color: inherit;">Harrison Vance</strong>
+        <span style="font-size: 0.8rem; color: #8c829c; display: block;">CHIEF MASTERING ENGINEER &bull; VANCE ANALOGUE LABS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SECTION 8: SONIC CONSULTATION DISPATCH TRIGGER
+     ========================================================================== -->
+<section class="home-cta-section">
+  <div class="home-cta-banner">
+    <div style="max-width: 550px;">
+      <span style="font-family: monospace; font-size: 0.75rem; color: #fcd34d; font-weight: 800; letter-spacing: 2px; display: block; margin-bottom: 8px;">IMMEDIATE OUTPOST ALLOCATION</span>
+      <h2 style="font-family: serif; font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; color: white; line-height: 1.1;">Ready to Elevate Your Analogue Ritual?</h2>
+      <p style="color: #e2d8f0; font-size: 1.05rem; margin-top: 12px; line-height: 1.6;">
+        Schedule a direct one-on-one session with our master tonearm calibrators or secure an immediate white-glove collection pass for your personal vintage platters.
+      </p>
+    </div>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <a href="contact.html" class="login-btn" style="background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%); color: #0b0714 !important; height: 56px; font-size: clamp(0.85rem, 0.5rem + 0.6vw, 1.15rem); padding: 0 36px; text-decoration: none;">Initiate Intake Console &rarr;</a>
+      <a href="setup guides.html" class="icon-btn" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: white; width: auto; height: 56px; padding: 0 24px; font-size: clamp(0.8rem, 0.5rem + 0.5vw, 1.05rem); font-weight: 700; text-decoration: none; border-radius: 14px;">Browse Setup Guides</a>
+    </div>
+  </div>
+</section>
+
+<!-- Premium Footer Section -->
+<footer class="footer">
+  <div class="footer-top">
+    <!-- Brand Info -->
+    <div class="footer-brand">
+      <a href="./index.html" class="logo" style="margin-bottom: 0.5rem;">
+        <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+        <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+      </a>
+      <p>Custom sound architecture, pristine audiophile pressings, and expert turntable calibration supporting pure analog depth since 2012.</p>
+      <div style="display: flex; align-items: center; gap: 8px; color: #7c3aed; font-size: 0.85rem; font-weight: 600;">
+        <i class="fas fa-location-dot"></i>
+        <span style="color: inherit;">Studio 45, Analogue District, NY</span>
+      </div>
+    </div>
+
+    <!-- Navigation Column 1 -->
+    <div>
+      <h3 class="footer-title">Studio Vault</h3>
+      <ul class="footer-links">
+        <li><a href="./index.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./about.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> About Us</a></li>
+        <li><a href="./new arrivals.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Arrival</a></li>
+        <li><a href="./setup guides.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Setup Guides</a></li>
+        <li><a href="./contact.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Navigation Column 2 -->
+    <div>
+      <h3 class="footer-title">Philosophy</h3>
+      <ul class="footer-links">
+        <li><a href="./home 2.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./vinyl collections.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Vinyl Collection</a></li>
+        <li><a href="./turntables.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Turntable</a></li>
+        <li><a href="./local pickup.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Local Pickup</a></li>
+        <li><a href="./audio lounge.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Audio Lounge</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h3 class="footer-title">Inner Circle</h3>
+      <p>Subscribe for early access to limited pressings, bespoke cartridges, and vintage turntable releases.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('✨ Welcome to the Inner Circle!');">
+        <input type="email" class="newsletter-input" placeholder="Your studio email..." required aria-label="Email subscription">
+        <button type="submit" class="newsletter-btn" aria-label="Subscribe button"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+<script>
+  (function(){
+    // DOM elements
+    const body = document.body;
+    const darkToggle = document.getElementById('darkModeToggle');
+    const rtlToggle = document.getElementById('rtlToggle');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileHamburger = document.getElementById('mobileHamburger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
+    const mobileDarkToggle = document.getElementById('mobileDarkToggle');
+    const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    const navbar = document.getElementById('navbar');
+
+    const home1Option = document.getElementById('home1Option');
+    const home2Option = document.getElementById('home2Option');
+    const mobileHome1 = document.getElementById('mobileHome1');
+    const mobileHome2 = document.getElementById('mobileHome2');
+
+    // ---------- DARK MODE ----------
+    function setDarkMode(enabled) {
+      if(enabled) body.classList.add('dark');
+      else body.classList.remove('dark');
+      localStorage.setItem('vinyl_dark', enabled ? 'true' : 'false');
+      const icon = darkToggle?.querySelector('i');
+      const mobileIcon = mobileDarkToggle?.querySelector('i');
+      if(icon) {
+        if(enabled) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      }
+      if(mobileIcon) {
+        if(enabled) { mobileIcon.classList.remove('fa-moon'); mobileIcon.classList.add('fa-sun'); }
+        else { mobileIcon.classList.remove('fa-sun'); mobileIcon.classList.add('fa-moon'); }
+      }
+    }
+    const savedDark = localStorage.getItem('vinyl_dark') === 'true';
+    if(savedDark) setDarkMode(true);
+    darkToggle?.addEventListener('click', () => setDarkMode(!body.classList.contains('dark')));
+    mobileDarkToggle?.addEventListener('click', () => { setDarkMode(!body.classList.contains('dark')); });
+
+    // ---------- RTL MODE ----------
+    function setRTL(enabled) {
+      if(enabled) body.classList.add('rtl');
+      else body.classList.remove('rtl');
+      localStorage.setItem('vinyl_rtl', enabled ? 'true' : 'false');
+      const arrowIcon = rtlToggle?.querySelector('i');
+      const mobileArrowIcon = mobileRtlToggle?.querySelector('i');
+      if(arrowIcon) {
+        if(enabled) arrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else arrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+      if(mobileArrowIcon) {
+        if(enabled) mobileArrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else mobileArrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+    }
+    const savedRTL = localStorage.getItem('vinyl_rtl') === 'true';
+    if(savedRTL) setRTL(true);
+    rtlToggle?.addEventListener('click', () => setRTL(!body.classList.contains('rtl')));
+    mobileRtlToggle?.addEventListener('click', () => { setRTL(!body.classList.contains('rtl')); });
+
+    // ---------- LOGIN ----------
+    function handleLogin() { window.location.href = './login.html'; }
+    loginBtn?.addEventListener('click', handleLogin);
+    mobileLoginBtn?.addEventListener('click', () => { handleLogin(); });
+
+    // ---------- HOME 1 & HOME 2 interactions (dropdown) ----------
+    home1Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    home2Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome1?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome2?.addEventListener('click', () => { closeDrawerIfOpen(); });
+
+    // optional default home reset style
+    document.getElementById('homeLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './index.html'; });
+    document.getElementById('arrivalsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './new arrivals.html'; });
+
+    // close drawer helpers
+    function closeDrawer() {
+      if(mobileDrawer) mobileDrawer.classList.remove('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'none';
+    }
+    function closeDrawerIfOpen() {
+      if(mobileDrawer?.classList.contains('open')) closeDrawer();
+    }
+    // open mobile drawer
+    mobileHamburger?.addEventListener('click', () => {
+      if(mobileDrawer) mobileDrawer.classList.add('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'block';
+    });
+    closeDrawerBtn?.addEventListener('click', closeDrawer);
+    drawerOverlay?.addEventListener('click', closeDrawer);
+
+    // mobile dropdown toggle inside drawer
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+      const header = dropdown.querySelector('div:first-child');
+      header?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    // scroll shadow effect
+    window.addEventListener('scroll', () => {
+      if(!navbar) return;
+      if(window.scrollY > 20) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // --- UNIVERSAL ACTIVE NAV ITEM HIGHLIGHTING ---
+    const navLinksUniversal = document.querySelectorAll('.nav-link, .dropdown-menu a');
+    
+    function safeDecode(str) {
+      try { return decodeURIComponent(str); } catch(e) { return str; }
+    }
+
+    // 1. Clear pre-existing static inline styles to ensure a clean slate
+    navLinksUniversal.forEach(link => {
+      if (link.style.color) link.style.color = '';
+      if (link.style.borderBottom) link.style.borderBottom = '';
+    });
+
+    // 2. Identify current page filename
+    let currentFilename = window.location.pathname.split('/').pop();
+    if (!currentFilename || currentFilename === '/') currentFilename = 'index.html';
+    currentFilename = safeDecode(currentFilename);
+
+    // Function to apply active highlight styling
+    function highlightLink(link) {
+      link.style.color = '#e11d48'; // Active premium Rose highlight
+      link.style.borderBottom = '2px solid #e11d48';
+      link.style.fontWeight = '700';
+
+      // If nested inside a dropdown menu, also highlight the parent category link
+      const parentDropdown = link.closest('.dropdown, .mobile-dropdown');
+      if (parentDropdown) {
+        const parentToggle = parentDropdown.querySelector('.nav-link, div:first-child');
+        if (parentToggle) {
+          parentToggle.style.color = '#e11d48';
+          parentToggle.style.borderBottom = '2px solid #e11d48';
+          parentToggle.style.fontWeight = '700';
+        }
+      }
+    }
+
+    // 3. Apply active state based on current URL
+    navLinksUniversal.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      
+      let targetFilename = href.split('/').pop();
+      if (!targetFilename || targetFilename === '.' || targetFilename === './') targetFilename = 'index.html';
+      targetFilename = safeDecode(targetFilename);
+
+      if (targetFilename === currentFilename) {
+        highlightLink(link);
+      }
+
+      // 4. Attach click listener to update active highlight immediately on user click
+      link.addEventListener('click', function() {
+        navLinksUniversal.forEach(l => {
+          l.style.color = '';
+          l.style.borderBottom = '';
+          l.style.fontWeight = '';
+          const pDrop = l.closest('.dropdown, .mobile-dropdown');
+          if (pDrop) {
+            const pTog = pDrop.querySelector('.nav-link, div:first-child');
+            if (pTog) {
+              pTog.style.color = '';
+              pTog.style.borderBottom = '';
+              pTog.style.fontWeight = '';
+            }
+          }
+        });
+        highlightLink(this);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

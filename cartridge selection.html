@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Vinyl Oasis | Turntable & Vinyl Studio</title>
+  <meta name="description" content="Vinyl Oasis navigation interface showcasing custom premium analog sound design, high-end turntables, and exclusive vinyl record sanctuary features.">
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f6fc;
+      background-image: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 40%), 
+                        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+      color: #1b1624;
+      transition: background 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+    }
+
+    /* ----- DARK MODE (Immersive Deep Studio aesthetic) ----- */
+    body.dark {
+      background-color: #0b0714;
+      background-image: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 45%), 
+                        radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 45%);
+      color: #e4dee8;
+    }
+    body.dark .login-btn {
+      color: #0b0714 !important;
+    }
+
+    /* ----- RTL (right-to-left) support ----- */
+    body.rtl {
+      direction: rtl;
+    }
+    body.rtl .navbar .logo {
+      margin-left: 0;
+      margin-right: -4px;
+    }
+    body.rtl .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(16px) scale(0.95); text-align: right; }
+    body.rtl .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0) scale(1); }
+
+    /* ========== NAVBAR (Premium Ultraviolet Sunset Style) ========== */
+    .navbar {
+      position: fixed;
+      top: 16px;
+      left: 2%;
+      width: 96%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 1000;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 58, 237, 0.18);
+      box-shadow: 0 12px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-shrink: 0;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+    .navbar.scrolled {
+      top: 10px;
+      padding: 0.65rem 1.5rem;
+      background: rgba(255, 255, 255, 0.93);
+      border-color: rgba(124, 58, 237, 0.28);
+      box-shadow: 0 16px 50px -10px rgba(124, 58, 237, 0.2), 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    body.dark .navbar {
+      background: rgba(11, 7, 20, 0.85);
+      border-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .navbar.scrolled {
+      background: rgba(9, 5, 16, 0.95);
+      border-color: rgba(245, 158, 11, 0.25);
+      box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.98), 0 0 30px rgba(124, 58, 237, 0.25);
+    }
+
+    /* ----- LOGO (Premium Layout & Amber Gold Ring) ----- */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .logo:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2e1065 0%, #581c87 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.1);
+      border: 2px solid #f59e0b;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .logo:hover .logo-icon {
+      border-color: #f59e0b;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+    .logo-icon i {
+      font-size: 20px;
+      color: #fef3c7;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+    .logo:hover .logo-icon i {
+      color: #ffffff;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #2e1065 20%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s;
+    }
+    body.dark .logo-text {
+      background: linear-gradient(135deg, #ffffff 20%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 1.5px;
+      color: #7c3aed;
+      margin-top: 2px;
+    }
+    body.dark .logo small {
+      color: #fbbf24;
+    }
+
+    /* ----- CENTER NAV MENU ----- */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: rgba(124, 58, 237, 0.03);
+      padding: 0.3rem 0.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(124, 58, 237, 0.05);
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    body.dark .nav-menu {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.04);
+    }
+    .nav-link {
+      position: relative;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #443a55;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .nav-link {
+      color: #c0b6ca;
+    }
+    .nav-link:hover {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+    body.dark .nav-link:hover {
+      color: #fcd34d;
+      background: rgba(252, 211, 77, 0.12);
+    }
+    /* Unique glowing dot indicator */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: #7c3aed;
+      border-radius: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+    }
+    body.dark .nav-link::after {
+      background: #fcd34d;
+      box-shadow: 0 0 8px #fcd34d;
+    }
+    .nav-link:hover::after {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px) scale(0.95);
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-width: 220px;
+      border-radius: 20px;
+      padding: 12px 8px;
+      box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(124, 58, 237, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+    }
+    body.dark .dropdown-menu {
+      background: rgba(14, 9, 24, 0.95);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(124, 58, 237, 0.2);
+    }
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3b304c;
+      transition: all 0.2s ease;
+      border-radius: 12px;
+    }
+    body.dark .dropdown-menu a {
+      color: #d8d0e0;
+    }
+    .dropdown-menu a i {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    body.dark .dropdown-menu a i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(124, 58, 237, 0.06);
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .dropdown-menu a:hover {
+      background: rgba(252, 211, 77, 0.08);
+      color: #fcd34d;
+    }
+    .dropdown-menu a:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .dropdown-menu a:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* RIGHT side actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .icon-btn {
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 1.1rem;
+      color: #584f6b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    body.dark .icon-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #d8d0e0;
+    }
+    .icon-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .icon-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+      box-shadow: 0 8px 20px rgba(252, 211, 77, 0.3);
+    }
+    .login-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      padding: 0 24px;
+      height: 44px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing: 0.4px;
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    body.dark .login-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+    .login-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(124, 58, 237, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .login-btn:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    /* MOBILE / TABLET (<= 1280px) */
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      border-radius: 14px;
+      cursor: pointer;
+      color: #7c3aed;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-menu-btn {
+      background: rgba(252, 211, 77, 0.12);
+      border-color: rgba(252, 211, 77, 0.18);
+      color: #fcd34d;
+    }
+    .mobile-menu-btn:hover {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-menu-btn:hover {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    @media (max-width: 1440px) {
+      .nav-menu { display: none; }
+      .nav-actions { display: none; }
+      .mobile-menu-btn { display: flex; }
+    }
+    /* side drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100vh;
+      background: rgba(255, 253, 255, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 30px 24px;
+      box-shadow: -15px 0 50px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 1px solid rgba(124, 58, 237, 0.12);
+    }
+    body.dark .mobile-drawer {
+      background: rgba(11, 7, 20, 0.98);
+      border-left-color: rgba(255, 255, 255, 0.08);
+      box-shadow: -15px 0 50px rgba(0,0,0,0.8);
+    }
+    .mobile-drawer.open {
+      right: 0;
+    }
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1999;
+      display: none;
+    }
+    .mobile-drawer .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #3b304c;
+      transition: all 0.2s;
+      border: none;
+      background: transparent;
+    }
+    body.dark .mobile-drawer .nav-link {
+      color: #d8d0e0;
+    }
+    .mobile-drawer .nav-link:hover {
+      background: rgba(124, 58, 237, 0.08);
+      color: #7c3aed;
+      transform: translateX(6px);
+    }
+    body.dark .mobile-drawer .nav-link:hover {
+      background: rgba(252, 211, 77, 0.1);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link i {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 58, 237, 0.1);
+      color: #7c3aed;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    body.dark .mobile-drawer .nav-link i {
+      background: rgba(252, 211, 77, 0.12);
+      color: #fcd34d;
+    }
+    .mobile-drawer .nav-link:hover i {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    body.dark .mobile-drawer .nav-link:hover i {
+      background: #fcd34d;
+      color: #0b0714;
+    }
+    .mobile-dropdown .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+      padding: 4px 0 4px 20px;
+      display: none;
+      border: none;
+    }
+    .mobile-dropdown.active .dropdown-menu { display: block; }
+
+    /* Mobile Login Button Pro Style */
+    .mobile-drawer-login {
+      width: 100%;
+      height: 56px; /* Optimized height for visual hierarchy */
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255,255,255,0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.dark .mobile-drawer-login {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714 !important;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+    .mobile-drawer-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(124, 58, 237, 0.4);
+      background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
+    }
+    body.dark .mobile-drawer-login:hover {
+      background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
+      box-shadow: 0 14px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      margin-top: 120px;
+      padding: 5rem 6% 7rem;
+      text-align: center;
+      background: linear-gradient(145deg, #f5f2fa, #fcfaf3);
+      border-radius: 0 0 60px 60px;
+      transition: all 0.3s;
+    }
+    body.dark .hero { background: #0b0714; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #2e1065, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    body.dark .hero h1 {
+      background: linear-gradient(135deg, #ffffff, #fcd34d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: #584f6b;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+    body.dark .hero p { color: #a49ab0; }
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+
+    /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    p, h1, h2, h3, h4, h5, h6, span, a, blockquote {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+    .icon-btn { font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.2rem); }
+    .login-btn { font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); }
+    .mobile-drawer-login { font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem); }
+
+    @media (max-width: 1200px) {
+      .footer-top { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-left: 5% !important; padding-right: 5% !important;
+      }
+      div[class*="grid"], div[class*="layout"], div[class*="panel"], div[class*="wrapper"] {
+        grid-template-columns: 1fr !important; gap: 2rem;
+      }
+      .footer-top { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr !important; gap: 2rem; }
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 4rem !important; padding-bottom: 4rem !important;
+      }
+    }
+    @media (max-width: 500px) {
+      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
+      .logo-text { font-size: 1rem; }
+      .logo-icon { width: 38px; height: 38px; }
+    }
+    @media (max-width: 480px) {
+      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
+        padding-top: 3rem !important; padding-bottom: 3rem !important; padding-left: 4% !important; padding-right: 4% !important;
+      }
+      div[style*="display: flex"]:not(.navbar):not(.nav-left):not(.nav-right):not(.logo):not(.nav-menu):not(.nav-actions):not(.dropdown):not(.social-socials):not(.footer-socials):not(.newsletter-form):not(.input-wrapper):not(.checkbox-label):not(.event-row) {
+        flex-direction: column; align-items: center; text-align: center;
+      }
+    }
+
+    /* ========== PREMIUM FOOTER (Ultraviolet Sunset Theme) ========== */
+    .footer {
+      background-color: #ffffff;
+      border-top: 1px solid rgba(124, 58, 237, 0.12);
+      padding: 5rem 6% 3rem;
+      margin-top: 4rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 -10px 40px rgba(124, 58, 237, 0.03);
+    }
+    body.dark .footer {
+      background-color: #0b0714;
+      border-top-color: rgba(245, 158, 11, 0.15);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .footer-brand p {
+      color: #584f6b;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    body.dark .footer-brand p {
+      color: #a49ab0;
+    }
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2e1065;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    body.dark .footer-title {
+      color: #fcd34d;
+    }
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(135deg, #7c3aed, #f59e0b);
+      border-radius: 2px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-link {
+      color: #443a55;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    body.dark .footer-link {
+      color: #c0b6ca;
+    }
+    .footer-link:hover {
+      color: #7c3aed;
+      transform: translateX(4px);
+    }
+    body.dark .footer-link:hover {
+      color: #fcd34d;
+    }
+    .footer-newsletter p {
+      color: #584f6b;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+    body.dark .footer-newsletter p {
+      color: #a49ab0;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      background: rgba(124, 58, 237, 0.02);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #1b1624;
+      outline: none;
+      transition: all 0.3s;
+    }
+    body.dark .newsletter-input {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e4dee8;
+    }
+    .newsletter-input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+    body.dark .newsletter-input:focus {
+      border-color: #fcd34d;
+      box-shadow: 0 0 0 3px rgba(252, 211, 77, 0.15);
+    }
+    .newsletter-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      border: none;
+      color: #ffffff;
+      width: 42px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    }
+    body.dark .newsletter-btn {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+    .newsletter-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+    }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(124, 58, 237, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    body.dark .footer-bottom {
+      border-top-color: rgba(255, 255, 255, 0.05);
+    }
+    .footer-copyright {
+      color: #7c6f8d;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    body.dark .footer-copyright {
+      color: #8c829c;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(124, 58, 237, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #584f6b;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    body.dark .social-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.06);
+      color: #c0b6ca;
+    }
+    .social-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    body.dark .social-btn:hover {
+      background: #fcd34d;
+      border-color: #fcd34d;
+      color: #0b0714;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        justify-content: center;
+      }
+    }
+
+    /* ==========================================================================
+       CARTRIDGE SELECTION: DEDICATED TRANSDUCER & STYLUS STYLING
+       ========================================================================== */
+    .cart-section {
+      padding: 6rem 6%;
+      position: relative;
+    }
+    .cart-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(245, 158, 11, 0.1));
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #7c3aed;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+    body.dark .cart-pill { color: #fcd34d; border-color: rgba(252, 211, 77, 0.3); }
+    .cart-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 800;
+      color: #2e1065;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    body.dark .cart-title { color: #ffffff; }
+
+    /* SECTION 1: HERO */
+    .cart-hero {
+      margin-top: 100px;
+      padding: 7rem 6% 6rem;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.05), transparent 70%);
+      border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+    }
+    body.dark .cart-hero { background: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.15), transparent 70%); border-bottom-color: rgba(255,255,255,0.05); }
+
+    /* SECTION 2 & 3: MM / MC SPLIT DISPLAYS */
+    .transducer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 3.5rem;
+      border: 1px solid rgba(124, 58, 237, 0.12);
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.03);
+    }
+    .transducer-grid.reverse { grid-template-columns: 1.2fr 1fr; border-color: rgba(245, 158, 11, 0.2); }
+    body.dark .transducer-grid { background: rgba(16, 11, 28, 0.4); border-color: rgba(255,255,255,0.06); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+    .transducer-art {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      border: 2px solid rgba(124, 58, 237, 0.3);
+    }
+    .transducer-grid.reverse .transducer-art { border-color: rgba(245, 158, 11, 0.4); }
+    .spec-meters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 2rem 0;
+    }
+    .spec-meter {
+      background: rgba(124, 58, 237, 0.03);
+      padding: 1.2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+    }
+    body.dark .spec-meter { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.05); }
+
+    /* SECTION 4: STYLUS GEOMETRY INFOGRAPHIC */
+    .stylus-infographic {
+      background: #0b0714;
+      border-radius: 40px;
+      padding: 5rem 4rem;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #7c3aed;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    }
+    .stylus-preview-box {
+      max-width: 800px;
+      margin: 3rem auto;
+      position: relative;
+    }
+    .stylus-main-img {
+      width: 100%;
+      border-radius: 24px;
+      border: 2px solid #f59e0b;
+      box-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+    }
+
+    /* SECTION 5: COMPARISON ENGINE */
+    .compare-table-wrap {
+      overflow-x: auto;
+      margin-top: 3rem;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 58, 237, 0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    }
+    body.dark .compare-table-wrap { background: rgba(16, 11, 28, 0.5); border-color: rgba(255,255,255,0.08); }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .compare-table th, .compare-table td {
+      padding: 1.4rem 1.5rem;
+      border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+    }
+    body.dark .compare-table th, body.dark .compare-table td { border-bottom-color: rgba(255,255,255,0.04); }
+    .compare-table th { background: rgba(124, 58, 237, 0.03); font-weight: 700; color: #2e1065; }
+    body.dark .compare-table th { background: rgba(255,255,255,0.02); color: #fcd34d; }
+
+    /* SECTION 6: REPLACEMENT NEEDLES GRID */
+    .needles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    .needle-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.5rem;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      transition: all 0.3s;
+      position: relative;
+    }
+    body.dark .needle-card { background: rgba(16, 11, 28, 0.4); border-color: rgba(255,255,255,0.06); }
+    .needle-card:hover { transform: translateY(-6px); border-color: #7c3aed; box-shadow: 0 15px 30px rgba(124, 58, 237, 0.15); }
+    body.dark .needle-card:hover { border-color: #f59e0b; box-shadow: 0 15px 30px rgba(245, 158, 11, 0.15); }
+
+    /* SECTION 7: RESONANCE MATCHER CALCULATOR */
+    .resonance-box {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.03), rgba(245, 158, 11, 0.03));
+      border-radius: 32px;
+      padding: 4rem;
+      border: 2px dashed rgba(245, 158, 11, 0.3);
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    body.dark .resonance-box { background: rgba(0,0,0,0.3); border-color: rgba(245, 158, 11, 0.25); }
+
+    /* DEDICATED ANCHOR / ORDER BUTTON STYLES */
+    .anchor-btn {
+      padding: 0.8rem 1.5rem;
+      background: #ffffff;
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 0.65rem + 0.4vw, 0.95rem);
+      color: #2e1065;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.05);
+      outline: none;
+      text-decoration: none;
+    }
+    body.dark .anchor-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #fcd34d;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    .anchor-btn:hover {
+      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+      color: #ffffff;
+      border-color: transparent;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    }
+    body.dark .anchor-btn:hover {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+      color: #0b0714;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+    }
+    .anchor-btn i {
+      transition: transform 0.3s ease;
+    }
+    .anchor-btn:hover i {
+      transform: scale(1.15) rotate(-5deg);
+      color: inherit !important;
+    }
+
+    @media (max-width: 992px) {
+      .transducer-grid, .transducer-grid.reverse { grid-template-columns: 1fr; gap: 3rem; padding: 2rem; }
+      .stylus-infographic { padding: 3rem 2rem; }
+      .resonance-box { padding: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <!-- LOGO left -->
+  <div class="nav-left">
+    <a href="./index.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+      <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+    </a>
+  </div>
+
+  <!-- CENTER NAV MENU -->
+  <div class="nav-menu" id="navMenu">
+    <!-- HOME with dropdown -->
+    <div class="dropdown">
+      <a href="./index.html" class="nav-link" id="homeLink">Home <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./index.html" id="home1Option"> Home 1</a>
+        <a href="./home 2.html" id="home2Option"> Home 2</a>
+      </div>
+    </div>
+    <a href="./about.html" class="nav-link">About</a>
+    <!-- ARRIVALS with dropdown -->
+    <div class="dropdown">
+      <a href="./new arrivals.html" class="nav-link" id="arrivalsLink">Arrivals <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="dropdown-menu">
+        <a href="./new arrivals.html"> New Arrivals</a>
+        <a href="./vinyl collections.html">Vinyl Collections</a>
+      </div>
+    </div>
+    <a href="./turntables.html" class="nav-link">Turntables</a>
+    <a href="./cartridge selection.html" class="nav-link" style="color: #7c3aed;">Cartridges</a>
+    <a href="./setup guides.html" class="nav-link">Setup Guides</a>
+    <a href="./trade-in program.html" class="nav-link">Trade-In Program</a>
+    <a href="./local pickup.html" class="nav-link">Local Pickup</a>
+    <a href="./audio lounge.html" class="nav-link">Audio Lounge</a>
+    <a href="./contact.html" class="nav-link">Contact</a>
+  </div>
+
+  <!-- RIGHT side actions -->
+  <div class="nav-right">
+    <div class="nav-actions">
+      <button class="icon-btn" id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL direction"><i class="fa-solid fa-right-left"></i></button>
+      <button class="login-btn" id="loginBtn">Login <i class="fas fa-arrow-right-to-bracket" style="font-size: 12px;"></i></button>
+    </div>
+    <!-- Mobile Hamburger -->
+    <button class="mobile-menu-btn" id="mobileHamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center;">
+      <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: #7c3aed;">MENU</span>
+    </div>
+    <button id="closeDrawer" style="background: rgba(0,0,0,0.04); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; color: #584f6b; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
+  </div>
+  <div class="mobile-dropdown" id="mobileHomeDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Home</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./index.html" id="mobileHome1" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 1 </a>
+      <a href="./home 2.html" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
+    </div>
+  </div>
+  <a href="./about.html" class="nav-link">About</a>
+  <div class="mobile-dropdown" id="mobileArrivalsDropdown">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+      <span style="display: flex; align-items: center; gap: 16px;"> Arrivals</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
+    </div>
+    <div class="dropdown-menu">
+      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
+      <a href="./vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
+    </div>
+  </div>
+  <a href="./turntables.html" class="nav-link"> Turntables</a>
+  <a href="./cartridge selection.html" class="nav-link" style="color: #7c3aed;"> Cartridges</a>
+  <a href="./setup guides.html" class="nav-link"> Setup Guides</a>
+  <a href="./trade-in program.html" class="nav-link"> Trade-In Program</a>
+  <a href="./local pickup.html" class="nav-link"> Local Pickup</a>
+  <a href="./audio lounge.html" class="nav-link"> Audio Lounge</a>
+  <a href="./contact.html" class="nav-link"> Contact</a>
+  <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
+  
+  <a class="nav-link" id="mobileDarkToggle" style="cursor: pointer;"><i class="fas fa-moon"></i> Dark Mode</a>
+  <a class="nav-link" id="mobileRtlToggle" style="cursor: pointer;"><i class="fa-solid fa-right-left"></i> RTL Mode</a>
+  
+  <div style="margin-top: 8px;">
+    <button class="mobile-drawer-login" id="mobileLoginBtn">
+      <span>Login</span>
+      <i class="fas fa-arrow-right-to-bracket" style="font-size: 1.2rem;"></i>
+    </button>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ==========================================
+     SECTION 1: CARTRIDGE GATEWAY HERO
+     ========================================== -->
+<section class="cart-hero">
+  <span class="cart-pill"><i class="fas fa-microchip" style="color: #f59e0b;"></i> Precision Electro-Mechanics</span>
+  <h1 class="cart-title">Phono Cartridges & Transducers</h1>
+  <p style="color: #584f6b; font-size: 1.1rem; max-width: 700px; margin: 12px auto 0; line-height: 1.6;">
+    Discover custom magnetic engines converting sub-micron vinyl groove wall modulations into absolute, breathtaking stereo separation.
+  </p>
+</section>
+
+<!-- ==========================================
+     SECTION 2: MOVING MAGNET (MM) SHOWCASE
+     ========================================== -->
+<section class="cart-section" id="secMM">
+  <div style="max-width: 800px; margin-bottom: 3rem;">
+    <span class="cart-pill" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">High Output Dynamic Engine</span>
+    <h2 class="cart-title">Moving Magnet (MM) Cartridges</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 6px;">
+      Robust output stages capable of native connection straight into standard integrated 47kΩ phono pre-amplifier inputs. Highly prized for simple user replaceable stylus wand access.
+    </p>
+  </div>
+
+  <div class="transducer-grid">
+    <div>
+      <img src="images/cartridge_mm.png" alt="High End Moving Magnet Cartridge Translucent Amber" class="transducer-art">
+      <span style="display: block; text-align: center; font-size: 0.75rem; color: #8c829c; margin-top: 10px; font-family: monospace;">TRANSLUCENT ACRYLIC POLE STRUCTURE</span>
+    </div>
+
+    <div>
+      <h3 style="font-family: serif; font-size: 1.6rem; font-weight: 800; color: inherit;">Oasis Hyperion V-MM</h3>
+      <p style="color: #584f6b; font-size: 0.95rem; margin-top: 8px; line-height: 1.6;">
+        Engineered with dual light-mass laminated toroidal coils achieving a flat linear frequency sweep from 15Hz to 25kHz. Employs a polished low-mass bonded diamond tip on a rigid hollow carbon wand.
+      </p>
+
+      <div class="spec-meters">
+        <div class="spec-meter">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block;">NOMINAL VOLTAGE</span>
+          <span style="font-size: 1.4rem; font-weight: 800; color: inherit;">4.0 mV</span>
+        </div>
+
+        <div class="spec-meter" style="border-color: rgba(245, 158, 11, 0.2);">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block;">TRACKING WEIGHT</span>
+          <span style="font-size: 1.4rem; font-weight: 800; color: inherit;">1.8g</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px;">
+        <button class="login-btn" onclick="alert('🛒 Hyperion V-MM added to virtual cart.')">Acquire MM Transducer</button>
+        <button class="icon-btn" onclick="alert('📋 Output Impedance load requirements matched natively.')"><i class="fas fa-check-double"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 3: MOVING COIL (MC) SHOWCASE
+     ========================================== -->
+<section class="cart-section" id="secMC" style="background: rgba(124, 58, 237, 0.01);">
+  <div style="max-width: 800px; margin-bottom: 3rem; margin-left: auto; text-align: right;">
+    <span class="cart-pill" style="color: #7c3aed; border-color: rgba(124, 58, 237, 0.3);">Micro-Mass Audiophile Fidelity</span>
+    <h2 class="cart-title">Moving Coil (MC) Masterpieces</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 6px;">
+      Direct mechanical transfer via minuscule micro-wound core assemblies. Exhibits astonishing transient attack speed, micro-dynamic subtlety, and master soundstage reproduction.
+    </p>
+  </div>
+
+  <div class="transducer-grid reverse">
+    <div>
+      <h3 style="font-family: serif; font-size: 1.6rem; font-weight: 800; color: inherit;">Sovereign Ebony MC-Reference</h3>
+      <p style="color: #584f6b; font-size: 0.95rem; margin-top: 8px; line-height: 1.6;">
+        Housed within dense aged resonant-dampening ebony timber. Features ultra-fine multi-strand pure OCC silver coils wound strictly by hand around a crystalline boron lever wand.
+      </p>
+
+      <div class="spec-meters">
+        <div class="spec-meter" style="border-color: rgba(245, 158, 11, 0.2);">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block;">LOW OUTPUT</span>
+          <span style="font-size: 1.4rem; font-weight: 800; color: inherit;">0.35 mV</span>
+        </div>
+
+        <div class="spec-meter">
+          <span style="font-family: monospace; font-size: 0.75rem; color: #7c3aed; font-weight: 800; display: block;">INTERNAL LOAD</span>
+          <span style="font-size: 1.4rem; font-weight: 800; color: inherit;">12 Ohms</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: flex-start;">
+        <button class="login-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706);" onclick="alert('🛒 Sovereign Ebony MC added to premium order locker.')">Reserve MC Masterpiece</button>
+        <button class="icon-btn" onclick="alert('⚡ Step-up transformer gain setting recommendation: 60dB minimum.')"><i class="fas fa-circle-nodes"></i></button>
+      </div>
+    </div>
+
+    <div>
+      <img src="images/cartridge_mc.png" alt="Premium Low Output Moving Coil Ebony Phono Cartridge" class="transducer-art">
+      <span style="display: block; text-align: center; font-size: 0.75rem; color: #8c829c; margin-top: 10px; font-family: monospace;">SOLID EBONY PLINTH HOUSING</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 4: STYLUS GEOMETRY INFOGRAPHIC GUIDE
+     ========================================== -->
+<section class="cart-section" id="secStylus">
+  <div class="stylus-infographic">
+    <span style="font-family: monospace; font-size: 0.85rem; color: #fcd34d; letter-spacing: 3px; display: block;">SCANNING PROFILE ARCHITECTURE</span>
+    <h2 class="cart-title" style="color: white; font-size: clamp(2.2rem, 5vw, 3.8rem); margin-top: 4px;">Diamond Stylus Geometry Guide</h2>
+    <p style="color: #cbd5e1; font-size: 1.05rem; max-width: 650px; margin: 12px auto 0;">
+      Visualizing exact lateral wall contact patches across varying continuous groove modulations.
+    </p>
+
+    <div class="stylus-preview-box">
+      <img src="images/cartridge_stylus.png" alt="Ultraviolet Vinyl Groove Diamond Stylus Tracing Infographic" class="stylus-main-img">
+      <span style="position: absolute; bottom: 16px; right: 24px; background: rgba(0,0,0,0.7); padding: 6px 12px; border-radius: 8px; font-family: monospace; font-size: 0.75rem;">LATERAL SCANNING RESOLUTION: 0.2µm</span>
+    </div>
+
+    <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; text-align: left; max-width: 900px; margin: 0 auto;">
+      <div style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; border-left: 3px solid #f59e0b;">
+        <h4 style="font-size: 1.05rem; font-weight: 700; color: #fcd34d;">Nude Diamond Mounting</h4>
+        <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px; line-height: 1.5;">
+          A whole, single diamond grain anchored straight through the cantilever shaft reducing trace mass inertia dramatically over brass-bonded tips.
+        </p>
+      </div>
+
+      <div style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; border-left: 3px solid #7c3aed;">
+        <h4 style="font-size: 1.05rem; font-weight: 700; color: #c0b6ca;">Extended Line Contact</h4>
+        <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px; line-height: 1.5;">
+          Vertical scanning alignment spreading vertical downward pressure across wide side parameters, extending both disc longevity and master dynamic bandwidth.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 5: CARTRIDGE COMPARISON ENGINE
+     ========================================== -->
+<section class="cart-section" id="secCompare">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <span class="cart-pill">Transducer Matrix</span>
+    <h2 class="cart-title">Cartridge Technical Comparison</h2>
+    <p style="color: #584f6b; font-size: 1rem; margin-top: 6px;">
+      Evaluate matching physical output profiles to properly pair transducer gain targets with your resident Phono Pre-Amplifier stages.
+    </p>
+  </div>
+
+  <div class="compare-table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Model Architecture</th>
+          <th>Engine Type</th>
+          <th>Output Level</th>
+          <th>Stylus Cut</th>
+          <th>Cantilever Material</th>
+          <th>Recommended Load</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight: 700;">Oasis Hyperion V-MM</td>
+          <td>Moving Magnet</td>
+          <td>4.0 mV</td>
+          <td>Nude Elliptical</td>
+          <td>Carbon Fiber Wand</td>
+          <td>47k Ohms</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 700;">Sovereign Ebony MC</td>
+          <td>Low Moving Coil</td>
+          <td>0.35 mV</td>
+          <td>MicroLine Polish</td>
+          <td>Solid Boron Rod</td>
+          <td>&gt; 100 Ohms</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 700;">Aura Master DJ-Pro</td>
+          <td>Moving Magnet</td>
+          <td>6.5 mV</td>
+          <td>Heavy Spherical</td>
+          <td>Reinforced Aluminum</td>
+          <td>47k Ohms</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 700;">Zenith Mono Reference</td>
+          <td>Moving Coil Mono</td>
+          <td>0.50 mV</td>
+          <td>True Conical Radius</td>
+          <td>Titanium Alloy</td>
+          <td>400 Ohms</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 6: REPLACEMENT NEEDLES & WANDS
+     ========================================== -->
+<section class="cart-section" id="secNeedles" style="background: rgba(245, 158, 11, 0.02);">
+  <div style="max-width: 800px; margin-bottom: 2rem;">
+    <span class="cart-pill" style="color: #f59e0b;">Field Replaceable Mechanics</span>
+    <h2 class="cart-title">Replacement Needles & Wands</h2>
+    <p style="color: #584f6b; font-size: 1.05rem; margin-top: 6px;">
+      Quick assembly plug-in replacement modules restoring pristine track capability back to worn Moving Magnet bodies instantly.
+    </p>
+  </div>
+
+  <div class="needles-grid">
+    <div class="needle-card">
+      <span style="position: absolute; top: 16px; right: 20px; font-family: monospace; font-weight: 800; color: #7c3aed; font-size: 0.75rem;">ENTRY REFRESH</span>
+      <h3 style="font-family: serif; font-size: 1.3rem; font-weight: 800;">Hyperion Stylus N-Elliptical</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Factory calibrated diamond drop-in head replacement module for standard Hyperion V-MM generator blocks.
+      </p>
+      <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-weight: 800; font-size: 1.2rem; color: #2e1065;">$149</span>
+        <button class="anchor-btn" onclick="alert('📦 Replacement Needle queued for courier shipment.')">Order Needle</button>
+      </div>
+    </div>
+
+    <div class="needle-card" style="border-color: rgba(245, 158, 11, 0.3);">
+      <span style="position: absolute; top: 16px; right: 20px; font-family: monospace; font-weight: 800; color: #f59e0b; font-size: 0.75rem;">AUDIOPHILE UPGRADE</span>
+      <h3 style="font-family: serif; font-size: 1.3rem; font-weight: 800;">Hyperion Shibata Line-Wand</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        Elevate your MM body output directly with a laser-cut Shibata diamond wand profile tracing absolute transient depth.
+      </p>
+      <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-weight: 800; font-size: 1.2rem; color: #d97706;">$289</span>
+        <button class="anchor-btn" onclick="alert('📦 Shibata Line-Wand assembly added.')">Order Upgrade</button>
+      </div>
+    </div>
+
+    <div class="needle-card">
+      <span style="position: absolute; top: 16px; right: 20px; font-family: monospace; font-weight: 800; color: #10b981; font-size: 0.75rem;">DJ BROADCAST</span>
+      <h3 style="font-family: serif; font-size: 1.3rem; font-weight: 800;">Aura Pro-Track Spherical</h3>
+      <p style="color: #584f6b; font-size: 0.85rem; margin-top: 8px; line-height: 1.5;">
+        High suspension stiffness configuration resilient against intense back-cue scratching drops and heavy disc setups.
+      </p>
+      <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-weight: 800; font-size: 1.2rem; color: #2e1065;">$99</span>
+        <button class="anchor-btn" onclick="alert('📦 DJ Broadcast needle replacement packed.')">Order Needle</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 7: COMPLIANCE & TONEARM CALCULATOR
+     ========================================== -->
+<section class="cart-section" id="secResonance">
+  <div class="resonance-box">
+    <span style="font-family: monospace; font-size: 0.85rem; color: #d97706; font-weight: 800; letter-spacing: 2px; display: block;">PHYSICAL RESONANCE STABILIZER</span>
+    <h2 class="cart-title" style="font-size: 2.2rem; margin-top: 4px;">Tonearm Compliance Matcher</h2>
+    <p style="color: #584f6b; font-size: 0.95rem; max-width: 600px; margin: 8px auto 0;">
+      Prevent sub-audible low-frequency woofer pumping by verifying your cartridge suspension stiffness matches the physical effective mass of your tonearm wand.
+    </p>
+
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem;">
+      <button class="anchor-btn" onclick="alert('⚖️ Low Mass Tonearm detected: High Compliance cartridge recommended (e.g. Oasis Hyperion V-MM).')"><i class="fas fa-feather" style="color: #7c3aed;"></i> Low Mass Arm (&lt; 10g)</button>
+      <button class="anchor-btn" onclick="alert('⚖️ Medium Mass Tonearm detected: Ideal range supporting wide versatility across standard MM and high-output MC options.')"><i class="fas fa-scale-balanced" style="color: #3b82f6;"></i> Medium Mass Arm (10g - 18g)</button>
+      <button class="anchor-btn" onclick="alert('⚖️ High Mass Tonearm detected: Low Compliance cartridge required (e.g. Sovereign Ebony MC) keeping resonance safely above 8Hz.')"><i class="fas fa-weight-hanging" style="color: #f59e0b;"></i> High Mass Arm (&gt; 18g)</button>
+    </div>
+
+    <div style="margin-top: 2.5rem; pt-top: 2rem; border-top: 1px solid rgba(245, 158, 11, 0.1);">
+      <p style="font-size: 0.85rem; color: #8c829c; margin-bottom: 12px;">Need custom cartridge matching evaluated directly on our test bench?</p>
+      <button class="login-btn" onclick="alert('📅 Audiophile Workbench slot assigned successfully.')">Schedule Dedicated Cartridge</button>
+    </div>
+  </div>
+</section>
+
+<!-- Premium Footer Section -->
+<footer class="footer">
+  <div class="footer-top">
+    <!-- Brand Info -->
+    <div class="footer-brand">
+      <a href="./index.html" class="logo" style="margin-bottom: 0.5rem;">
+        <div class="logo-icon"><i class="fas fa-record-vinyl"></i></div>
+        <div class="logo-text">VINYL OASIS<small>Analogue Studio</small></div>
+      </a>
+      <p>Custom sound architecture, pristine audiophile pressings, and expert turntable calibration supporting pure analog depth since 2012.</p>
+      <div style="display: flex; align-items: center; gap: 8px; color: #7c3aed; font-size: 0.85rem; font-weight: 600;">
+        <i class="fas fa-location-dot"></i>
+        <span style="color: inherit;">Studio 45, Analogue District, NY</span>
+      </div>
+    </div>
+
+    <!-- Navigation Column 1 -->
+    <div>
+      <h3 class="footer-title">Studio Vault</h3>
+      <ul class="footer-links">
+        <li><a href="./index.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./about.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> About Us</a></li>
+        <li><a href="./new arrivals.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Arrival</a></li>
+        <li><a href="./setup guides.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Setup Guides</a></li>
+        <li><a href="./contact.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Navigation Column 2 -->
+    <div>
+      <h3 class="footer-title">Philosophy</h3>
+      <ul class="footer-links">
+        <li><a href="./home 2.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Home</a></li>
+        <li><a href="./vinyl collections.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Vinyl Collection</a></li>
+        <li><a href="./turntables.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Turntable</a></li>
+        <li><a href="./local pickup.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Local Pickup</a></li>
+        <li><a href="./audio lounge.html" class="footer-link"><i class="fas fa-angle-right" style="font-size:0.8rem; opacity:0.6;"></i> Audio Lounge</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h3 class="footer-title">Inner Circle</h3>
+      <p>Subscribe for early access to limited pressings, bespoke cartridges, and vintage turntable releases.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('✨ Welcome to the Inner Circle!');">
+        <input type="email" class="newsletter-input" placeholder="Your studio email..." required aria-label="Email subscription">
+        <button type="submit" class="newsletter-btn" aria-label="Subscribe button"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+
+
+
+<script>
+  (function(){
+    // DOM elements
+    const body = document.body;
+    const darkToggle = document.getElementById('darkModeToggle');
+    const rtlToggle = document.getElementById('rtlToggle');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileHamburger = document.getElementById('mobileHamburger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
+    const mobileDarkToggle = document.getElementById('mobileDarkToggle');
+    const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    const navbar = document.getElementById('navbar');
+
+    const home1Option = document.getElementById('home1Option');
+    const home2Option = document.getElementById('home2Option');
+    const mobileHome1 = document.getElementById('mobileHome1');
+    const mobileHome2 = document.getElementById('mobileHome2');
+
+    // ---------- DARK MODE ----------
+    function setDarkMode(enabled) {
+      if(enabled) body.classList.add('dark');
+      else body.classList.remove('dark');
+      localStorage.setItem('vinyl_dark', enabled ? 'true' : 'false');
+      const icon = darkToggle?.querySelector('i');
+      const mobileIcon = mobileDarkToggle?.querySelector('i');
+      if(icon) {
+        if(enabled) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      }
+      if(mobileIcon) {
+        if(enabled) { mobileIcon.classList.remove('fa-moon'); mobileIcon.classList.add('fa-sun'); }
+        else { mobileIcon.classList.remove('fa-sun'); mobileIcon.classList.add('fa-moon'); }
+      }
+    }
+    const savedDark = localStorage.getItem('vinyl_dark') === 'true';
+    if(savedDark) setDarkMode(true);
+    darkToggle?.addEventListener('click', () => setDarkMode(!body.classList.contains('dark')));
+    mobileDarkToggle?.addEventListener('click', () => { setDarkMode(!body.classList.contains('dark')); });
+
+    // ---------- RTL MODE ----------
+    function setRTL(enabled) {
+      if(enabled) body.classList.add('rtl');
+      else body.classList.remove('rtl');
+      localStorage.setItem('vinyl_rtl', enabled ? 'true' : 'false');
+      const arrowIcon = rtlToggle?.querySelector('i');
+      const mobileArrowIcon = mobileRtlToggle?.querySelector('i');
+      if(arrowIcon) {
+        if(enabled) arrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else arrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+      if(mobileArrowIcon) {
+        if(enabled) mobileArrowIcon.classList.replace('fa-arrow-right', 'fa-arrow-left');
+        else mobileArrowIcon.classList.replace('fa-arrow-left', 'fa-arrow-right');
+      }
+    }
+    const savedRTL = localStorage.getItem('vinyl_rtl') === 'true';
+    if(savedRTL) setRTL(true);
+    rtlToggle?.addEventListener('click', () => setRTL(!body.classList.contains('rtl')));
+    mobileRtlToggle?.addEventListener('click', () => { setRTL(!body.classList.contains('rtl')); });
+
+    // ---------- LOGIN ----------
+    function handleLogin() { window.location.href = './login.html'; }
+    loginBtn?.addEventListener('click', handleLogin);
+    mobileLoginBtn?.addEventListener('click', () => { handleLogin(); });
+
+    // ---------- HOME 1 & HOME 2 interactions (dropdown) ----------
+    home1Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    home2Option?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome1?.addEventListener('click', () => { closeDrawerIfOpen(); });
+    mobileHome2?.addEventListener('click', () => { closeDrawerIfOpen(); });
+
+    // optional default home reset style
+    document.getElementById('homeLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './index.html'; });
+    document.getElementById('arrivalsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = './new arrivals.html'; });
+
+    // close drawer helpers
+    function closeDrawer() {
+      if(mobileDrawer) mobileDrawer.classList.remove('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'none';
+    }
+    function closeDrawerIfOpen() {
+      if(mobileDrawer?.classList.contains('open')) closeDrawer();
+    }
+    // open mobile drawer
+    mobileHamburger?.addEventListener('click', () => {
+      if(mobileDrawer) mobileDrawer.classList.add('open');
+      if(drawerOverlay) drawerOverlay.style.display = 'block';
+    });
+    closeDrawerBtn?.addEventListener('click', closeDrawer);
+    drawerOverlay?.addEventListener('click', closeDrawer);
+
+    // mobile dropdown toggle inside drawer
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+      const header = dropdown.querySelector('div:first-child');
+      header?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    // scroll shadow effect
+    window.addEventListener('scroll', () => {
+      if(!navbar) return;
+      if(window.scrollY > 20) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // --- UNIVERSAL ACTIVE NAV ITEM HIGHLIGHTING ---
+    const navLinksUniversal = document.querySelectorAll('.nav-link, .dropdown-menu a');
+    
+    function safeDecode(str) {
+      try { return decodeURIComponent(str); } catch(e) { return str; }
+    }
+
+    // 1. Clear pre-existing static inline styles to ensure a clean slate
+    navLinksUniversal.forEach(link => {
+      if (link.style.color) link.style.color = '';
+      if (link.style.borderBottom) link.style.borderBottom = '';
+    });
+
+    // 2. Identify current page filename
+    let currentFilename = window.location.pathname.split('/').pop();
+    if (!currentFilename || currentFilename === '/') currentFilename = 'index.html';
+    currentFilename = safeDecode(currentFilename);
+
+    // Function to apply active highlight styling
+    function highlightLink(link) {
+      link.style.color = '#e11d48'; // Active premium Rose highlight
+      link.style.borderBottom = '2px solid #e11d48';
+      link.style.fontWeight = '700';
+
+      // If nested inside a dropdown menu, also highlight the parent category link
+      const parentDropdown = link.closest('.dropdown, .mobile-dropdown');
+      if (parentDropdown) {
+        const parentToggle = parentDropdown.querySelector('.nav-link, div:first-child');
+        if (parentToggle) {
+          parentToggle.style.color = '#e11d48';
+          parentToggle.style.borderBottom = '2px solid #e11d48';
+          parentToggle.style.fontWeight = '700';
+        }
+      }
+    }
+
+    // 3. Apply active state based on current URL
+    navLinksUniversal.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      
+      let targetFilename = href.split('/').pop();
+      if (!targetFilename || targetFilename === '.' || targetFilename === './') targetFilename = 'index.html';
+      targetFilename = safeDecode(targetFilename);
+
+      if (targetFilename === currentFilename) {
+        highlightLink(link);
+      }
+
+      // 4. Attach click listener to update active highlight immediately on user click
+      link.addEventListener('click', function() {
+        navLinksUniversal.forEach(l => {
+          l.style.color = '';
+          l.style.borderBottom = '';
+          l.style.fontWeight = '';
+          const pDrop = l.closest('.dropdown, .mobile-dropdown');
+          if (pDrop) {
+            const pTog = pDrop.querySelector('.nav-link, div:first-child');
+            if (pTog) {
+              pTog.style.color = '';
+              pTog.style.borderBottom = '';
+              pTog.style.fontWeight = '';
+            }
+          }
+        });
+        highlightLink(this);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
