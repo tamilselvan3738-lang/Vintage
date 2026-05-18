@@ -544,7 +544,7 @@
       border: none;
       color: #ffffff;
       font-family: 'Inter', sans-serif;
-      font-size: 1.15rem;
+      font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem);
       font-weight: 700;
       letter-spacing: 0.5px;
       cursor: pointer;
@@ -570,42 +570,7 @@
       box-shadow: 0 14px 30px rgba(245, 158, 11, 0.4);
     }
 
-    /* HERO SECTION */
-    .hero {
-      margin-top: 120px;
-      padding: 5rem 6% 7rem;
-      text-align: center;
-      background: linear-gradient(145deg, #f5f2fa, #fcfaf3);
-      border-radius: 0 0 60px 60px;
-      transition: all 0.3s;
-    }
-    body.dark .hero { background: #0b0714; }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #2e1065, #f59e0b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    body.dark .hero h1 {
-      background: linear-gradient(135deg, #ffffff, #fcd34d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p {
-      color: #584f6b;
-      margin-top: 1rem;
-      font-size: 1.1rem;
-    }
-    body.dark .hero p { color: #a49ab0; }
-    @media (max-width: 500px) {
-      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
-      .logo-text { font-size: 1rem; }
-      .logo-icon { width: 38px; height: 38px; }
-    }
-
+    
     /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
     html, body {
       overflow-x: hidden;
@@ -651,7 +616,7 @@
       section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
         padding-top: 3rem !important; padding-bottom: 3rem !important; padding-left: 4% !important; padding-right: 4% !important;
       }
-      div[style*="display: flex"]:not(.navbar):not(.nav-left):not(.nav-right):not(.logo):not(.nav-menu):not(.nav-actions):not(.dropdown):not(.social-socials):not(.footer-socials):not(.newsletter-form):not(.input-wrapper):not(.checkbox-label):not(.event-row) {
+      div[style*="display: flex"]:not(.navbar):not(.nav-left):not(.nav-right):not(.logo):not(.nav-menu):not(.nav-actions):not(.dropdown):not(.social-socials):not(.footer-socials):not(.newsletter-form):not(.input-wrapper):not(.checkbox-label):not(.event-row):not(.mobile-drawer-header):not(.mobile-drawer-title-container):not(.mobile-dropdown-toggle) {
         flex-direction: column; align-items: center; text-align: center;
       }
     }
@@ -926,38 +891,39 @@
 
 <!-- mobile drawer -->
 <div class="mobile-drawer" id="mobileDrawer">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-    <div style="display: flex; align-items: center;">
+  <div class="mobile-drawer-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div class="mobile-drawer-title-container" style="display: flex; align-items: center;">
       <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: #7c3aed;">MENU</span>
     </div>
     <button id="closeDrawer" style="background: rgba(0,0,0,0.04); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; color: #584f6b; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
   </div>
   <div class="mobile-dropdown" id="mobileHomeDropdown">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+    <div class="mobile-dropdown-toggle" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
       <span style="display: flex; align-items: center; gap: 16px;"> Home</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
     </div>
     <div class="dropdown-menu">
-      <a href="#" id="mobileHome1" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 1 </a>
-      <a href="#" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
+      <a href="./index.html" id="mobileHome1" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 1 </a>
+      <a href="./home 2.html" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
     </div>
   </div>
+  <a href="./about.html" class="nav-link" style="color: #7c3aed;"> About</a>
   <div class="mobile-dropdown" id="mobileArrivalsDropdown">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+    <div class="mobile-dropdown-toggle" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
       <span style="display: flex; align-items: center; gap: 16px;"> Arrivals</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
     </div>
     <div class="dropdown-menu">
-      <a href="new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
-      <a href="vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
+      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
+      <a href="./vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
     </div>
   </div>
-  <a href="turntables.html" class="nav-link"> Turntables</a>
-  <a href="cartridge selection.html" class="nav-link"> Cartridges</a>
-  <a href="setup guides.html" class="nav-link"> Setup Guides</a>
-  <a href="trade-in program.html" class="nav-link"> Trade-In Program</a>
-  <a href="#" class="nav-link"> Local Pickup</a>
-  <a href="#" class="nav-link"> Audio Lounge</a>
-  <a href="#" class="nav-link"> About</a>
-  <a href="#" class="nav-link"> Contact</a>
+  <a href="./turntables.html" class="nav-link"> Turntables</a>
+  <a href="./cartridge selection.html" class="nav-link"> Cartridges</a>
+  <a href="./setup guides.html" class="nav-link"> Setup Guides</a>
+  <a href="./trade-in program.html" class="nav-link"> Trade-In Program</a>
+  <a href="./local pickup.html" class="nav-link"> Local Pickup</a>
+  <a href="./audio lounge.html" class="nav-link"> Audio Lounge</a>
+  
+  <a href="./contact.html" class="nav-link"> Contact</a>
   <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
   
   <a class="nav-link" id="mobileDarkToggle" style="cursor: pointer;"><i class="fas fa-moon"></i> Dark Mode</a>
@@ -972,7 +938,13 @@
 </div>
 <div class="drawer-overlay" id="drawerOverlay"></div>
 
-<!-- Hero area for demo content -->
+
+
+
+
+
+
+
 <section class="hero">
   <h1 id="dynamicTitle">Vinyl. Warmth. Soul.</h1>
   <p id="dynamicDesc">Curated turntables, rare pressings, and analog expertise — since 2012.</p>

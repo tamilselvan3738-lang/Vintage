@@ -544,7 +544,7 @@
       border: none;
       color: #ffffff;
       font-family: 'Inter', sans-serif;
-      font-size: 1.15rem;
+      font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem);
       font-weight: 700;
       letter-spacing: 0.5px;
       cursor: pointer;
@@ -570,308 +570,7 @@
       box-shadow: 0 14px 30px rgba(245, 158, 11, 0.4);
     }
 
-    /* HERO SECTION */
-    .hero {
-      margin-top: 120px;
-      padding: 5rem 6% 7rem;
-      text-align: center;
-      background: linear-gradient(145deg, #f5f2fa, #fcfaf3);
-      border-radius: 0 0 60px 60px;
-      transition: all 0.3s;
-    }
-    body.dark .hero { background: #0b0714; }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #2e1065, #f59e0b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    body.dark .hero h1 {
-      background: linear-gradient(135deg, #ffffff, #fcd34d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p {
-      color: #584f6b;
-      margin-top: 1rem;
-      font-size: 1.1rem;
-    }
-    body.dark .hero p { color: #a49ab0; }
-    @media (max-width: 500px) {
-      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
-      .logo-text { font-size: 1rem; }
-      .logo-icon { width: 38px; height: 38px; }
-    }
-
-    /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
-    html, body {
-      overflow-x: hidden;
-      width: 100%;
-      max-width: 100%;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-    p, h1, h2, h3, h4, h5, h6, span, a, blockquote {
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-    }
-    .icon-btn { font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.2rem); }
-    .login-btn { font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); }
-    .mobile-drawer-login { font-size: clamp(0.95rem, 0.75rem + 1vw, 1.25rem); }
-
-    @media (max-width: 1200px) {
-      .footer-top { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 1024px) {
-      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
-        padding-left: 5% !important; padding-right: 5% !important;
-      }
-      div[class*="grid"], div[class*="layout"], div[class*="panel"], div[class*="wrapper"] {
-        grid-template-columns: 1fr !important; gap: 2rem;
-      }
-      .footer-top { grid-template-columns: repeat(2, 1fr) !important; }
-    }
-    @media (max-width: 768px) {
-      .footer-top { grid-template-columns: 1fr !important; gap: 2rem; }
-      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
-        padding-top: 4rem !important; padding-bottom: 4rem !important;
-      }
-    }
-    @media (max-width: 500px) {
-      .navbar { padding: 0.65rem 1rem; border-radius: 18px; }
-      .logo-text { font-size: 1rem; }
-      .logo-icon { width: 38px; height: 38px; }
-    }
-    @media (max-width: 480px) {
-      section, div[class*="section"], div[class*="editorial"], div[class*="matrix"], div[class*="hub"] {
-        padding-top: 3rem !important; padding-bottom: 3rem !important; padding-left: 4% !important; padding-right: 4% !important;
-      }
-      div[style*="display: flex"]:not(.navbar):not(.nav-left):not(.nav-right):not(.logo):not(.nav-menu):not(.nav-actions):not(.dropdown):not(.social-socials):not(.footer-socials):not(.newsletter-form):not(.input-wrapper):not(.checkbox-label):not(.event-row) {
-        flex-direction: column; align-items: center; text-align: center;
-      }
-    }
-
-    /* ========== PREMIUM FOOTER (Ultraviolet Sunset Theme) ========== */
-    .footer {
-      background-color: #ffffff;
-      border-top: 1px solid rgba(124, 58, 237, 0.12);
-      padding: 5rem 6% 3rem;
-      margin-top: 4rem;
-      transition: all 0.4s ease;
-      box-shadow: 0 -10px 40px rgba(124, 58, 237, 0.03);
-    }
-    body.dark .footer {
-      background-color: #0b0714;
-      border-top-color: rgba(245, 158, 11, 0.15);
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
-    }
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 3rem;
-      margin-bottom: 4rem;
-    }
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    .footer-brand p {
-      color: #584f6b;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      max-width: 320px;
-    }
-    body.dark .footer-brand p {
-      color: #a49ab0;
-    }
-    .footer-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #2e1065;
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-    body.dark .footer-title {
-      color: #fcd34d;
-    }
-    .footer-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 30px;
-      height: 2px;
-      background: linear-gradient(135deg, #7c3aed, #f59e0b);
-      border-radius: 2px;
-    }
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-    .footer-link {
-      color: #443a55;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    body.dark .footer-link {
-      color: #c0b6ca;
-    }
-    .footer-link:hover {
-      color: #7c3aed;
-      transform: translateX(4px);
-    }
-    body.dark .footer-link:hover {
-      color: #fcd34d;
-    }
-    .footer-newsletter p {
-      color: #584f6b;
-      font-size: 0.9rem;
-      margin-bottom: 1.2rem;
-      line-height: 1.5;
-    }
-    body.dark .footer-newsletter p {
-      color: #a49ab0;
-    }
-    .newsletter-form {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .newsletter-input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(124, 58, 237, 0.2);
-      background: rgba(124, 58, 237, 0.02);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      color: #1b1624;
-      outline: none;
-      transition: all 0.3s;
-    }
-    body.dark .newsletter-input {
-      background: rgba(255, 255, 255, 0.03);
-      border-color: rgba(255, 255, 255, 0.1);
-      color: #e4dee8;
-    }
-    .newsletter-input:focus {
-      border-color: #7c3aed;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
-    }
-    body.dark .newsletter-input:focus {
-      border-color: #fcd34d;
-      box-shadow: 0 0 0 3px rgba(252, 211, 77, 0.15);
-    }
-    .newsletter-btn {
-      background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
-      border: none;
-      color: #ffffff;
-      width: 42px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
-    }
-    body.dark .newsletter-btn {
-      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
-      color: #0b0714;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
-    }
-    .newsletter-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
-    }
-    .footer-bottom {
-      padding-top: 2rem;
-      border-top: 1px solid rgba(124, 58, 237, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-    body.dark .footer-bottom {
-      border-top-color: rgba(255, 255, 255, 0.05);
-    }
-    .footer-copyright {
-      color: #7c6f8d;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-    body.dark .footer-copyright {
-      color: #8c829c;
-    }
-    .footer-socials {
-      display: flex;
-      gap: 0.8rem;
-    }
-    .social-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: rgba(124, 58, 237, 0.04);
-      border: 1px solid rgba(124, 58, 237, 0.1);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #584f6b;
-      text-decoration: none;
-      transition: all 0.3s;
-      font-size: 0.95rem;
-    }
-    body.dark .social-btn {
-      background: rgba(255, 255, 255, 0.03);
-      border-color: rgba(255, 255, 255, 0.06);
-      color: #c0b6ca;
-    }
-    .social-btn:hover {
-      background: #7c3aed;
-      border-color: #7c3aed;
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-    body.dark .social-btn:hover {
-      background: #fcd34d;
-      border-color: #fcd34d;
-      color: #0b0714;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 1024px) {
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
-      }
-    }
-    @media (max-width: 600px) {
-      .footer-top {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        justify-content: center;
-      }
-    }
-
+    
     /* ==========================================================================
        ARRIVALS VAULT: UNIQUE MULTI-SECTION PREMIUM STYLING
        ========================================================================== */
@@ -1685,14 +1384,14 @@
 
 <!-- mobile drawer -->
 <div class="mobile-drawer" id="mobileDrawer">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-    <div style="display: flex; align-items: center;">
+  <div class="mobile-drawer-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div class="mobile-drawer-title-container" style="display: flex; align-items: center;">
       <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: #7c3aed;">MENU</span>
     </div>
     <button id="closeDrawer" style="background: rgba(0,0,0,0.04); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; color: #584f6b; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
   </div>
   <div class="mobile-dropdown" id="mobileHomeDropdown">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+    <div class="mobile-dropdown-toggle" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
       <span style="display: flex; align-items: center; gap: 16px;"> Home</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
     </div>
     <div class="dropdown-menu">
@@ -1700,13 +1399,13 @@
       <a href="./home 2.html" id="mobileHome2" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Home 2 </a>
     </div>
   </div>
-  <a href="./about.html" class="nav-link"> About</a>
+  <a href="./about.html" class="nav-link" style="color: #7c3aed;"> About</a>
   <div class="mobile-dropdown" id="mobileArrivalsDropdown">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
+    <div class="mobile-dropdown-toggle" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: rgba(124, 58, 237, 0.04); cursor: pointer; font-size: 1.05rem; font-weight: 600; color: #7c3aed;">
       <span style="display: flex; align-items: center; gap: 16px;"> Arrivals</span> <i class="fas fa-chevron-down" style="font-size: 0.85rem;"></i>
     </div>
     <div class="dropdown-menu">
-      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem; color: #7c3aed;"> New Arrivals</a>
+      <a href="./new arrivals.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> New Arrivals</a>
       <a href="./vinyl collections.html" class="nav-link" style="padding: 10px 16px; font-size: 0.95rem;"> Vinyl Collections</a>
     </div>
   </div>
@@ -1716,6 +1415,7 @@
   <a href="./trade-in program.html" class="nav-link"> Trade-In Program</a>
   <a href="./local pickup.html" class="nav-link"> Local Pickup</a>
   <a href="./audio lounge.html" class="nav-link"> Audio Lounge</a>
+  
   <a href="./contact.html" class="nav-link"> Contact</a>
   <hr style="margin: 16px 0; border: none; border-top: 1px solid rgba(124, 58, 237, 0.1);">
   
@@ -1730,6 +1430,14 @@
   </div>
 </div>
 <div class="drawer-overlay" id="drawerOverlay"></div>
+
+
+
+
+
+
+
+
 
 <!-- ==========================================
      SECTION 1: THE STUDIO INFLUX (HERO HEADER)
