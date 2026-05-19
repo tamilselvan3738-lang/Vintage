@@ -16,6 +16,19 @@
       box-sizing: border-box;
     }
 
+    /* Hide scrollbar visually and lock viewport to a single screen */
+    html, body {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    html::-webkit-scrollbar, body::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #f8f6fc;
@@ -23,9 +36,7 @@
                         radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
       color: #1b1624;
       transition: background 0.4s ease, color 0.4s ease;
-      min-height: 100vh;
       position: relative;
-      overflow-x: hidden;
     }
 
     /* ----- DARK MODE (Immersive Deep Studio aesthetic) ----- */
@@ -126,10 +137,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 2rem 1rem;
+      height: 100vh;
+      height: 100dvh;
+      padding: 1rem;
       position: relative;
       z-index: 1;
+      overflow-y: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    .login-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
     }
 
     .login-card {
@@ -138,10 +156,10 @@
       -webkit-backdrop-filter: blur(24px) saturate(180%);
       border: 1px solid rgba(124, 58, 237, 0.15);
       box-shadow: 0 25px 60px -15px rgba(124, 58, 237, 0.15), 0 0 1px rgba(0,0,0,0.1);
-      border-radius: 32px;
+      border-radius: 24px;
       width: 100%;
-      max-width: 460px;
-      padding: 3rem 2.5rem;
+      max-width: 440px;
+      padding: 1.75rem 2rem;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     body.dark .login-card {
@@ -154,12 +172,12 @@
     .logo-container {
       display: flex;
       justify-content: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.25rem;
     }
     .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       flex-shrink: 0;
@@ -168,22 +186,22 @@
       transform: translateY(-1px) scale(1.02);
     }
     .logo-icon {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       background: linear-gradient(135deg, #2e1065 0%, #581c87 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15), inset 0 1px 2px rgba(255,255,255,0.1);
       border: 2px solid #f59e0b;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .logo-icon::before {
       content: '';
       position: absolute;
-      inset: 4px;
+      inset: 3px;
       border-radius: 50%;
       border: 1px dashed rgba(245, 158, 11, 0.4);
       animation: spin 20s linear infinite;
@@ -193,10 +211,10 @@
     }
     .logo:hover .logo-icon {
       border-color: #f59e0b;
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35), inset 0 2px 4px rgba(255,255,255,0.2);
+      box-shadow: 0 6px 15px rgba(245, 158, 11, 0.35), inset 0 1px 2px rgba(255,255,255,0.2);
     }
     .logo-icon i {
-      font-size: 20px;
+      font-size: 16px;
       color: #fef3c7;
       z-index: 1;
       transition: color 0.3s;
@@ -207,7 +225,7 @@
     .logo-text {
       font-family: 'Playfair Display', serif;
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       letter-spacing: -0.3px;
       line-height: 1.1;
       background: linear-gradient(135deg, #2e1065 20%, #d97706 100%);
@@ -222,13 +240,13 @@
     }
     .logo small {
       font-family: 'Inter', sans-serif;
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       font-weight: 600;
       text-transform: uppercase;
       display: block;
       letter-spacing: 1.5px;
       color: #7c3aed;
-      margin-top: 2px;
+      margin-top: 1px;
     }
     body.dark .logo small {
       color: #fbbf24;
@@ -237,33 +255,33 @@
     /* ----- FORM STYLES ----- */
     .form-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
+      font-size: 1.45rem;
       font-weight: 800;
       color: #2e1065;
-      margin-bottom: 6px;
+      margin-bottom: 2px;
       text-align: center;
       letter-spacing: -0.4px;
     }
     body.dark .form-title { color: #ffffff; }
 
     .form-subtitle {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       color: #7c6f8d;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
     }
     body.dark .form-subtitle { color: #a49ab0; }
 
     .input-group {
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.85rem;
       position: relative;
     }
     .input-label {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       color: #443a55;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       text-transform: uppercase;
       letter-spacing: 0.8px;
     }
@@ -289,19 +307,19 @@
 
     .form-input {
       width: 100%;
-      height: 52px;
+      height: 44px;
       background: rgba(124, 58, 237, 0.02);
       border: 1px solid rgba(124, 58, 237, 0.12);
-      border-radius: 16px;
-      padding: 0 16px 0 46px;
+      border-radius: 12px;
+      padding: 0 16px 0 42px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #1b1624;
       transition: all 0.3s;
       outline: none;
     }
     body.rtl .form-input {
-      padding: 0 46px 0 16px;
+      padding: 0 42px 0 16px;
     }
     body.dark .form-input {
       background: rgba(255, 255, 255, 0.02);
@@ -356,8 +374,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
-      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.8rem;
     }
 
     .checkbox-label {
@@ -421,37 +439,37 @@
     /* Submit Button */
     .submit-btn {
       width: 100%;
-      height: 52px;
-      border-radius: 16px;
+      height: 44px;
+      border-radius: 12px;
       background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
       border: none;
       font-family: 'Inter', sans-serif;
       font-weight: 700;
-      font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.15rem);
+      font-size: 0.95rem;
       color: #ffffff;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       letter-spacing: 0.5px;
-      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6px 15px rgba(124, 58, 237, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1rem;
     }
     body.dark .submit-btn {
       background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
       color: #0b0714 !important;
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+      box-shadow: 0 6px 15px rgba(245, 158, 11, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.4);
     }
     .submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(124, 58, 237, 0.4);
+      box-shadow: 0 10px 24px rgba(124, 58, 237, 0.35);
       background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
     }
     body.dark .submit-btn:hover {
       background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
-      box-shadow: 0 12px 28px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.35);
     }
 
     /* Divider */
@@ -459,9 +477,9 @@
       display: flex;
       align-items: center;
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.85rem;
       color: #8c829c;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -482,19 +500,19 @@
     .social-logins {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 1.8rem;
+      gap: 10px;
+      margin-bottom: 1.15rem;
     }
     .social-btn-card {
-      height: 48px;
-      border-radius: 14px;
+      height: 38px;
+      border-radius: 10px;
       background: rgba(124, 58, 237, 0.02);
       border: 1px solid rgba(124, 58, 237, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
       color: #443a55;
-      font-size: 1.2rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s;
       text-decoration: none;
@@ -521,11 +539,11 @@
     /* Create Account / Registration Redirect */
     .register-prompt {
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       color: #584f6b;
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
       border-top: 1px solid rgba(124, 58, 237, 0.08);
-      padding-top: 1.5rem;
+      padding-top: 1rem;
     }
     body.dark .register-prompt {
       color: #a49ab0;

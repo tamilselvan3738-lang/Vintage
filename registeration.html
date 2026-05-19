@@ -16,6 +16,19 @@
       box-sizing: border-box;
     }
 
+    /* Hide scrollbar visually and lock viewport to a single screen */
+    html, body {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    html::-webkit-scrollbar, body::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #f8f6fc;
@@ -23,9 +36,7 @@
                         radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
       color: #1b1624;
       transition: background 0.4s ease, color 0.4s ease;
-      min-height: 100vh;
       position: relative;
-      overflow-x: hidden;
     }
 
     /* ----- DARK MODE (Immersive Deep Studio aesthetic) ----- */
@@ -126,10 +137,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 3rem 1rem;
+      height: 100vh;
+      height: 100dvh;
+      padding: 1rem;
       position: relative;
       z-index: 1;
+      overflow-y: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    .register-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
     }
 
     .register-card {
@@ -138,10 +156,10 @@
       -webkit-backdrop-filter: blur(24px) saturate(180%);
       border: 1px solid rgba(124, 58, 237, 0.15);
       box-shadow: 0 25px 60px -15px rgba(124, 58, 237, 0.15), 0 0 1px rgba(0,0,0,0.1);
-      border-radius: 32px;
+      border-radius: 20px;
       width: 100%;
-      max-width: 500px;
-      padding: 3rem 2.5rem;
+      max-width: 420px;
+      padding: 1rem 1.5rem;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     body.dark .register-card {
@@ -154,12 +172,12 @@
     .logo-container {
       display: flex;
       justify-content: center;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
     }
     .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       text-decoration: none;
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       flex-shrink: 0;
@@ -168,22 +186,22 @@
       transform: translateY(-1px) scale(1.02);
     }
     .logo-icon {
-      width: 44px;
-      height: 44px;
+      width: 32px;
+      height: 32px;
       background: linear-gradient(135deg, #2e1065 0%, #581c87 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15), inset 0 1px 2px rgba(255,255,255,0.1);
       border: 2px solid #f59e0b;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .logo-icon::before {
       content: '';
       position: absolute;
-      inset: 4px;
+      inset: 3px;
       border-radius: 50%;
       border: 1px dashed rgba(245, 158, 11, 0.4);
       animation: spin 20s linear infinite;
@@ -193,10 +211,10 @@
     }
     .logo:hover .logo-icon {
       border-color: #f59e0b;
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35), inset 0 2px 4px rgba(255,255,255,0.2);
+      box-shadow: 0 6px 15px rgba(245, 158, 11, 0.35), inset 0 1px 2px rgba(255,255,255,0.2);
     }
     .logo-icon i {
-      font-size: 20px;
+      font-size: 14px;
       color: #fef3c7;
       z-index: 1;
       transition: color 0.3s;
@@ -207,7 +225,7 @@
     .logo-text {
       font-family: 'Playfair Display', serif;
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.05rem;
       letter-spacing: -0.3px;
       line-height: 1.1;
       background: linear-gradient(135deg, #2e1065 20%, #d97706 100%);
@@ -222,13 +240,13 @@
     }
     .logo small {
       font-family: 'Inter', sans-serif;
-      font-size: 0.62rem;
+      font-size: 0.5rem;
       font-weight: 600;
       text-transform: uppercase;
       display: block;
       letter-spacing: 1.5px;
       color: #7c3aed;
-      margin-top: 2px;
+      margin-top: 1px;
     }
     body.dark .logo small {
       color: #fbbf24;
@@ -237,33 +255,33 @@
     /* ----- FORM STYLES ----- */
     .form-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.65rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: #2e1065;
-      margin-bottom: 6px;
+      margin-bottom: 1px;
       text-align: center;
       letter-spacing: -0.4px;
     }
     body.dark .form-title { color: #ffffff; }
 
     .form-subtitle {
-      font-size: 0.88rem;
+      font-size: 0.78rem;
       color: #7c6f8d;
       text-align: center;
-      margin-bottom: 1.8rem;
+      margin-bottom: 0.6rem;
     }
     body.dark .form-subtitle { color: #a49ab0; }
 
     .input-group {
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.45rem;
       position: relative;
     }
     .input-label {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 700;
       color: #443a55;
-      margin-bottom: 8px;
+      margin-bottom: 2px;
       text-transform: uppercase;
       letter-spacing: 0.8px;
     }
@@ -276,38 +294,39 @@
     }
     .input-icon {
       position: absolute;
-      left: 16px;
+      left: 12px;
       color: #8c829c;
-      font-size: 1rem;
+      font-size: 0.9rem;
       transition: color 0.3s;
       pointer-events: none;
     }
     body.rtl .input-icon {
       left: auto;
-      right: 16px;
+      right: 12px;
     }
 
     .form-input {
       width: 100%;
-      height: 52px;
+      height: 36px;
       background: rgba(124, 58, 237, 0.02);
       border: 1px solid rgba(124, 58, 237, 0.12);
-      border-radius: 16px;
-      padding: 0 16px 0 46px;
+      border-radius: 10px;
+      padding: 0 12px 0 36px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       color: #1b1624;
       transition: all 0.3s;
       outline: none;
     }
     .password-input {
-      padding-right: 46px; /* space for eye icon */
+      padding-right: 36px; /* space for eye icon */
     }
     body.rtl .form-input {
-      padding: 0 46px 0 16px;
+      padding: 0 36px 0 12px;
     }
     body.rtl .password-input {
-      padding-left: 46px; /* space for eye icon in RTL */
+      padding-left: 36px; /* space for eye icon in RTL */
+      padding-right: 12px;
     }
     body.dark .form-input {
       background: rgba(255, 255, 255, 0.02);
@@ -317,12 +336,12 @@
     .form-input:focus {
       background: #ffffff;
       border-color: #7c3aed;
-      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
     }
     body.dark .form-input:focus {
       background: rgba(11, 7, 20, 0.9);
       border-color: #fcd34d;
-      box-shadow: 0 0 0 4px rgba(252, 211, 77, 0.15);
+      box-shadow: 0 0 0 3px rgba(252, 211, 77, 0.15);
     }
     .form-input:focus ~ .input-icon {
       color: #7c3aed;
@@ -334,12 +353,12 @@
     /* Eye Icon Toggle */
     .eye-btn {
       position: absolute;
-      right: 16px;
+      right: 12px;
       background: none;
       border: none;
       color: #8c829c;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.9rem;
       padding: 4px;
       transition: color 0.2s;
       display: flex;
@@ -348,7 +367,7 @@
     }
     body.rtl .eye-btn {
       right: auto;
-      left: 16px;
+      left: 12px;
     }
     .eye-btn:hover {
       color: #7c3aed;
@@ -359,16 +378,16 @@
 
     /* Terms checkbox row */
     .terms-row {
-      margin-top: 0.5rem;
-      margin-bottom: 1.6rem;
+      margin-top: 0.15rem;
+      margin-bottom: 0.6rem;
     }
     .checkbox-label {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       cursor: pointer;
       color: #584f6b;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 500;
       user-select: none;
       position: relative;
@@ -376,9 +395,9 @@
     body.dark .checkbox-label { color: #c0b6ca; }
 
     .custom-checkbox {
-      width: 18px;
-      height: 18px;
-      border-radius: 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
       border: 1px solid rgba(124, 58, 237, 0.3);
       display: inline-flex;
       align-items: center;
@@ -386,7 +405,7 @@
       transition: all 0.2s;
       background: rgba(255,255,255,0.5);
       color: transparent;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       flex-shrink: 0;
     }
     body.dark .custom-checkbox {
@@ -421,37 +440,37 @@
     /* Submit Button */
     .submit-btn {
       width: 100%;
-      height: 52px;
-      border-radius: 16px;
+      height: 36px;
+      border-radius: 10px;
       background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
       border: none;
       font-family: 'Inter', sans-serif;
       font-weight: 700;
-      font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.15rem);
+      font-size: 0.9rem;
       color: #ffffff;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       letter-spacing: 0.5px;
-      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-bottom: 1.6rem;
+      margin-bottom: 0.6rem;
     }
     body.dark .submit-btn {
       background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
       color: #0b0714 !important;
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.4);
     }
     .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(124, 58, 237, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 15px rgba(124, 58, 237, 0.3);
       background: linear-gradient(135deg, #6d28d9 0%, #d97706 100%);
     }
     body.dark .submit-btn:hover {
       background: linear-gradient(135deg, #fde68a 0%, #d97706 100%);
-      box-shadow: 0 12px 28px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 6px 15px rgba(245, 158, 11, 0.35);
     }
 
     /* Divider */
@@ -459,9 +478,9 @@
       display: flex;
       align-items: center;
       text-align: center;
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.5rem;
       color: #8c829c;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -475,26 +494,26 @@
       border-bottom-color: rgba(255, 255, 255, 0.08);
     }
     .divider span {
-      padding: 0 14px;
+      padding: 0 10px;
     }
 
     /* Social Logins */
     .social-logins {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 1.6rem;
+      gap: 8px;
+      margin-bottom: 0.5rem;
     }
     .social-btn-card {
-      height: 48px;
-      border-radius: 14px;
+      height: 32px;
+      border-radius: 8px;
       background: rgba(124, 58, 237, 0.02);
       border: 1px solid rgba(124, 58, 237, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
       color: #443a55;
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.3s;
       text-decoration: none;
@@ -508,24 +527,24 @@
       background: #ffffff;
       border-color: #7c3aed;
       color: #7c3aed;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(124, 58, 237, 0.1);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.1);
     }
     body.dark .social-btn-card:hover {
       background: rgba(11, 7, 20, 0.8);
       border-color: #fcd34d;
       color: #fcd34d;
-      box-shadow: 0 6px 15px rgba(252, 211, 77, 0.15);
+      box-shadow: 0 4px 10px rgba(252, 211, 77, 0.15);
     }
 
     /* Login Redirect */
     .login-prompt {
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.78rem;
       color: #584f6b;
-      margin-top: 0.5rem;
+      margin-top: 0.15rem;
       border-top: 1px solid rgba(124, 58, 237, 0.08);
-      padding-top: 1.5rem;
+      padding-top: 0.6rem;
     }
     body.dark .login-prompt {
       color: #a49ab0;
