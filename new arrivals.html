@@ -639,6 +639,8 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      text-align: center;
+      align-items: center;
     }
     .section-badge {
       font-family: 'Inter', sans-serif;
@@ -680,6 +682,8 @@
       font-size: 1.05rem;
       max-width: 600px;
       margin-top: 0.5rem;
+      margin-left: auto;
+      margin-right: auto;
     }
     body.dark .section-subtitle {
       color: #a49ab0;
@@ -1418,6 +1422,10 @@
       }
       div[class*="grid"], div[class*="layout"], div[class*="panel"], div[class*="wrapper"] {
         grid-template-columns: 1fr !important; gap: 2rem;
+      }
+      .bento-wide, .bento-tall {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
       }
       .footer-top { grid-template-columns: repeat(2, 1fr) !important; }
     }
