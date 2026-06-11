@@ -52,8 +52,10 @@
     .navbar {
       position: fixed;
       top: 16px;
-      left: 2%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 96%;
+      max-width: 1280px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -662,13 +664,16 @@
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
+      font-weight: 500;
       letter-spacing: -0.5px;
       color: #2e1065;
       line-height: 1.1;
     }
     body.dark .section-title {
       color: #fcd34d;
+    }
+    .arrivals-hero .section-title {
+      font-weight: 600;
     }
     .section-subtitle {
       color: #584f6b;
@@ -1381,6 +1386,12 @@
     }
 
         /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    /* Constrain all page content sections and footer to a single consistent container width of 1280px */
+    section, .footer {
+      padding-left: max(6%, calc((100% - 1280px) / 2)) !important;
+      padding-right: max(6%, calc((100% - 1280px) / 2)) !important;
+    }
+
     html, body {
       overflow-x: hidden;
       width: 100%;

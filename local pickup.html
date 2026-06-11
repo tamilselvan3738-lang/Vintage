@@ -52,8 +52,10 @@
     .navbar {
       position: fixed;
       top: 16px;
-      left: 2%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 96%;
+      max-width: 1280px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -642,7 +644,7 @@
     .pickup-hero-content h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.4rem, 5vw, 4.2rem);
-      font-weight: 800;
+      font-weight: 600;
       color: #2e1065;
       line-height: 1.08;
       letter-spacing: -0.5px;
@@ -700,7 +702,7 @@
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 4vw, 3.4rem);
-      font-weight: 800;
+      font-weight: 500;
       color: #2e1065;
       letter-spacing: -0.5px;
       margin-top: 6px;
@@ -1100,6 +1102,12 @@
     body.dark .intake-field option { background: #0b0714; color: #ffffff; }
 
     /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    /* Constrain all page content sections and footer to a single consistent container width of 1280px */
+    section, .footer {
+      padding-left: max(6%, calc((100% - 1280px) / 2)) !important;
+      padding-right: max(6%, calc((100% - 1280px) / 2)) !important;
+    }
+
     html, body {
       overflow-x: hidden;
       width: 100%;

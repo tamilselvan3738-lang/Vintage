@@ -52,8 +52,10 @@
     .navbar {
       position: fixed;
       top: 16px;
-      left: 2%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 96%;
+      max-width: 1280px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -622,6 +624,12 @@
 
     
     /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    /* Constrain all page content sections and footer to a single consistent container width of 1280px */
+    section, .footer {
+      padding-left: max(6%, calc((100% - 1280px) / 2)) !important;
+      padding-right: max(6%, calc((100% - 1280px) / 2)) !important;
+    }
+
     html, body {
       overflow-x: hidden;
       width: 100%;
@@ -634,6 +642,9 @@
     p, h1, h2, h3, h4, h5, h6, span, a, blockquote {
       overflow-wrap: break-word;
       word-wrap: break-word;
+    }
+    #dynamicTitle {
+      font-weight: 600;
     }
     .icon-btn { font-size: clamp(0.9rem, 0.7rem + 0.5vw, 1.2rem); }
     .login-btn { font-size: clamp(0.75rem, 0.5rem + 0.5vw, 0.95rem); }

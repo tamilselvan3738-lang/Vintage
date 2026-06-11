@@ -52,8 +52,10 @@
     .navbar {
       position: fixed;
       top: 16px;
-      left: 2%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 96%;
+      max-width: 1280px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -647,12 +649,16 @@
     .trade-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.2rem, 4.5vw, 3.8rem);
-      font-weight: 800;
+      font-weight: 500;
       color: #2e1065;
       line-height: 1.1;
       letter-spacing: -0.5px;
     }
     body.dark .trade-title { color: #ffffff; }
+
+    .trade-hero .trade-title {
+      font-weight: 600;
+    }
 
     /* SECTION 1: HERO */
     .trade-hero {
@@ -846,6 +852,12 @@
     }
 
         /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    /* Constrain all page content sections and footer to a single consistent container width of 1280px */
+    section, .footer {
+      padding-left: max(6%, calc((100% - 1280px) / 2)) !important;
+      padding-right: max(6%, calc((100% - 1280px) / 2)) !important;
+    }
+
     html, body {
       overflow-x: hidden;
       width: 100%;

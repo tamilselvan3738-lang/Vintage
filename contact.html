@@ -52,8 +52,10 @@
     .navbar {
       position: fixed;
       top: 16px;
-      left: 2%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 96%;
+      max-width: 1280px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -644,12 +646,16 @@
     .contact-section-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 4.5vw, 3.4rem);
-      font-weight: 800;
+      font-weight: 500;
       color: #2e1065;
       letter-spacing: -0.5px;
       line-height: 1.1;
     }
     body.dark .contact-section-title { color: #ffffff; }
+
+    .contact-hero-portal .contact-section-title {
+      font-weight: 600;
+    }
 
     /* SECTION 1: CONTACT GATEWAY HERO (Premium Overlay Layout) */
     .contact-hero-portal {
@@ -673,7 +679,7 @@
     .contact-hero-content {
       position: relative;
       z-index: 1;
-      max-width: 1400px;
+      max-width: 1280px;
       margin: 0 auto;
       width: 100%;
     }
@@ -916,6 +922,12 @@
     body.dark .courier-badge { color: #fcd34d; }
 
     /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    /* Constrain all page content sections and footer to a single consistent container width of 1280px */
+    section, .footer {
+      padding-left: max(6%, calc((100% - 1280px) / 2)) !important;
+      padding-right: max(6%, calc((100% - 1280px) / 2)) !important;
+    }
+
     html, body {
       overflow-x: hidden;
       width: 100%;

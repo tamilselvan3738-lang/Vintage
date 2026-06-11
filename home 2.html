@@ -52,8 +52,10 @@
     .navbar {
       position: fixed;
       top: 16px;
-      left: 2%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 96%;
+      max-width: 1280px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -645,7 +647,7 @@
     .vault-heading {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 800;
+      font-weight: 500;
       color: #1e1b4b;
       letter-spacing: -0.5px;
       line-height: 1.08;
@@ -659,16 +661,16 @@
       position: relative;
     }
     .vault-hero-card {
-      max-width: 1400px;
+      max-width: 1280px;
       margin: 0 auto;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.9) 100%);
       border-radius: 40px;
       border: 1px solid rgba(109, 40, 217, 0.15);
-      padding: 6rem 5%;
+      padding: 4rem 4%;
       box-shadow: 0 30px 60px rgba(109, 40, 217, 0.08);
       backdrop-filter: blur(20px);
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 4rem;
       align-items: center;
     }
@@ -680,7 +682,7 @@
     .vault-hero-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.6rem, 5.5vw, 4.8rem);
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: -1px;
       line-height: 1.05;
       background: linear-gradient(135deg, #4c1d95 0%, #d97706 100%);
@@ -695,8 +697,9 @@
     }
     .vault-hero-media {
       width: 100%;
-      max-height: 440px;
-      object-fit: contain;
+      height: 100%;
+      max-height: 520px;
+      object-fit: cover;
       border-radius: 24px;
       filter: drop-shadow(0 20px 40px rgba(109, 40, 217, 0.2));
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -713,7 +716,7 @@
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
       gap: 5rem;
-      max-width: 1350px;
+      max-width: 1280px;
       margin: 4rem auto 0;
       align-items: center;
     }
@@ -772,7 +775,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 3rem;
-      max-width: 1350px;
+      max-width: 1280px;
       margin: 5rem auto 0;
     }
     .vault-mile-card {
@@ -797,7 +800,7 @@
       padding: 7rem 6%;
     }
     .vault-trans-card {
-      max-width: 1350px;
+      max-width: 1280px;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 36px;
@@ -819,9 +822,9 @@
     }
     .vault-plate-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      max-width: 1350px;
+      max-width: 1280px;
       margin: 4rem auto 0;
     }
     .vault-plate-item {
@@ -878,7 +881,7 @@
       padding: 3rem 6% 8rem;
     }
     .vault-intake-card {
-      max-width: 1350px;
+      max-width: 1280px;
       margin: 0 auto;
       background: linear-gradient(135deg, #2e1065 0%, #0b0714 100%);
       border-radius: 40px;
@@ -909,6 +912,12 @@
     }
 
     /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    /* Constrain all page content sections and footer to a single consistent container width of 1280px */
+    section, .footer {
+      padding-left: max(6%, calc((100% - 1280px) / 2)) !important;
+      padding-right: max(6%, calc((100% - 1280px) / 2)) !important;
+    }
+
     html, body {
       overflow-x: hidden;
       width: 100%;
@@ -1348,10 +1357,12 @@
      SECTION 3: HEAVYWEIGHT PRESSING MILESTONES
      ========================================================================== -->
 <section class="vault-milestones-section">
-  <div style="max-width: 800px;">
-    <span style="font-family: monospace; color: #fbbf24; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px;">VAULT METRICS</span>
-    <h2 style="font-family: serif; font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; margin-top: 8px;">A Heritage Of Weight</h2>
-    <p style="color: #9ca3af; font-size: 1.1rem; margin-top: 8px;">Verified pressing weights and spatial precision targets.</p>
+  <div style="max-width: 1280px; margin: 0 auto; width: 100%;">
+    <div style="max-width: 800px;">
+      <span style="font-family: monospace; color: #fbbf24; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px;">VAULT METRICS</span>
+      <h2 style="font-family: serif; font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; margin-top: 8px;">A Heritage Of Weight</h2>
+      <p style="color: #9ca3af; font-size: 1.1rem; margin-top: 8px;">Verified pressing weights and spatial precision targets.</p>
+    </div>
   </div>
 
   <div class="vault-mile-grid">
@@ -1434,6 +1445,21 @@
       <span style="font-size: 1.6rem; color: #06b6d4; display: block; margin-bottom: 12px;"><i class="fas fa-shield-alt"></i></span>
       <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit;">Stamper Chrome Hardening</h3>
       <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.5; margin-top: 8px;">Microscopic chromium passivation layers protecting groove walls from immense pressing heat.</p>
+    </div>
+    <div class="vault-plate-item">
+      <span style="font-size: 1.6rem; color: #4f46e5; display: block; margin-bottom: 12px;"><i class="fas fa-flask"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit;">Nickel Sulfamate Deposition</h3>
+      <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.5; margin-top: 8px;">High-speed bulk electrodeposition creating a highly durable structural backing.</p>
+    </div>
+    <div class="vault-plate-item">
+      <span style="font-size: 1.6rem; color: #d97706; display: block; margin-bottom: 12px;"><i class="fas fa-circle-notch"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit;">Precision Back Polishing</h3>
+      <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.5; margin-top: 8px;">Precision micro-sanded polishing of the stamper reverse side to ensure zero hydraulic resonance when mounted.</p>
+    </div>
+    <div class="vault-plate-item">
+      <span style="font-size: 1.6rem; color: #059669; display: block; margin-bottom: 12px;"><i class="fas fa-microscope"></i></span>
+      <h3 style="font-family: serif; font-size: 1.25rem; font-weight: 800; color: inherit;">Groove Geometry Verification</h3>
+      <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.5; margin-top: 8px;">3D optical interferometry scanning verifying that stampers match original lacquer cutting angles within 0.1%.</p>
     </div>
   </div>
 </section>

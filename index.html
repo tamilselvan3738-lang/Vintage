@@ -69,8 +69,10 @@
     .navbar {
       position: fixed;
       top: 16px;
-      left: 2%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 96%;
+      max-width: 1280px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -660,7 +662,7 @@
     .home-section-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.75rem, 4.5vw, 3.5rem);
-      font-weight: 800;
+      font-weight: 500;
       color: #2e1065;
       letter-spacing: -0.5px;
       line-height: 1.1;
@@ -716,7 +718,7 @@
     .home-hero-content {
       position: relative;
       z-index: 1;
-      max-width: 1400px;
+      max-width: 1280px;
       margin: 0 auto;
     }
     .home-hero-grid {
@@ -747,7 +749,7 @@
     .home-hero-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 5.5vw, 4.6rem);
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: -1px;
       line-height: 1.05;
       background: linear-gradient(135deg, #2e1065 20%, #f59e0b 100%);
@@ -800,7 +802,7 @@
     }
     body.dark .home-deck-card:hover { border-color: #f59e0b; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
     .home-deck-img-wrap {
-      padding: 2.5rem;
+      padding: 0;
       background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.03), transparent 70%);
       display: flex;
       align-items: center;
@@ -810,14 +812,14 @@
     body.dark .home-deck-img-wrap { border-bottom-color: rgba(255, 255, 255, 0.04); }
     .home-deck-img {
       width: 100%;
-      height: 220px;
-      object-fit: contain;
+      height: 240px;
+      object-fit: cover;
       filter: drop-shadow(0 15px 20px rgba(0,0,0,0.1));
       transition: transform 0.4s;
     }
     .home-deck-card:hover .home-deck-img { transform: scale(1.06); }
     .home-deck-info {
-      padding: 2.5rem;
+      padding: 1.5rem 1.5rem 1.25rem 1.5rem;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -867,9 +869,10 @@
     }
     .home-vault-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
+      grid-template-columns: 1fr 1.08fr 1fr;
+      gap: 2.5rem;
       margin-top: 4rem;
+      align-items: center;
     }
     .home-vault-item {
       background: rgba(255, 255, 255, 0.03);
@@ -877,18 +880,32 @@
       border-radius: 20px;
       padding: 1.5rem;
       transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      aspect-ratio: 3 / 4.2;
     }
     .home-vault-item:hover {
       border-color: #f59e0b;
       transform: translateY(-5px);
       background: rgba(255, 255, 255, 0.05);
     }
+    .home-vault-item:nth-child(2) {
+      transform: scale(1.06);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(245, 158, 11, 0.3);
+      z-index: 2;
+    }
+    .home-vault-item:nth-child(2):hover {
+      transform: scale(1.08) translateY(-5px);
+      border-color: #f59e0b;
+    }
     .home-vault-cover {
       width: 100%;
       aspect-ratio: 1;
       border-radius: 12px;
       object-fit: cover;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.8rem;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -953,27 +970,52 @@
       padding: 7rem 6%;
       background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.02), transparent 60%);
     }
+    .home-testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
     .home-review-card {
-      max-width: 860px;
-      margin: 4rem auto 0;
       background: #ffffff;
-      border-radius: 32px;
-      padding: 4.5rem;
+      border-radius: 28px;
+      padding: 2.5rem;
       border: 1px solid rgba(124, 58, 237, 0.15);
       position: relative;
       box-shadow: 0 20px 60px rgba(124, 58, 237, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
     }
     body.dark .home-review-card { background: rgba(12, 8, 22, 0.6); border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 20px 60px rgba(0,0,0,0.7); }
+    .home-review-card:hover {
+      transform: translateY(-5px);
+      border-color: #7c3aed;
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.08);
+    }
+    body.dark .home-review-card:hover {
+      border-color: #f59e0b;
+    }
+    .home-review-card blockquote {
+      font-family: serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: inherit;
+      line-height: 1.6;
+      margin: 0;
+      flex-grow: 1;
+    }
     .home-quote-icon {
       position: absolute;
-      top: 2rem;
-      left: 2.5rem;
-      font-size: 5rem;
-      color: rgba(124, 58, 237, 0.06);
+      top: 1.5rem;
+      left: 1.5rem;
+      font-size: 3.5rem;
+      color: rgba(124, 58, 237, 0.05);
       line-height: 1;
       pointer-events: none;
     }
-    body.dark .home-quote-icon { color: rgba(245, 158, 11, 0.08); }
+    body.dark .home-quote-icon { color: rgba(245, 158, 11, 0.06); }
 
     /* SECTION 8: SONIC CONSULTATION DISPATCH TRIGGER */
     .home-cta-section {
@@ -1005,7 +1047,8 @@
       .home-pathway-steps { grid-template-columns: 1fr; gap: 2rem; }
       .home-geo-split { grid-template-columns: 1fr; gap: 3rem; }
       .home-vault-section { margin: 0; border-radius: 28px; padding: 5rem 5%; }
-      .home-review-card { padding: 3rem 2rem; margin-top: 3rem; }
+      .home-testimonials-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+      .home-review-card { padding: 2rem; }
       .home-cta-banner { flex-direction: column; text-align: center; padding: 4rem 2.5rem; gap: 2rem; }
       .home-cta-banner div[style*="display: flex"] { justify-content: center; width: 100%; }
       .home-vault-section div[style*="display: flex"] { justify-content: center; text-align: center; }
@@ -1017,7 +1060,11 @@
       .home-decks-section, .home-pathway-section, .home-geometry-section, .home-testimonials-section { padding: 4rem 4%; }
       .home-metrics-section { padding: 4rem 4%; }
       .home-cta-section { padding: 2rem 4% 5rem; }
-      .home-vault-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .home-vault-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .home-vault-item { aspect-ratio: auto; }
+      .home-vault-item:nth-child(2) { transform: none; }
+      .home-vault-item:nth-child(2):hover { transform: translateY(-5px); }
+      .home-testimonials-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .home-metrics-grid { grid-template-columns: 1fr; }
       .home-deck-img { height: 180px; }
       .home-geo-img { height: 220px; }
@@ -1035,13 +1082,19 @@
       .home-hero-capsule { padding: 4rem 4% 4rem; margin-top: 75px; }
       .home-decks-section, .home-pathway-section, .home-geometry-section, .home-testimonials-section { padding: 3rem 4%; }
       .home-vault-section { padding: 3.5rem 4%; border-radius: 20px; }
-      .home-review-card { padding: 2.5rem 1.5rem; }
-      .home-deck-img-wrap { padding: 1.5rem; }
-      .home-deck-info { padding: 1.5rem; }
+      .home-review-card { padding: 2rem 1.5rem; }
+      .home-deck-img-wrap { padding: 0; }
+      .home-deck-info { padding: 1.25rem; }
       .home-vault-section div[style*="display: flex"] { flex-direction: column; align-items: center !important; gap: 1rem; }
     }
 
         /* ========== UNIVERSAL RESPONSIVE BREAKPOINTS (Replicated from Index) ========== */
+    /* Constrain all page content sections and footer to a single consistent container width of 1280px */
+    section, .footer {
+      padding-left: max(6%, calc((100% - 1280px) / 2)) !important;
+      padding-right: max(6%, calc((100% - 1280px) / 2)) !important;
+    }
+
     html, body {
       overflow-x: hidden;
       width: 100%;
@@ -1607,7 +1660,7 @@
 
     <!-- Stylus tip -->
     <div class="home-geo-box" style="border-color: rgba(245, 158, 11, 0.2);">
-      <img src="images/index_stylus_tip.png" alt="Precision diamond microscopic line contact stylus tip cross section" class="home-geo-img">
+      <img src="images/cartridge_stylus.png" alt="Bespoke vinyl groove diamond stylus tracing interface" class="home-geo-img">
       <span style="font-family: monospace; font-size: 0.75rem; color: #f59e0b; font-weight: 800; display: block; margin-bottom: 6px;">DIAMOND PROFILE CUTS</span>
       <h3 style="font-family: serif; font-size: 1.5rem; font-weight: 800; color: inherit;">Micro-Ridge Naked Diamond Tips</h3>
       <p style="color: #7c6f8d; font-size: 0.95rem; margin-top: 10px; line-height: 1.6;">
@@ -1661,21 +1714,64 @@
     <h2 class="home-section-title">Endorsed by Analogue Purists</h2>
   </div>
 
-  <div class="home-review-card">
-    <div class="home-quote-icon"><i class="fas fa-quote-left"></i></div>
-    <div style="display: flex; gap: 4px; color: #f59e0b; font-size: 1.1rem; margin-bottom: 1.5rem;">
-      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-    </div>
-    <blockquote style="font-family: serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-style: italic; color: inherit; line-height: 1.6;">
-      "The custom belt-drive reference rig built by Vinyl Oasis transformed our mastering studio control environment. The bottom-end floor definition is staggering, and their meticulous dual-box safe transit methodology ensured absolute alignment out of the box."
-    </blockquote>
-    <div style="margin-top: 2rem; border-top: 1px solid rgba(124, 58, 237, 0.1); padding-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-      <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #f59e0b); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">
-        HV
+  <div class="home-testimonials-grid">
+    <!-- Testimonial 1 -->
+    <div class="home-review-card">
+      <div class="home-quote-icon"><i class="fas fa-quote-left"></i></div>
+      <div style="display: flex; gap: 4px; color: #f59e0b; font-size: 1.1rem; margin-bottom: 1.5rem;">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
       </div>
-      <div>
-        <strong style="font-family: serif; font-size: 1.1rem; display: block; color: inherit;">Harrison Vance</strong>
-        <span style="font-size: 0.8rem; color: #8c829c; display: block;">CHIEF MASTERING ENGINEER &bull; VANCE ANALOGUE LABS</span>
+      <blockquote>
+        "The custom belt-drive reference rig built by Vinyl Oasis transformed our mastering studio control environment. The bottom-end floor definition is staggering, and their meticulous dual-box safe transit methodology ensured absolute alignment out of the box."
+      </blockquote>
+      <div style="margin-top: 2rem; border-top: 1px solid rgba(124, 58, 237, 0.1); padding-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #f59e0b); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">
+          HV
+        </div>
+        <div>
+          <strong style="font-family: serif; font-size: 1.1rem; display: block; color: inherit;">Harrison Vance</strong>
+          <span style="font-size: 0.8rem; color: #8c829c; display: block;">CHIEF MASTERING ENGINEER &bull; VANCE ANALOGUE LABS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial 2 -->
+    <div class="home-review-card">
+      <div class="home-quote-icon"><i class="fas fa-quote-left"></i></div>
+      <div style="display: flex; gap: 4px; color: #f59e0b; font-size: 1.1rem; margin-bottom: 1.5rem;">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      </div>
+      <blockquote>
+        "Preserving our historical pressings requires extreme precision. Vinyl Oasis's micro-ridge styli and Class-A playback chain extracted details from 1950s mono masters that we thought were lost forever. An indispensable asset to our archives."
+      </blockquote>
+      <div style="margin-top: 2rem; border-top: 1px solid rgba(124, 58, 237, 0.1); padding-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #3b82f6); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">
+          CS
+        </div>
+        <div>
+          <strong style="font-family: serif; font-size: 1.1rem; display: block; color: inherit;">Clara Sterling</strong>
+          <span style="font-size: 0.8rem; color: #8c829c; display: block;">LEAD ARCHIVIST &bull; SOUND PRESERVATION GUILD</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial 3 -->
+    <div class="home-review-card">
+      <div class="home-quote-icon"><i class="fas fa-quote-left"></i></div>
+      <div style="display: flex; gap: 4px; color: #f59e0b; font-size: 1.1rem; margin-bottom: 1.5rem;">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      </div>
+      <blockquote>
+        "Their hand-wound moving coil cartridges have elevated my listening experience to another realm. The soundstage width and depth are breathtaking, and transient responses are lightning fast. The absolute pinnacle of analogue fidelity."
+      </blockquote>
+      <div style="margin-top: 2rem; border-top: 1px solid rgba(124, 58, 237, 0.1); padding-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #8b5cf6); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;">
+          MT
+        </div>
+        <div>
+          <strong style="font-family: serif; font-size: 1.1rem; display: block; color: inherit;">Marcus Thorne</strong>
+          <span style="font-size: 0.8rem; color: #8c829c; display: block;">BESPOKE COLLECTOR &bull; AUDIOPHILE CLUB UK</span>
+        </div>
       </div>
     </div>
   </div>
